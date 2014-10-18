@@ -75,6 +75,10 @@
                                             <li class="active"><a href='item.html'><span>Items</span></a></li>
                                             <li><a href='item_category.html'><span>Item Category</span></a></li>
                                             <li class='last'><a href='item_unit.html'><span>Item Units</span></a></li>
+                                       
+                                                                                   <li class='last'><a href='findbybarcode.htm'><span>Stock by barcode</span></a></li>
+                                       
+                                       
                                         </ul>
                                     </li>
                                     <li class=''><a href='purchase_order.html'><span>Purchase Order</span></a></li>

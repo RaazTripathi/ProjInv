@@ -4,8 +4,7 @@ import java.util.List;
 
 import com.tss.ocean.pojo.Usertype;
 
-public class Usertypeservice implements IUsertypeservice
-{
+public class Usertypeservice implements IUsertypeservice {
 
 	@Override
 	public List<Usertype> getList() {
@@ -79,7 +78,7 @@ public class Usertypeservice implements IUsertypeservice
 	@Override
 	public void deleteById(Integer paramKeyType) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -155,7 +154,7 @@ public class Usertypeservice implements IUsertypeservice
 	@Override
 	public void insertOrUpdate(Usertype paramDomainObject) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

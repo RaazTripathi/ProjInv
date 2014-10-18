@@ -4,8 +4,7 @@ import java.util.List;
 
 import com.tss.ocean.pojo.Item;
 
-public interface IAlarmService 
-{
+public interface IAlarmService {
 
 	public List<Item> getAlarm();
 }

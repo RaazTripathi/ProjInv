@@ -7,18 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.tss.ocean.dao.ItemDAO;
 import com.tss.ocean.pojo.Item;
+
 @Service("alarmService")
-public class AlarmService implements IAlarmService
-{
+public class AlarmService implements IAlarmService {
 
 	@Autowired
 	ItemDAO itemDAO;
-	
+
 	@Override
 	public List<Item> getAlarm() {
 
-
-		
 		return itemDAO.getAlarm();
 	}
 

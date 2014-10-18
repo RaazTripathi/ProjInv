@@ -9,16 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.tss.ocean.idao.IUsersDAO;
 import com.tss.ocean.pojo.Users;
 
-
 @Service("userService")
-public class Userservice implements IUserservice
-{
-	
+public class Userservice implements IUserservice {
+
 	@Autowired
 	IUsersDAO userDao;
-	
-	
-	
 
 	@Override
 	public List<Users> getList() {
@@ -36,8 +31,8 @@ public class Userservice implements IUserservice
 	@Transactional
 	public Users getRecordByKeyandValue(String paramString, Object paramObject) {
 
-		return   userDao.getRecordByKeyandValue(paramString, paramObject);
-			}
+		return userDao.getRecordByKeyandValue(paramString, paramObject);
+	}
 
 	@Override
 	public List getRecordListByKeyandValue(String paramString,
@@ -75,7 +70,7 @@ public class Userservice implements IUserservice
 	public Integer insert(Users paramDomainObject) {
 
 		userDao.insert(paramDomainObject);
-		
+
 		return null;
 	}
 
@@ -94,7 +89,7 @@ public class Userservice implements IUserservice
 	@Override
 	public void deleteById(Integer paramKeyType) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -170,7 +165,7 @@ public class Userservice implements IUserservice
 	@Override
 	public void insertOrUpdate(Users paramDomainObject) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

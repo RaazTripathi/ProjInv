@@ -6,13 +6,15 @@ import com.tss.ocean.pojo.Purrequisitiondt;
 import org.springframework.stereotype.Repository;
 
 @Repository("purrequisitiondtDAO")
-public class PurrequisitiondtDAO
-  extends GenericDAOImpl<Purrequisitiondt, Integer>
-  implements IPurrequisitiondtDAO
-{}
-
-
-/* Location:           E:\proj\WEB-INF\classes\
- * Qualified Name:     com.tss.ocean.dao.PurrequisitiondtDAO
- * JD-Core Version:    0.7.1
+public class PurrequisitiondtDAO extends
+		GenericDAOImpl<Purrequisitiondt, Integer> implements
+		IPurrequisitiondtDAO {
+}
+
+/*
+ * Location: E:\proj\WEB-INF\classes\
+ * 
+ * Qualified Name: com.tss.ocean.dao.PurrequisitiondtDAO
+ * 
+ * JD-Core Version: 0.7.1
  */

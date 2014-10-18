@@ -16,37 +16,27 @@ import com.tss.ocean.pojo.Users;
 import com.tss.ocean.service.IUserservice;
 
 @Controller
-
-
 public class RegistrationController {
-
-	
 
 	@Autowired
 	IUserservice userService;
-	
-	
 
-	 @RequestMapping(value={"/register/register.htm"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
-	  public String registration(@ModelAttribute("user") Users user, HttpServletRequest request)
-	     throws Exception
-	   {
-	    
-	     return "register";
-	   }
-	
-	
-	 
-	 @RequestMapping(value={"/register/registerAction.htm"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
-	  public String register(@ModelAttribute("user") Users user, HttpServletRequest request)
-	     throws Exception
-	   {
-	    
-		 System.out.println(user.getName()+"...............................................");
-		 user.setCreatedat(new Date());
-		 userService.insert(user);
-	     return "redirect:/login.html";
-	   }
-	 
-	
+	@RequestMapping(value = { "/register/register.htm" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public String registration(@ModelAttribute("user") Users user,
+			HttpServletRequest request) throws Exception {
+
+		return "register";
+	}
+
+	@RequestMapping(value = { "/register/registerAction.htm" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
+	public String register(@ModelAttribute("user") Users user,
+			HttpServletRequest request) throws Exception {
+
+		System.out.println(user.getName()
+				+ "...............................................");
+		user.setCreatedat(new Date());
+		userService.insert(user);
+		return "redirect:/login.html";
+	}
+
 }
