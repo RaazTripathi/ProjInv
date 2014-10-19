@@ -8,7 +8,8 @@ import com.tss.ocean.pojo.Employees;
 public abstract interface IEmployeesDAO
   extends GenericDAO<Employees, Integer>
 {
-	public List<Employees> getAlarm();	
+	public List<Employees> getAlarm();
+	public List<Employees> getIqamaAlarm();
 }
 
 

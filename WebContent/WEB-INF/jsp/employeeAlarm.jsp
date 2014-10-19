@@ -65,7 +65,7 @@ $(document).ready(function() {
                             </ul>
                         </div>
             </div>
-             <div class="col-md-6">
+             <div class="col-md-4">
                     <div class="catagory-main-box top-radius">
                         <div class="cat-box-title top-radius"></div>
 
@@ -76,7 +76,7 @@ $(document).ready(function() {
                                    <td> 
                                   
                            <a href="UpdateItem.html?updateItemId=${item.id}" >   <div id="blink" >     
-                                 ${item.firstName} Is reached to low stock. Remaining stock is ${item.passportExpiryDate} 
+                                 ${item.firstName}'s passport reached to expire. Expire date is   ${item.passportExpiryDate} 
                                   </div> </a>
                                    </td>
                                   
@@ -93,9 +93,39 @@ $(document).ready(function() {
                 </div>
                 
                 
-                <div class="col-md-3">
-            &nbsp;
-            </div>
+                
+                
+                
+                
+                
+                
+               <div class="col-md-4">
+                    <div class="catagory-main-box top-radius">
+                        <div class="cat-box-title top-radius"></div>
+
+                                    <center>
+                                   <table   align="center" >
+                                   <c:forEach var="iitem" items="${iqlist}">
+                                   <tr>
+                                   <td> 
+                                  
+                           <a href="UpdateItem.html?updateItemId=${iitem.id}" >   <div id="blink" >     
+                                 ${iitem.firstName}'s Iqama number is to expire. Expire date is   ${iitem.passportExpiryDate} 
+                                  </div> </a>
+                                   </td>
+                                  
+                                   </tr>
+                                   </c:forEach>
+                                   </table>
+                                   </center>
+                                   
+                                   
+                                   
+                                   
+                               
+                    </div>
+                </div>
+               
             
 </div>
 </body>

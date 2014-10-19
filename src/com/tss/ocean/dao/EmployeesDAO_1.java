@@ -18,6 +18,12 @@ public class EmployeesDAO_1
 	public List<Employees> getAlarm() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Employees> getIqamaAlarm() {
+		// TODO Auto-generated method stub
+		return null;
 	}}
 
 

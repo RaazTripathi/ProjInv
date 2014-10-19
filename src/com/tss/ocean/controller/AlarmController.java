@@ -47,9 +47,10 @@ public class AlarmController {
 	     throws Exception
 	   {
 	     list= (ArrayList<Employees>) empDao.getAlarm();
-		 
+	     ArrayList<Employees> iqlist=(ArrayList<Employees>) empDao.getIqamaAlarm();
 	     ModelAndView model = new ModelAndView("employeeAlarm");
 			model.addObject("list", list);
+			model.addObject("iqlist", iqlist);
 	    System.out.println("hhhhhhhhhhh"+list.size());
 	     return model;
 	   }

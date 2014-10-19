@@ -87,6 +87,68 @@ String hql = "from Employees e where e.passportExpiryDate BETWEEN ?   AND  ?";
 	return results;
 	}
 	
+	
+	
+	
+	@Override
+	public List<Employees> getIqamaAlarm() {
+
+		Session session = getSession();
+		
+		session.beginTransaction();
+	//return	session.createQuery("from Employees e where e.currstock < 15 ").list();
+	//return	session.createQuery("Now() + interval 1 day from Employees e where WHERE passportExpiryDate = Now() + interval 1 day ").list();
+		SimpleDateFormat sdfSource = new SimpleDateFormat("dd/MM/yyyy") ;
+	    
+	    //parse the string into Date object
+		try {
+			today = sdfSource.parse(strDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	   
+	    //create SimpleDateFormat object with desired date format
+	    SimpleDateFormat sdfDestination = new SimpleDateFormat("dd/MM/yyyy");
+	   
+	    //parse the date into another format
+	    strDate = sdfDestination.format(today);
+	    try {
+			 startdate=sdfDestination.parse(strDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+			
+		
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, +1);
+		Date	 result = cal.getTime();
+		try {
+			result2=result.toString();
+			result= sdfSource.parse(result2);
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		 
+		  result2=sdfDestination.format(result);
+		
+String hql = "from Employees e where e.iqamaExpiryDate BETWEEN ?   AND  ?";
+					
+	Query query = session.createQuery(hql)
+	.setParameter(0, startdate)
+	.setParameter(1, result);
+	
+	List results = query.list();
+
+	return results;
+	}
+
+	
+	
+	
 
 }
 

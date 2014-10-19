@@ -15,10 +15,10 @@
     <li class=''><a href='outgoing.html'><span>Outgoing</span></a></li>
     <li class=''><a href='profitandloss.html'><span>Profit/Loss</span></a></li>
     <li class=''><a href='revenue.html'><span>Revenue</span></a></li>
-    <li class=''><a href='bank.html'><span>Borrow</span></a></li>
+    <li class=''><a href='borrow.html'><span>Borrow</span></a></li>
     <li class=''><a href='bank.html'><span>Expenses</span></a></li>
     <li class=''><a href='assets.html'><span>Assets</span></a></li>
-    <li class=''><a href='bank.html'><span>Statement</span></a></li>
+    <li class=''><a href='statement.html'><span>Statement</span></a></li>
     <li class="active"><a href='cash_vouchers.html'><span>Box Invoices</span></a></li>
      <li class="active"><a href='bank_vouchers.html'><span>Bank Invoices</span></a></li>
     <li class=''><a href='bank.html'><span>Bank Accounts</span></a></li>
