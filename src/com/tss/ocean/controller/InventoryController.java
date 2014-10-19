@@ -214,8 +214,10 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 144:149 */oldItem.setTaxid(item.getTaxid());
 		/* 145:150 */oldItem.setCategoryid(item.getCategoryid());
 		/* 146:151 */oldItem.setCurrstock(item.getCurrstock());
+		oldItem.setBarcode(item.getBarcode());
 		/* 147:152 */logger.log(Level.OFF, "Update result ####### ."
 				+ this.itemDAO.update(oldItem));
+		System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"+ this.itemDAO.update(oldItem));
 		/* 148:153 */return new ModelAndView("redirect:/item.html");
 		/* 149: */}
 
@@ -249,6 +251,7 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 170:173 */oldItem.setTaxid(item.getTaxid());
 		/* 171:174 */oldItem.setCategoryid(item.getCategoryid());
 		/* 172:175 */oldItem.setCurrstock(item.getCurrstock());
+					 oldItem.setBarcode(item.getBarcode());
 		/* 173:176 */logger.log(Level.OFF, "Update result ####### ."
 				+ this.itemDAO.update(oldItem));
 		/* 174:177 */return new ModelAndView("redirect:/item_unit.html");
@@ -426,9 +429,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 
-
-
-
 	
 	/* 40: */
 	/* 41: */@RequestMapping(value = { "/findbybarcode.htm" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
@@ -459,13 +459,77 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 47: 55 */logger.log(Level.OFF, "item called size ### "
 				+ this.itemDAO.getList().size());
 
+		String name = null;
+		int surstock = 0;
+		int id = 0;
 		for (Item i : this.itemDAO.getListByKeyandValue("barcode", barcode)) {
-			System.out.println("______________________________" + i.getName());
-
+			System.out.println("______________________________" + i.getBarcode());
+id=i.getId();
+			surstock=i.getCurrstock();
+			name=i.getName();
 		}
-		/* 48: 56 */model.addAttribute("itemList", this.itemDAO.getList());
-		/* 49: 57 */return "item";
+		
+		
+		System.out.println("barcode search string " +barcode);
+model.addAttribute("name",name);
+model.addAttribute("id",id);
+
+		model.addAttribute("surstock",surstock);
+		/* 49: 57 */return "updatecurtstock";
 		/* 50: */}
+
+
+
+	
+
+	/* 40: */
+	/* 41: */@RequestMapping(value = { "/updatecurtstock.htm" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	/* 42: */@PreAuthorize("hasAnyRole('ROLE_USER') ")
+	/* 43: */public String updtecurtstock()
+	/* 44: */throws Exception
+	/* 45: */{
+		/* 46: 54 */logger.log(Level.OFF, "item called.");
+		/* 47: 55 */logger.log(Level.OFF, "item called size ### "
+				+ this.itemDAO.getList().size());
+
+		
+		/* 49: 57 */return "updatecurtstock";
+		/* 50: */}
+
+	
+	
+	
+	@RequestMapping(value = { "/updatecurtstock.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
+	/* 152: */@PreAuthorize("hasAnyRole('ROLE_USER')")
+	/* 153: */public ModelAndView updatecurtstock(
+			
+			@RequestParam int currstock, @RequestParam int id
+			)
+	/* 154: */throws Exception
+	/* 155: */{
+		/* 156:160 */logger.log(Level.OFF, "Edit Item with detail ####### ."
+				+ id);
+		Item oldItem = (Item) this.itemDAO
+				.getRecordByPrimaryKey(id);
+			/* 172:175 */oldItem.setCurrstock(currstock);
+					
+		/* 173:176 */logger.log(Level.OFF, "Update result ####### ."
+				+ this.itemDAO.update(oldItem));
+		/* 174:177 */return new ModelAndView("redirect:item.html");
+	
+		
+		
+
+	
+	}
+
+	
+	
+	
+	
+	
+	
+
 
 
 }

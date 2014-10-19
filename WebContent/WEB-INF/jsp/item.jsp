@@ -77,7 +77,7 @@
                                             <li class='last'><a href='item_unit.html'><span>Item Units</span></a></li>
                                        
                                                                                    <li class='last'><a href='findbybarcode.htm'><span>Stock by barcode</span></a></li>
-                                       
+                                       											  <li class='last'><a href='updatecurtstock.htm'><span>Update Stock</span></a></li>
                                        
                                         </ul>
                                     </li>
@@ -134,7 +134,7 @@
                                             <tr>
                                                 <td><a href="UpdateItem.html?updateItemId=${listVar.id}"><c:out value="${listVar.name}"/></a></td>
                                                 <td><c:out value="${listVar.typeid.name}"/></td>
-                                                <td><c:out value="${listVar.currstock}"/></td>
+                                                <td><a href="updatecurtstock.html?updatecurrentstock=${listVar.id}"><c:out value="${listVar.currstock}"/></td>
                                                 <td data-value="78025368997"><c:out value="${listVar.unitid.name}"/></td>
                                                 <td data-value="1"><span class="status-metro status-active" title="Active"><c:out value="${listVar.price}"/></span></td>
                                                <td class="bcod">
