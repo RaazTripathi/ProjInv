@@ -77,7 +77,6 @@
                                             <li class='last'><a href='item_unit.html'><span>Item Units</span></a></li>
                                        
                                                                                    <li class='last'><a href='findbybarcode.htm'><span>Stock by barcode</span></a></li>
-                                       											  <li class='last'><a href='updatecurtstock.htm'><span>Update Stock</span></a></li>
                                        
                                         </ul>
                                     </li>

@@ -85,8 +85,7 @@
                                     
                                     <div class="form-group">
                                         <div class="div-center-xs">
-                                            <input type="submit" class="btn btn-orange"   value="Save" />
-                                            <button type="button" class="btn btn-orange" >Cancel</button>
+                                            <input type="submit" class="btn btn-orange"   value="Submit" />
                                         </div></div>
                                                                          
                                
