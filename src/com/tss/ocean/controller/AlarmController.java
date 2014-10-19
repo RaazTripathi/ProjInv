@@ -16,35 +16,44 @@ import com.tss.ocean.service.IAlarmService;
 import com.tss.ocean.service.IUserservice;
 
 @Controller
+
+
 public class AlarmController {
+
+	
 
 	@Autowired
 	IUserservice userService;
 	@Autowired
-	IAlarmService alarmService;
+	IAlarmService alarmService ;
 	@Autowired
 	EmployeesDAO empDao;
 
-	@RequestMapping(value = { "/alarm.htm" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView itemAlarm(ArrayList<Item> list,
-			HttpServletRequest request) throws Exception {
-		list = (ArrayList<Item>) alarmService.getAlarm();
-
-		ModelAndView model = new ModelAndView("itemAlarm");
-		model.addObject("list", list);
-		System.out.println("hhhhhhhhhhh" + list.size());
-		return model;
-	}
-
-	@RequestMapping(value = { "/alarmEmployee.htm" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView mployeeAlarm(ArrayList<Employees> list,
-			HttpServletRequest request) throws Exception {
-		list = (ArrayList<Employees>) empDao.getAlarm();
-
-		ModelAndView model = new ModelAndView("employeeAlarm");
-		model.addObject("list", list);
-		System.out.println("hhhhhhhhhhh" + list.size());
-		return model;
-	}
-
+	 @RequestMapping(value={"/alarm.htm"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+	  public ModelAndView itemAlarm( ArrayList<Item> list,HttpServletRequest request)
+	     throws Exception
+	   {
+	     list= (ArrayList<Item>) alarmService.getAlarm();
+		 
+	     ModelAndView model = new ModelAndView("itemAlarm");
+			model.addObject("list", list);
+	    System.out.println("hhhhhhhhhhh"+list.size());
+	     return model;
+	   }
+	
+	
+	 @RequestMapping(value={"/alarmEmployee.htm"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+	  public ModelAndView mployeeAlarm( ArrayList<Employees> list,HttpServletRequest request)
+	     throws Exception
+	   {
+	     list= (ArrayList<Employees>) empDao.getAlarm();
+	     ArrayList<Employees> iqlist=(ArrayList<Employees>) empDao.getIqamaAlarm();
+	     ModelAndView model = new ModelAndView("employeeAlarm");
+			model.addObject("list", list);
+			model.addObject("iqlist", iqlist);
+	    System.out.println("hhhhhhhhhhh"+list.size());
+	     return model;
+	   }
+	 
+	
 }

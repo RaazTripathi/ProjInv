@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tss.ocean.dao.AssetDAO;
+import com.tss.ocean.dao.BorrowDAO;
 import com.tss.ocean.idao.IAccountsDAO;
 import com.tss.ocean.idao.IEmployeeCategoryDAO;
 import com.tss.ocean.idao.IEmployeesDAO;
@@ -23,6 +25,8 @@ import com.tss.ocean.idao.IPurchaseApproverDAO;
 import com.tss.ocean.idao.IPurrequisitionDAO;
 import com.tss.ocean.idao.IPurrequisitiondtDAO;
 import com.tss.ocean.pojo.Accounts;
+import com.tss.ocean.pojo.Asset;
+import com.tss.ocean.pojo.Borrow;
 import com.tss.ocean.pojo.Employees;
 import com.tss.ocean.pojo.Invoice;
 import com.tss.ocean.pojo.Purrequisition;
@@ -41,7 +45,8 @@ public class financeMenuControllers {
 	@Autowired
 	IInvoiceDAO invoiceDAO;
 	
-	
+	@Autowired
+	BorrowDAO borrowDao;
 
 	/*  47:    */   @Autowired
 	/*  48:    */   private IPurchaseApproverDAO purchaseApproversDAO;
@@ -61,7 +66,8 @@ public class financeMenuControllers {
 	/*  60:    */   private IEmployeesDAO employeesDAO;
 	/*  61:    */   @Autowired
 	/*  62:    */   IEmployeeCategoryDAO employeeCategoryDAO;
-	
+	@Autowired
+	/* 58: */private AssetDAO assetDAO;
 	/*
 	 * Maps to the invoice filling form
 	 */
@@ -153,6 +159,67 @@ for(Purrequisition i:purreq)
 
 		return mav;
 	}
+	
+	
+	
+	
+	// Financial Statement
+	
+	@RequestMapping(value = { "/statement.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView statement(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+		logger.info("Starting the save of data.");
+		List<Invoice> invoices = this.invoiceDAO.getList();
+		logger.info("returned with "+invoices.size()+" cash invoices");
+		float totali = 0;
+		for(Invoice i:invoices)
+		{
+			totali=totali+(i.getGrossAmount().floatValue());
+		}
+		
+List <Purrequisition> purreq	=	this.purrequisitionDAO.getListByCondition("t where t.approvalStatus=1");
+		
+
+
+float totalp = 0;
+for(Purrequisition i:purreq)
+{
+	totalp=totalp+(i.getPrice().floatValue());
+}
+List<Asset> assets = this.assetDAO.getList();
+List<Borrow> borrow = this.borrowDao.getList();
+
+		ModelAndView mav = new ModelAndView("statement");
+		mav.getModelMap().put("useFinanceMenus", "true");
+		mav.getModelMap().put("invoices", invoices);
+		mav.getModelMap().put("purrequisitionList", purreq);
+
+		mav.getModelMap().put("title_text", "Cash based invoice");
+		mav.getModelMap().put("totali", totali);
+		mav.getModelMap().put("totalo", totalp);
+		mav.getModelMap().put("borrow", borrow);
+		mav.getModelMap().put("assets", assets);
+		return mav;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	@RequestMapping(value = { "/debitcredit.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })

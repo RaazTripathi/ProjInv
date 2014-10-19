@@ -5,6 +5,8 @@
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/invmgmt?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8</property>
+   
+   <property name="hibernate.hbm2ddl.auto" >update</property>
     <!--
     <property name="hibernate.hbm2ddl.auto">create</property>
     -->
@@ -28,6 +30,8 @@
     <mapping resource="com/tss/ocean/pojo/EmployeeLeaves.hbm.xml"/>
     <mapping resource="com/tss/ocean/pojo/ApplyLeaves.hbm.xml"/>
     <mapping resource="com/tss/ocean/pojo/Itemunit.hbm.xml"/>
+        <mapping resource="com/tss/ocean/pojo/asset.hbm.xml"/>
+     <mapping resource="com/tss/ocean/pojo/borrow.hbm.xml"/>
     <mapping resource="com/tss/ocean/pojo/PayrollCategories.hbm.xml"/>
     <mapping resource="com/tss/ocean/pojo/Purrequisition.hbm.xml"/>
     <mapping resource="com/tss/ocean/pojo/Employees.hbm.xml"/>
