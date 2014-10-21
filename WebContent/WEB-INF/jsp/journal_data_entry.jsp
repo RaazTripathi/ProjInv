@@ -98,7 +98,7 @@
 	                                      <spring:message code="label.journal.paymenttype" text="Default Text"/>
 	                                    </label>
                                         <div class="col-sm-8 col-xs-12">
-                                            <form:select class="form-control" path="io">
+                                            <form:select class="form-control" path="borb">
                                                     <option value="0">Box</option>
                                                     <option value="1">Bank</option>
                                             </form:select>
