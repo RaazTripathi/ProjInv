@@ -12,7 +12,7 @@
     <li class=''><a href='credit_entry.html'><span>Credit</span></a>
     </li>
     
-        <li class=''><a href='journal_entry.html'><span>Journal Entry</span></a></li>
+        <li class=''><a href='journalform.html'><span>Journal Entry</span></a></li>
         <li class=''><a href='incomming.html'><span>Invoice</span></a></li>
         
     
