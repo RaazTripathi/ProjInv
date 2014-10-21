@@ -1,35 +1,41 @@
 package com.tss.ocean.pojo;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.math.BigDecimal;
 
 public class Journal implements Serializable
 {
-
+	private static final long serialVersionUID = 1L;
+	private Integer id;
+	private String date;
+	private Integer journalNo;
+	private BigDecimal price ;
+	private String remark;
+	private Boolean borb;
+	private Boolean io;
 	
-	Date date;
-	int no;
-	int journalNo;
-	float price ;
-	String remark;
-	int borb;
-	int io;
-	public Date getDate() {
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public int getNo() {
-		return no;
+	public Integer getJournalNo() {
+		return journalNo;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public void setJournalNo(Integer journalNo) {
+		this.journalNo = journalNo;
 	}
-	public float getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
-	public void setPrice(float price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 	public String getRemark() {
@@ -38,16 +44,19 @@ public class Journal implements Serializable
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-	public int getBorb() {
+	public Boolean isBorb() {
 		return borb;
 	}
-	public void setBorb(int borb) {
+	public Boolean getBorb() {
+		return borb;
+	}
+	public void setBorb(Boolean borb) {
 		this.borb = borb;
 	}
-	public int getIo() {
+	public Boolean getIo() {
 		return io;
 	}
-	public void setIo(int io) {
+	public void setIo(Boolean io) {
 		this.io = io;
 	}
 	

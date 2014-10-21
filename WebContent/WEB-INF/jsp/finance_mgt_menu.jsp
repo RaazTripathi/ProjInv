@@ -11,7 +11,7 @@
     
     </li>
     
-        <li class=''><a href='incomming.html'><span>Journal Entry</span></a></li>
+        <li class=''><a href='journal_entry.html'><span>Journal Entry</span></a></li>
         <li class=''><a href='incomming.html'><span>Invoice</span></a></li>
         
     

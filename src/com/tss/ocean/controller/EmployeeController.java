@@ -344,7 +344,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 /* 334:    */   
 /* 335:    */   @RequestMapping(value={"/employee.html"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
 /* 336:    */  
-@PreAuthorize("hasAnyRole('ROLE_HR') ")
+@PreAuthorize("hasAnyRole('ROLE_HR', 'ROLE_ADMIN') ")
 public ModelAndView getEmployyes(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale)
 /* 337:    */     throws Exception
 /* 338:    */   {
