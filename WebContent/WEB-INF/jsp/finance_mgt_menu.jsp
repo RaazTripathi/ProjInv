@@ -7,8 +7,9 @@
      
      </ul>
     </li>
-    <li class=''><a href='debitcredit.html'><span>Credit / Debit</span></a>
-    
+    <li class=''><a href='debit_entry.html'><span>Debit</span></a>
+    </li>
+    <li class=''><a href='credit_entry.html'><span>Credit</span></a>
     </li>
     
         <li class=''><a href='journal_entry.html'><span>Journal Entry</span></a></li>
