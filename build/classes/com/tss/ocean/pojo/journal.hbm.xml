@@ -24,7 +24,7 @@
             <column name="journalNo"  />
         </property>
         <property name="borb" type="int">
-            <column name="borb"  />
+            <column name="brob"  />
         </property>
         
         
