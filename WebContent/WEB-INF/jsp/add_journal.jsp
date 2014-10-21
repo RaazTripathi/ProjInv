@@ -7,6 +7,13 @@
 <html>
     <head>        
         <jsp:include page="header.jsp" />
+      <script type="text/javascript">
+      $( document ).ready(function() {
+    	  
+    	  $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+    	});
+                                           
+        </script>
     </head>
 	<body role="document">
         <jsp:include page="headermenu.jsp" />
@@ -37,14 +44,14 @@
 
                             <div class="row tb-margin">
                                 <div class="col-sm-2"></div>
-                            <form:form action="addassets.html" commandName="journal" method="post" >
+                            <form:form action="addjournal.html" commandName="journal" method="post" >
                                
                                 <div class="col-sm-8 visible-lg visible-md visible-sm">
 
                                     <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text">Journal no</label>
                                         <div class="col-sm-8 col-xs-12">
-                                            <input  type="text" class="form-control" name="name" path="journalNo" placeholder="Name"/>
+                                            <input  type="text" class="form-control" name="journalNo" path="journalNo" placeholder="Name"/>
                                             
                                         </div>
                                     </div>
@@ -53,29 +60,11 @@
  <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text"> Date</label>
                                         <div class="col-sm-8 col-xs-12">
-                                           <input  type="text" class="form-control" name="price" path="Date" placeholder="Price"/>
+                                           <input  type="text" id="date" class="form-control datepicker" name="date"  placeholder="Date"/>
                                                                           
                                         </div>
-                                    </div> <div class="form-group">
-                                        <label class="col-sm-4 col-xs-12 control-label search-text"> Price</label>
-                                        <div class="col-sm-8 col-xs-12">
-                                           <input  type="text" class="form-control" name="price" path="price" placeholder="Price"/>
-                                                                          
-                                        </div>
-                                    </div> <div class="form-group">
-                                        <label class="col-sm-4 col-xs-12 control-label search-text"> Remark text
-                                           <input  type="text" class="form-control" name="price" path="remark" placeholder="Price"/>
-                                                                          
-                                        </div>
-                                    </div> <div class="form-group">
-                                        <label class="col-sm-4 col-xs-12 control-label search-text"> Mode of payment</label>
-                                        <div class="col-sm-8 col-xs-12">
-<select id="boxMode" name="boxMode" class="form-control">
-	                                            <option value="true">Collection via Cash</option>
-	                                            <option value="false">Collection via Bank</option>
-	                                        </select>                                                                          
-                                        </div>
-                                    </div>
+                                    </div> 
+                                    
                                     <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text"> Price</label>
                                         <div class="col-sm-8 col-xs-12">
@@ -83,6 +72,23 @@
                                                                           
                                         </div>
                                     </div>
+                                     <div class="form-group">
+                                        <label class="col-sm-4 col-xs-12 control-label search-text"> Remark text</label>
+                                          <div class="col-sm-8 col-xs-12">
+                                           <input  type="text" class="form-control" name="remark"  placeholder="ramark text"/>
+                                                                          
+                                        </div>
+                                    </div> 
+                                    <div class="form-group">
+                                        <label class="col-sm-4 col-xs-12 control-label search-text"> Mode of payment</label>
+                                        <div class="col-sm-8 col-xs-12">
+<select id="boxMode" name="borb" class="form-control">
+	                                            <option value="1">Collection via Cash</option>
+	                                            <option value="2">Collection via Bank</option>
+	                                        </select>                                                                          
+                                        </div>
+                                    </div>
+                                    
 
                                                                        
                                   
@@ -130,5 +136,7 @@
                 });
             });
         </script>
+       
+        
     </body>
 </html>

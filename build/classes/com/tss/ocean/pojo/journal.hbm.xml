@@ -16,15 +16,15 @@
             <column name="price"  />
         </property>
       
-      <property name="price" type="int">
-            <column name="price"  />
+      <property name="date" type="java.util.Date">
+            <column name="date"  />
         </property>
         
          <property name="journalNo" type="int">
             <column name="journalNo"  />
         </property>
-        <property name="brob" type="int">
-            <column name="brob"  />
+        <property name="borb" type="int">
+            <column name="borb"  />
         </property>
         
         

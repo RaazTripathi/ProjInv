@@ -7,6 +7,12 @@ public class Journal implements Serializable
 {
 
 	
+	public int getJournalNo() {
+		return journalNo;
+	}
+	public void setJournalNo(int journalNo) {
+		this.journalNo = journalNo;
+	}
 	Date date;
 	int no;
 	int journalNo;

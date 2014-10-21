@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tss.ocean.dao.AssetDAO;
+import com.tss.ocean.dao.JournalDAO;
 import com.tss.ocean.idao.IAccountsDAO;
 import com.tss.ocean.idao.IEmployeeCategoryDAO;
 import com.tss.ocean.idao.IEmployeesDAO;
@@ -37,7 +38,8 @@ public class JournalController {
 	private IPurchaseApproverDAO purchaseApproversDAO;
 	@Autowired
 	private IPurrequisitionDAO purrequisitionDAO;
-
+@Autowired
+JournalDAO journalDao;
 	/* 51: */@Autowired
 	/* 52: */private IPurrequisitiondtDAO purrequisitiondtDAO;
 	/* 53: */@Autowired
@@ -53,10 +55,10 @@ public class JournalController {
 	private static final Logger logger = LoggerFactory.getLogger(financeMenuControllers.class);
 
 	
-	/*@RequestMapping(value = { "/assets.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView revenue(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+	@RequestMapping(value = { "/addjournal.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
+	public ModelAndView revenue(@ModelAttribute("journal") Journal journal) throws Exception {
 		logger.info("************************************");
-		List<Asset> assets = this.assetDAO.getList();
+		/*List<Asset> assets = this.assetDAO.getList();
 		logger.info("returned with "+assets.size()+" cash invoices");
 		
 	float	total = 0;
@@ -64,24 +66,42 @@ public class JournalController {
 		for(Asset a:assets)
 		{
 			total=total+a.getPrice();
-		}
-				ModelAndView mav = new ModelAndView("assets_list");
-		mav.getModelMap().put("useFinanceMenus", "true");
+		}*/
+		journalDao.insert(journal);
+		
+				ModelAndView mav = new ModelAndView("journal-list");
+		/*mav.getModelMap().put("useFinanceMenus", "true");
 		mav.getModelMap().put("assets", assets);
-		mav.getModelMap().put("total", total);
+		mav.getModelMap().put("total", total);*/
 		return mav;
 	}
-	*/
 	
 	
 	
-	@RequestMapping(value = { "/journal.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public String addassetform(@ModelAttribute("asset") Journal journal) throws Exception {
+	
+	@RequestMapping(value = { "/journalform.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public String addjournalform(@ModelAttribute("journal") Journal journal) throws Exception {
 		logger.info("************************************");
 		
 	
 	
-		return "add_assets";
+		return "add_journal";
+	}
+
+
+	
+	@RequestMapping(value = { "/journal.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView addjournal(@ModelAttribute("journal") Journal journal) throws Exception {
+		logger.info("************************************");
+		
+	List <Journal> jlist=journalDao.getList();
+	
+	ModelAndView mv=new ModelAndView("journal-list");
+	mv.getModelMap().put("journal", jlist);
+	
+		return mv;
+		
+		
 	}
 
 
