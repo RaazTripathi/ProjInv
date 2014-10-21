@@ -783,4 +783,18 @@ CREATE TABLE IF NOT EXISTS `invoice` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='invoice' AUTO_INCREMENT=6 ;
 
 
+DROP TABLE IF EXISTS `journal`;
+
+CREATE TABLE IF NOT EXISTS `journal` (
+`id` int(11) NOT NULL AUTO_INCREMENT,
+  `date` date DEFAULT NULL,
+  `journalNo` int(11) DEFAULT NULL,
+  `price` decimal(10,2) DEFAULT NULL,
+  `remark` varchar(45) DEFAULT NULL,
+  `borb` tinyint(1) DEFAULT NULL,
+  `io` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+
+
 
