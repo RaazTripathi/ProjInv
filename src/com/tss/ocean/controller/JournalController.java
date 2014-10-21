@@ -102,11 +102,25 @@ JournalDAO journalDao;
 		return mv;
 		
 		
+	}	
+	
+	@RequestMapping(value = { "/debit_entry.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView debit(@ModelAttribute("journal") Journal journal) throws Exception {
+		ModelAndView mv=new ModelAndView("debitandcredit");
+		mv.getModelMap().put("flash", "Enter the debit voucher entries");
+		mv.getModelMap().put("useFinanceMenus", "true");
+		mv.getModelMap().put("type", "0");
+		return mv;
 	}
-
-
 	
-	
+	@RequestMapping(value = { "/credit_entry.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView credit(@ModelAttribute("journal") Journal journal) throws Exception {
+		ModelAndView mv=new ModelAndView("debitandcredit");
+		mv.getModelMap().put("flash", "Enter the credit voucher entries");
+		mv.getModelMap().put("useFinanceMenus", "true");
+		mv.getModelMap().put("type", "1");
+		return mv;
+	}
 	
 	
 }

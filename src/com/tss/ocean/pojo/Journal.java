@@ -7,29 +7,32 @@ public class Journal implements Serializable
 {
 
 	
+	private static final long serialVersionUID = -6929422014912532671L;
+	
+	private Date date;
+	private int no;
+	private int journalNo;
+	private float price ;
+	private String remark;
+	private int borb;
+	private int io;
+	
 	public int getJournalNo() {
 		return journalNo;
 	}
 	public void setJournalNo(int journalNo) {
 		this.journalNo = journalNo;
 	}
-	Date date;
-	int no;
-	int journalNo;
-	float price ;
-	String remark;
-	int borb;
-	int io;
 	public Date getDate() {
 		return date;
 	}
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	public int getNo() {
+	public int getId() {
 		return no;
 	}
-	public void setNo(int no) {
+	public void setId(int no) {
 		this.no = no;
 	}
 	public float getPrice() {
