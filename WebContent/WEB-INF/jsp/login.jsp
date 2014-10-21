@@ -72,7 +72,7 @@
             }
 
             #login {
-                border-top: 8px solid #F66F21;
+                border-top: 8px solid #008040;
                 margin: 0 auto;
                 padding: 30px 0 0;
                 width: 100%;
@@ -92,10 +92,10 @@
                 position: relative;
                 z-index: 0;
 
-                background-image: -webkit-linear-gradient(top, #fe7427, #d65907);
-                background-image: -moz-linear-gradient(top, #fe7427, #d65907);
-                background-image: -o-linear-gradient(top, #fe7427, #d65907);
-                background-image: linear-gradient(to bottom, #fe7427, #d65907);
+                background-image: -webkit-linear-gradient(top, #008040, #008040);
+                background-image: -moz-linear-gradient(top, #008040, #008040);
+                background-image: -o-linear-gradient(top, #008040, #008040);
+                background-image: linear-gradient(to bottom, #008040, #008040);
             }
             #login form .form_errors {
                 color: #f90;

@@ -26,6 +26,9 @@
         <property name="updateat" type="timestamp">
             <column name="updateat" length="19" />
         </property>
+        <property name="role" type="string">
+            <column name="role"  />
+        </property>
         <property name="image" type="binary">
             <column name="image" />
         </property>

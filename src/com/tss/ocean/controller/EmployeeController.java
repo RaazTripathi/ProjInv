@@ -32,6 +32,7 @@ import java.util.Date;
 /*  27:    */ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 /*  28:    */ import org.springframework.context.MessageSource;
+import org.springframework.security.access.prepost.PreAuthorize;
 /*  29:    */ import org.springframework.stereotype.Controller;
 /*  30:    */ import org.springframework.ui.Model;
 /*  31:    */ import org.springframework.ui.ModelMap;
@@ -342,7 +343,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 /* 333:    */   }
 /* 334:    */   
 /* 335:    */   @RequestMapping(value={"/employee.html"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
-/* 336:    */   public ModelAndView getEmployyes(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale)
+/* 336:    */  
+@PreAuthorize("hasAnyRole('ROLE_HR') ")
+public ModelAndView getEmployyes(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale)
 /* 337:    */     throws Exception
 /* 338:    */   {
 /* 339:357 */     logger.info("employee called.");

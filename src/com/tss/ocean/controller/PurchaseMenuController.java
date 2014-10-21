@@ -327,7 +327,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 	/* 220: */
 	/* 221: */@RequestMapping(value = { "/purchase_request.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	/* 222: */@PreAuthorize("hasAnyRole('ROLE_USER') ")
+	/* 222: */@PreAuthorize("hasAnyRole('ROLE_PURCHASE','ROLE_ADMIN') ")
 	/* 223: */public ModelAndView purrequisition(
 			@RequestParam(value = "success", required = false) String success,
 			@RequestParam(value = "error", required = false) String error,
@@ -599,7 +599,7 @@ import org.springframework.web.servlet.ModelAndView;
 	/* ApproveModule */
 
 	@RequestMapping(value = { "/approve.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	/* 222: */@PreAuthorize("hasAnyRole('ROLE_USER') ")
+	/* 222: */@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_APPROVE') ")
 	/* 223: */public ModelAndView approve(
 			@RequestParam(value = "success", required = false) String success,
 			@RequestParam(value = "error", required = false) String error,
@@ -642,7 +642,7 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 253: */}
 
 	@RequestMapping(value = { "/approvedForFinance.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	/* 222: */@PreAuthorize("hasAnyRole('ROLE_USER') ")
+	/* 222: */@PreAuthorize("hasAnyRole('ROLE_FIN','ROLE_ADMIN') ")
 	/* 223: */public ModelAndView approvedOrders(
 			@RequestParam(value = "success", required = false) String success,
 			@RequestParam(value = "error", required = false) String error,

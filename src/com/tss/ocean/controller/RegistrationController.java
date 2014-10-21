@@ -6,11 +6,13 @@ import java.util.logging.Level;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.tss.ocean.pojo.Users;
 import com.tss.ocean.service.IUserservice;
@@ -36,7 +38,44 @@ public class RegistrationController {
 				+ "...............................................");
 		user.setCreatedat(new Date());
 		userService.insert(user);
-		return "redirect:/login.html";
+		return "redirect:/";
 	}
 
+	
+	@RequestMapping(value = { "/setting.htm" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	public ModelAndView setting(@ModelAttribute("user") Users user,
+			HttpServletRequest request) throws Exception {
+
+	
+ModelAndView mv = new ModelAndView("setting");
+mv.getModelMap().put("ulist", userService.getList());
+
+
+
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = { "/updateuser.htm" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
+	public ModelAndView settingUpdate(@ModelAttribute("user") Users user,
+			HttpServletRequest request) throws Exception {
+System.out.println(">>>>>>>>>>>>>>>>>>>>>"+user.getId());
+		/*userService.update(user);*/
+Users u=userService.getRecordByKeyandValue("id", user.getId());
+u.setRole(user.getRole());
+userService.update(u);
+ModelAndView mv = new ModelAndView("setting");
+mv.getModelMap().put("ulist", userService.getList());
+
+
+
+		return mv;
+	}
+	
+	
 }

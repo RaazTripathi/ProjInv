@@ -6,8 +6,8 @@
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/invmgmt?zeroDateTimeBehavior=convertToNull&amp;useUnicode=true&amp;characterEncoding=utf-8</property>
    
-   <property name="hibernate.hbm2ddl.auto" >update</property>
-    <!--
+<!--    <property name="hibernate.hbm2ddl.auto" >update</property>
+ -->    <!--
     <property name="hibernate.hbm2ddl.auto">create</property>
     -->
     <!-- <property name="hibernate.connection.CharSet">utf8</property>

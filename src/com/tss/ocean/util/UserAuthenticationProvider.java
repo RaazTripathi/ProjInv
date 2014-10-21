@@ -33,7 +33,7 @@ import com.tss.ocean.service.IUserservice;
 	IUserservice userService;
 
 	/* 16: */private static final String ROLE_PREFIX = "ROLE_";
-
+	private static  String ROLE ;
 	/* 17: */
 	/* 18: */public Authentication authenticate(Authentication authentication)
 	/* 19: */throws AuthenticationException
@@ -42,8 +42,8 @@ import com.tss.ocean.service.IUserservice;
 
 		Users u = userService.getRecordByKeyandValue("name",
 				authentication.getName());
-
-		System.out.println("Authenticating............"
+ROLE=u.getRole();
+		System.out.println("Authenticating............"+ROLE
 				+ authentication.getName() + "_______"
 				+ authentication.getCredentials().toString());
 		if (u != null) {
@@ -80,7 +80,9 @@ import com.tss.ocean.service.IUserservice;
 	/* 27: */{
 		/* 28:37 */List activatedModules = new ArrayList();
 		/* 29:38 */activatedModules
-				.add(new SimpleGrantedAuthority("ROLE_USER"));
+				.add(new SimpleGrantedAuthority(ROLE));
+		activatedModules.add(new SimpleGrantedAuthority("ROLE_USER"));
+		
 		/* 30:39 */return activatedModules;
 		/* 31: */}
 

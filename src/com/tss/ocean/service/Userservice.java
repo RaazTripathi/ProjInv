@@ -18,7 +18,7 @@ public class Userservice implements IUserservice {
 	@Override
 	public List<Users> getList() {
 		// TODO Auto-generated method stub
-		return null;
+		return userDao.getList();
 	}
 
 	@Override
@@ -77,6 +77,8 @@ public class Userservice implements IUserservice {
 	@Override
 	public int update(Users paramDomainObject) {
 		// TODO Auto-generated method stub
+		userDao.update(paramDomainObject);
+		
 		return 0;
 	}
 

@@ -1,7 +1,30 @@
 /*   1:    */package com.tss.ocean.controller;
 
 /*   2:    */
-/*   3:    */import com.tss.ocean.idao.IItemDAO;
+/*   3:    *//*  10:    */
+import java.util.List;
+/*  11:    */
+import java.util.Map;
+/*  12:    */
+import java.util.logging.Level;
+/*  13:    */
+import java.util.logging.Logger;
+
+/*  14:    */
+import javax.servlet.http.HttpServletRequest;
+
+/*  15:    */
+import org.springframework.beans.factory.annotation.Autowired;
+/*  16:    */
+import org.springframework.security.access.prepost.PreAuthorize;
+/*  17:    */
+import org.springframework.stereotype.Controller;
+/*  18:    */
+import org.springframework.ui.Model;
+/*  19:    */
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.tss.ocean.idao.IItemDAO;
 /*   4:    */
 import com.tss.ocean.idao.IItemtypeDAO;
 /*   5:    */
@@ -14,26 +37,6 @@ import com.tss.ocean.pojo.Item;
 import com.tss.ocean.pojo.Itemtype;
 /*   9:    */
 import com.tss.ocean.pojo.Itemunit;
-/*  10:    */
-import java.util.List;
-/*  11:    */
-import java.util.Map;
-/*  12:    */
-import java.util.logging.Level;
-/*  13:    */
-import java.util.logging.Logger;
-/*  14:    */
-import javax.servlet.http.HttpServletRequest;
-/*  15:    */
-import org.springframework.beans.factory.annotation.Autowired;
-/*  16:    */
-import org.springframework.security.access.prepost.PreAuthorize;
-/*  17:    */
-import org.springframework.stereotype.Controller;
-/*  18:    */
-import org.springframework.ui.Model;
-/*  19:    */
-import org.springframework.web.bind.annotation.RequestMapping;
 
 /*  20:    */
 /*  21:    */@Controller
@@ -60,7 +63,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 	/* 40: */
 	/* 41: */@RequestMapping(value = { "/item.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	/* 42: */@PreAuthorize("hasAnyRole('ROLE_USER') ")
+	/* 42: */@PreAuthorize("hasAnyRole('ROLE_INVENTORY','ROLE_ADMIN') ")
 	/* 43: */public String itemmgmt(Model model, HttpServletRequest request)
 	/* 44: */throws Exception
 	/* 45: */{
@@ -189,6 +192,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 		/* 145:165 */return "redirect:approvedForFinance.html";
 		/* 146: */}
 	/* 147: */
+	
+	
+	
+	
+	@RequestMapping(value = { "/index.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	/* 141: */
+	public String index(Model model,
+			HttpServletRequest request)
+	/* 142: */throws Exception
+	/* 143: */{
+		/* 144:164 */logger.log(Level.OFF, "finance_management called.");
+		/* 145:165 */return "index";
+		/* 146: */}
+	
+	
 }
 
 /*

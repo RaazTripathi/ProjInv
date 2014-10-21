@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -41,6 +42,7 @@ public class InvoiceController {
 	 * Maps to the invoice filling form
 	 */
 	@RequestMapping(value = { "/invoice_entry.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	@PreAuthorize("hasAnyRole('ROLE_CASHIER','ROLE_ADMIN')")
 	public ModelAndView invoiceEntryDisplay(String flashMessage) throws Exception {
 		logger.info("Initializing the invoice entry view.");
 		ModelAndView modelAndView = new ModelAndView("invoice_data_entry");

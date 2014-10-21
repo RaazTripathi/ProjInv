@@ -75,7 +75,7 @@ $(document).ready(function() {
                                    <tr>
                                    <td> 
                                   
-                           <a href="UpdateItem.html?updateItemId=${item.id}" >   <div id="blink" >     
+                           <a href="edit_employee.html?id=${item.id}" >   <div id="blink" >     
                                  ${item.firstName}'s passport reached to expire. Expire date is   ${item.passportExpiryDate} 
                                   </div> </a>
                                    </td>
@@ -109,7 +109,7 @@ $(document).ready(function() {
                                    <tr>
                                    <td> 
                                   
-                           <a href="UpdateItem.html?updateItemId=${iitem.id}" >   <div id="blink" >     
+                           <a href="edit_employee.html?id=${iitem.id}" >   <div id="blink" >     
                                  ${iitem.firstName}'s Iqama number is to expire. Expire date is   ${iitem.passportExpiryDate} 
                                   </div> </a>
                                    </td>

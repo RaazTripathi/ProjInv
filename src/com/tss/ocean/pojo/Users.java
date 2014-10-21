@@ -18,6 +18,7 @@ import java.util.Date;
 	/* 15: */private Date updateat;
 	/* 16: */private byte[] image;
 
+	String role;
 	/* 17: */
 	/* 18: */public Users() {
 	}
@@ -138,6 +139,14 @@ import java.util.Date;
 		/* ;4:94 */this.image = image;
 		/* ;5: */}
 	/* ;6: */
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 }
 
 /*

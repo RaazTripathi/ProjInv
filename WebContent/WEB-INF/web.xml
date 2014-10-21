@@ -25,10 +25,18 @@
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
+	
+	
 	<error-page>
     <error-code>404</error-code>
     <location>/WEB-INF/jsp/pagenotfound.jsp</location>
 </error-page> 
+
+<error-page>
+    <error-code>403</error-code>
+    <location>/img/access-denied.png</location>
+</error-page>
+
 <error-page>
     <error-code>500</error-code>
     <location>/pagenotfound.jsp</location>

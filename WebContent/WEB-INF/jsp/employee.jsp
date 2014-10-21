@@ -52,8 +52,11 @@
                                     </ul>
                                 </li>
 
+                                    <li class='last'><a href='account.html'><span><spring:message code="menu.account" text="Label value is missing !!!"/></span></a></li>
 
                             </ul>
+                            
+                            
                         </div>
                         <!-- END MUNU -->    
                     </div>
