@@ -27,20 +27,11 @@
 
                         <!--<div class="cat-table-title"></div>-->
                         <!-- MUNU -->    
-                        <%-- <div id='cssmenu'>
+                         <div id='cssmenu'>
                             <ul>
-                                <li class='has-sub active'><a href='#'><span><spring:message code="menu.ITEMS" text="Label value is missing !!!"/></span></a>
-                                    <ul style='display: block;'>
-                                        <li><a href='item.html'><span><spring:message code="menu.Items" text="Label value is missing !!!"/></span></a></li>
-                                        <li class="active"><a href='item_category.html'><span><spring:message code="menu.ItemCategory" text="Label value is missing !!!"/></span></a></li>
-                                        <li class='last'><a href='item_unit.html'><span><spring:message code="menu.ItemUnits" text="Label value is missing !!!"/></span></a></li>
-                                    </ul>
-                                </li>
-                                <li class=''><a href='purchase_order.html'><span><spring:message code="menu.PurchaseOrder" text="Label value is missing !!!"/></span></a></li>
-                                <li class=''><a href='purchase_requisition.html'><span><spring:message code="menu.PurchaseRequisition" text="Label value is missing !!!"/></span></a></li>
-                                <li class='last'><a href='account.html'><span><spring:message code="menu.account" text="Label value is missing !!!"/></span></a></li>
+                                     <li class='last'><a href='account.html'><span>Add User</span></a></li>
                             </ul>
-                        </div> --%>
+                        </div> 
                         <!-- END MUNU -->    
                     </div>
                 </div>
@@ -48,7 +39,7 @@
                 
                 <div class="col-md-9">
                         <div class="catagory-main-box top-radius">
-                            <div class="cat-box-title cat-title-font top-radius">Add Item </div>
+                            <div class="cat-box-title cat-title-font top-radius">Setting</div>
 
                             <div class="row tb-margin">
                                 <div class="col-sm-2"></div>
