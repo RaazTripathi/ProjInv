@@ -102,12 +102,22 @@
                                                 <form:errors path="fromDate" cssClass="error" />
                                             </div>
                                         </div>
-                                            <div class="form-group">
+                                        <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.attendance.todate" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 <form:input type="text" class="form-control datepicker" path="toDate" placeholder="${todateplaceholder}" />
                                                 <form:errors path="toDate" cssClass="error" />
                                             </div>
+                                        </div>
+                                        <div class="form-group">
+                                        <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">Leave Type:</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <form:select class="form-control" path="employeeLeaveTypeId">
+                                                <c:forEach items="${leaveTypes}" var="item">
+                                                    <option value="${item.id}"><c:out value="${item.name}" /></option>
+                                                </c:forEach>
+                                            </form:select>
+                                        </div>
                                         </div>
                                         
                                         <div class="col-sm-2"></div>

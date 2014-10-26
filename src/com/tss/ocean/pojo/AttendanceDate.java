@@ -16,6 +16,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 	/* 13: */private Integer presentDays;
 	/* 14: */private Integer absentDays;
 	/* 15: */private Integer totalDays;
+	private Integer employeeLeaveTypeId;
 
 	/* 16: */
 	/* 17: */public Date getFromDate()
@@ -89,6 +90,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 		/* 74:71 */this.totalDays = totalDays;
 		/* 75: */}
 	/* 76: */
+
+	public Integer getEmployeeLeaveTypeId() {
+		return employeeLeaveTypeId;
+	}
+
+	public void setEmployeeLeaveTypeId(Integer employeeLeaveTypeId) {
+		this.employeeLeaveTypeId = employeeLeaveTypeId;
+	}
 }
 
 /*

@@ -432,90 +432,81 @@ import org.springframework.web.servlet.ModelAndView;
 						+ attendanceDate);
 		/* 295: */}
 
-	/* 296: */
-	/* 297: */@RequestMapping(value = { "/hr_attendence_report.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	/* 298: */public ModelAndView attendanceReport(
+	@RequestMapping(value = { "/hr_attendence_report.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView attendanceReport(
 			@RequestParam(value = "success", required = false) String success,
 			@RequestParam(value = "error", required = false) String error,
-			Locale locale)
-	/* 299: */throws Exception
-	/* 300: */{
-		/* 301:320 */logger.info("hr_attendence");
-		/* 302:321 */ModelAndView mav = new ModelAndView("attendance_report");
-		/* 303:322 */mav.getModelMap().put("attendance", new AttendanceDate());
-		/* 304:323 */if (success != null) {
-			/* 305:324 */mav.getModelMap().put("success", success);
-			/* 306: */}
-		/* 307:326 */if (error != null) {
-			/* 308:327 */mav.getModelMap().put("error", error);
-			/* 309: */}
-		/* 310:329 */return mav;
-		/* 311: */}
+			Locale locale) throws Exception {
+		logger.info("hr_attendence");
+		ModelAndView mav = new ModelAndView("attendance_report");
+		mav.getModelMap().put("attendance", new AttendanceDate());
+		logger.info("Adding all the leave types in the attendance query page");
+		List<EmployeeLeaveTypes> leaveTypes = this.employeeLeaveTypesDAO.getList();
+		mav.getModelMap().put("leaveTypes", leaveTypes);
+
+		if (success != null) {
+			mav.getModelMap().put("success", success);
+		}
+		if (error != null) {
+			mav.getModelMap().put("error", error);
+		}
+		return mav;
+	}
 
 	/* 312: */
 	/* 313: */@RequestMapping(value = { "/get_attendance.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
-	/* 314: */public ModelAndView getAttendanceReport(
+	public ModelAndView getAttendanceReport(
 			@ModelAttribute("attendance") @Valid AttendanceDate attendanceDate,
 			BindingResult result, ModelMap model, Locale locale)
-	/* 315: */throws Exception
-	/* 316: */{
-		/* 317:337 */logger.info("get_attendancecalled."
-				+ attendanceDate.getFromDate() + "  "
-				+ attendanceDate.getToDate());
-		/* 318:338 */Map<Integer, AttendanceDate> attendanceMap = new LinkedHashMap();
-		/* 319:339 */ModelAndView mav = new ModelAndView(
-				"attendance_report_list");
-		/* 320:340 */List<EmployeeAttendances> employeeAttendanceses = getAttendancebetweendates(
-				attendanceDate.getFromDate(), attendanceDate.getToDate());
-		/* 321:341 */logger.info("Here list size  "
-				+ employeeAttendanceses.size());
-		/* 322:342 */Calendar cal = Calendar.getInstance();
-		/* 323:344 */for (EmployeeAttendances employeeAttendance : employeeAttendanceses) {
-			/* 324:345 */if (attendanceMap.containsKey(employeeAttendance
-					.getEmployeeId()))
-			/* 325: */{
-				/* 326:346 */cal
-						.setTime(employeeAttendance.getAttendanceDate());
-				/* 327:347 */setAttendanceData(
+			throws Exception {
+		logger.info("get_attendancecalled." + attendanceDate.getFromDate()
+				+ "  " + attendanceDate.getToDate());
+		logger.info("Received attendance leave type as: "+attendanceDate.getEmployeeLeaveTypeId());
+		Map<Integer, AttendanceDate> attendanceMap = new LinkedHashMap();
+		ModelAndView mav = new ModelAndView("attendance_report_list");
+		EmployeeLeaveTypes leaveType = this.employeeLeaveTypesDAO.getRecordByPrimaryKey(attendanceDate.getEmployeeLeaveTypeId());
+		List<EmployeeAttendances> employeeAttendanceses = this.employeeAttendancesDAO.getAttendanceForTypes(attendanceDate.getFromDate(), attendanceDate.getToDate(), leaveType);
+		
+		logger.info("Here list size  " + employeeAttendanceses.size());
+		Calendar cal = Calendar.getInstance();
+		for (EmployeeAttendances employeeAttendance : employeeAttendanceses) {
+			if (attendanceMap.containsKey(employeeAttendance.getEmployeeId())) {
+				cal.setTime(employeeAttendance.getAttendanceDate());
+				setAttendanceData(
 						(AttendanceDate) attendanceMap.get(employeeAttendance
 								.getEmployeeId()), cal, employeeAttendance);
-				/* 328: */}
-			/* 329: */else
-			/* 330: */{
-				/* 331:350 */AttendanceDate attendanceDate1 = new AttendanceDate();
-				/* 332:351 */attendanceDate1.setPresentDays(Integer.valueOf(0));
-				/* 333:352 */attendanceDate1.setAbsentDays(Integer.valueOf(0));
-				/* 334:353 */attendanceDate1.setTotalDays(Integer.valueOf(0));
-				/* 335:354 */attendanceDate1.setFromDate(attendanceDate
-						.getFromDate());
-				/* 336:355 */attendanceDate1.setToDate(attendanceDate
-						.getToDate());
-				/* 337:356 */cal
-						.setTime(employeeAttendance.getAttendanceDate());
-				/* 338:357 */setAttendanceData(attendanceDate1, cal,
-						employeeAttendance);
-				/* 339:358 */attendanceMap.put(
-						employeeAttendance.getEmployeeId(), attendanceDate1);
-				/* 340: */}
-			/* 341: */}
-		/* 342:361 */List<AttendanceDate> attendancereportList = new ArrayList();
-		/* 343:362 */for (Map.Entry<Integer, AttendanceDate> entrySet : attendanceMap
-				.entrySet())
-		/* 344: */{
-			/* 345:363 */Employees employees = (Employees) this.employeesDAO
-					.getRecordByPrimaryKey(entrySet.getKey());
-			/* 346: */
-			/* 347:365 */((AttendanceDate) entrySet.getValue())
-					.setEmployee(employees.getFirstName() + "("
-							+ employees.getEmployeeNumber() + ")");
-			/* 348:366 */attendancereportList.add(entrySet.getValue());
-			/* 349: */}
-		/* 350:369 */mav.getModelMap().put("attendanceReportList",
-				attendancereportList);
-		/* 351:370 */return mav;
-		/* 352: */}
+			} else {
+				AttendanceDate attendanceDate1 = new AttendanceDate();
+				attendanceDate1.setPresentDays(Integer.valueOf(0));
+				attendanceDate1.setAbsentDays(Integer.valueOf(0));
+				attendanceDate1.setTotalDays(Integer.valueOf(0));
+				attendanceDate1.setFromDate(attendanceDate.getFromDate());
+				attendanceDate1.setToDate(attendanceDate.getToDate());
+				cal.setTime(employeeAttendance.getAttendanceDate());
+				setAttendanceData(attendanceDate1, cal, employeeAttendance);
+				attendanceMap.put(employeeAttendance.getEmployeeId(),
+						attendanceDate1);
+			}
+		}
+		List<AttendanceDate> attendancereportList = new ArrayList();
+		for (Map.Entry<Integer, AttendanceDate> entrySet : attendanceMap
+				.entrySet()) {
+			if (entrySet.getKey() != null) {
+				Employees employees = (Employees) this.employeesDAO
+						.getRecordByPrimaryKey(entrySet.getKey());
 
-	/* 353: */
+				if (employees != null)
+					((AttendanceDate) entrySet.getValue())
+							.setEmployee(employees.getFirstName() + "("
+									+ employees.getEmployeeNumber() + ")");
+				attendancereportList.add(entrySet.getValue());
+			}
+		}
+		mav.getModelMap().put("attendanceReportList", attendancereportList);
+		mav.getModelMap().put("attendanceReportHeader", leaveType.getName());
+		return mav;
+	}
+
 	/* 354: */private List<EmployeeAttendances> getAttendancebetweendates(
 			Date fromDate, Date toDate)
 	/* 355: */{

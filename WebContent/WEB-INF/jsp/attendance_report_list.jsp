@@ -83,6 +83,7 @@
                                     </div>
                                 </div>
                                 <table id="dttable" class="table table-bordered table-striped" data-filter="#filter" data-page-size="5">
+                                    <div class="cat-box-title cat-title-font top-radius bottom-radius">Attendance of leave type : ${attendanceReportHeader}</div>
                                     <thead class="orange-bg border-t">
                                         <tr>
                                             <th data-toggle="true">
