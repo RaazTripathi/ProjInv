@@ -11,6 +11,8 @@ import com.tss.ocean.pojo.EmployeeAttendances;
 import com.tss.ocean.pojo.EmployeeLeaveTypes;
 
 
+
+
 /*  7:   */
 import java.util.Date;
 /*  8:   */
@@ -21,6 +23,8 @@ import java.util.List;
 import java.util.Map;
 /* 11:   */
 import java.util.Map.Entry;
+
+
 
 
 /* 12:   */
@@ -48,7 +52,7 @@ import org.springframework.stereotype.Repository;
 		/* 29:33 */parameterNameAndValues.put("startDate", fromdate);
 		/* 30:34 */parameterNameAndValues.put("endDate", todate);
 		/* 31: */
-		/* 32:36 */String hqlQuery = "FROM EmployeeAttendances e WHERE e.attendanceDate  BETWEEN :startDate AND :endDate";
+		/* 32:36 */String hqlQuery = "FROM EmployeeAttendances e WHERE e.attendanceDate BETWEEN :startDate AND :endDate";
 		/* 33: */
 		/* 34:38 */Query query = HibernateUtil.getCurrentSession().createQuery(
 				hqlQuery);
@@ -70,7 +74,47 @@ import org.springframework.stereotype.Repository;
 		params.put("startDate", fromDate);
 		params.put("endDate", toDate);
 		params.put("typeId", leaveType.getId());
-		String hqlQuery = "FROM EmployeeAttendances e WHERE e.employeeLeaveTypeId = :typeId AND e.attendanceDate  BETWEEN :startDate AND :endDate";
+		String hqlQuery = "FROM EmployeeAttendances e WHERE e.employeeLeaveTypeId = :typeId AND e.attendanceDate BETWEEN :startDate AND :endDate";
+		Query query = HibernateUtil.getCurrentSession().createQuery(hqlQuery);
+		for (Map.Entry<String, Object> e : params
+				.entrySet()) {
+			query.setParameter((String) e.getKey(), e.getValue());
+		}
+		return query.list();
+	}
+
+	/**
+	 * Provides the Selected dates with leave type as well for a specified employee whose id is provided
+	 */
+	@Override
+	public List<EmployeeAttendances> getIndividualEmployeeAttendance(
+			Date fromDate, Date toDate, EmployeeLeaveTypes leaveType,
+			Integer empId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("startDate", fromDate);
+		params.put("endDate", toDate);
+		params.put("typeId", leaveType.getId());
+		params.put("empId", empId);
+		String hqlQuery = "FROM EmployeeAttendances e WHERE e.employeeLeaveTypeId = :typeId AND e.employeeId = :empId AND e.attendanceDate BETWEEN :startDate AND :endDate";
+		Query query = HibernateUtil.getCurrentSession().createQuery(hqlQuery);
+		for (Map.Entry<String, Object> e : params
+				.entrySet()) {
+			query.setParameter((String) e.getKey(), e.getValue());
+		}
+		return query.list();
+	}
+
+	/**
+	 * Provides all eligible leaves for a specific employee
+	 */
+	@Override
+	public List<EmployeeAttendances> getAllIndividualAttendances(Date fromDate,
+			Date toDate, Integer empId) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("startDate", fromDate);
+		params.put("endDate", toDate);
+		params.put("empId", empId);
+		String hqlQuery = "FROM EmployeeAttendances e WHERE e.employeeId = :empId AND e.attendanceDate BETWEEN :startDate AND :endDate";
 		Query query = HibernateUtil.getCurrentSession().createQuery(hqlQuery);
 		for (Map.Entry<String, Object> e : params
 				.entrySet()) {

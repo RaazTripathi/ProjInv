@@ -442,8 +442,10 @@ import org.springframework.web.servlet.ModelAndView;
 		mav.getModelMap().put("attendance", new AttendanceDate());
 		logger.info("Adding all the leave types in the attendance query page");
 		List<EmployeeLeaveTypes> leaveTypes = this.employeeLeaveTypesDAO.getList();
+		logger.info("Adding all employees in the attendance query page");
+		List<Employees> employees = this.employeesDAO.getList();
+		mav.getModelMap().put("employees", employees);
 		mav.getModelMap().put("leaveTypes", leaveTypes);
-
 		if (success != null) {
 			mav.getModelMap().put("success", success);
 		}
@@ -459,17 +461,38 @@ import org.springframework.web.servlet.ModelAndView;
 			@ModelAttribute("attendance") @Valid AttendanceDate attendanceDate,
 			BindingResult result, ModelMap model, Locale locale)
 			throws Exception {
-		logger.info("get_attendancecalled." + attendanceDate.getFromDate()
-				+ "  " + attendanceDate.getToDate());
-		logger.info("Received attendance leave type as: "+attendanceDate.getEmployeeLeaveTypeId());
+		logger.info("get_attendancecalled." + attendanceDate.getFromDate() + "  " + attendanceDate.getToDate());
+		logger.info("Received attendance leave type as: " + attendanceDate.getEmployeeLeaveTypeId());
 		Map<Integer, AttendanceDate> attendanceMap = new LinkedHashMap();
+		List<EmployeeAttendances> attendance = null;
 		ModelAndView mav = new ModelAndView("attendance_report_list");
-		EmployeeLeaveTypes leaveType = this.employeeLeaveTypesDAO.getRecordByPrimaryKey(attendanceDate.getEmployeeLeaveTypeId());
-		List<EmployeeAttendances> employeeAttendanceses = this.employeeAttendancesDAO.getAttendanceForTypes(attendanceDate.getFromDate(), attendanceDate.getToDate(), leaveType);
+		Integer leaveTypeId = attendanceDate.getEmployeeLeaveTypeId();
+		String empId = attendanceDate.getEmployee();
+		Date fromDate = attendanceDate.getFromDate();
+		Date toDate = attendanceDate.getToDate();
+		String headerText = "Attendance list between "+fromDate.toGMTString()+" and "+toDate.toGMTString();
 		
-		logger.info("Here list size  " + employeeAttendanceses.size());
+		if(leaveTypeId!=null && leaveTypeId>=0){
+			EmployeeLeaveTypes leaveType = this.employeeLeaveTypesDAO.getRecordByPrimaryKey(leaveTypeId);
+			headerText += " of type "+leaveType.getName();
+			if(empId!=null && Integer.valueOf(empId)>=0){
+				headerText += " for employee id: "+empId;
+				attendance = this.employeeAttendancesDAO.getIndividualEmployeeAttendance(fromDate, toDate, leaveType, Integer.valueOf(empId));
+				
+			}else{
+				 attendance = this.employeeAttendancesDAO.getAttendanceForTypes(fromDate, toDate, leaveType);
+			}
+		}else{
+			if(empId!=null && Integer.valueOf(empId)>=0){
+				headerText += " for employee id: "+empId;
+				attendance = this.employeeAttendancesDAO.getAllIndividualAttendances(fromDate, toDate, Integer.valueOf(empId));
+			}else{
+				attendance = this.employeeAttendancesDAO.getEmployeeAttendanceBetweenDates(fromDate, toDate);
+			}
+		}
+		logger.info("Here list size  " + attendance.size());
 		Calendar cal = Calendar.getInstance();
-		for (EmployeeAttendances employeeAttendance : employeeAttendanceses) {
+		for (EmployeeAttendances employeeAttendance : attendance) {
 			if (attendanceMap.containsKey(employeeAttendance.getEmployeeId())) {
 				cal.setTime(employeeAttendance.getAttendanceDate());
 				setAttendanceData(
@@ -503,7 +526,7 @@ import org.springframework.web.servlet.ModelAndView;
 			}
 		}
 		mav.getModelMap().put("attendanceReportList", attendancereportList);
-		mav.getModelMap().put("attendanceReportHeader", leaveType.getName());
+		mav.getModelMap().put("attendanceReportHeader", headerText);
 		return mav;
 	}
 

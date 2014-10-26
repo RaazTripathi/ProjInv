@@ -14,6 +14,13 @@ public abstract interface IEmployeeAttendancesDAO extends
 
 	public abstract List<EmployeeAttendances> getAttendanceForTypes(
 			Date fromDate, Date toDate, EmployeeLeaveTypes leaveType);
+
+	public abstract List<EmployeeAttendances> getIndividualEmployeeAttendance(
+			Date fromDate, Date toDate, EmployeeLeaveTypes leaveType,
+			Integer empId);
+
+	public abstract List<EmployeeAttendances> getAllIndividualAttendances(
+			Date fromDate, Date toDate, Integer valueOf);
 }
 
 /*

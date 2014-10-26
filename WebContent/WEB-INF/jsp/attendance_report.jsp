@@ -113,8 +113,19 @@
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">Leave Type:</label>
                                         <div class="col-sm-8 col-xs-12">
                                             <form:select class="form-control" path="employeeLeaveTypeId">
+                                            	<option value="-1">Select</option>
                                                 <c:forEach items="${leaveTypes}" var="item">
                                                     <option value="${item.id}"><c:out value="${item.name}" /></option>
+                                                </c:forEach>
+                                            </form:select>
+                                        </div>
+                                        </div><div class="form-group">
+                                        <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">Employee Name:</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <form:select class="form-control" path="employee">
+                                                   <option value="-1">Select</option>
+                                                <c:forEach items="${employees}" var="emp">
+                                                    <option value="${emp.id}"><c:out value="${emp.username}" /></option>
                                                 </c:forEach>
                                             </form:select>
                                         </div>

@@ -69,6 +69,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                     <button type="button" class="btn btn-orange" onclick="printAttendanceReport();">Print Attendance Report</button>
+                                    <button type="button" class="btn btn-orange" onclick="javascript:history.back();">Back</button>
                                         <!--div class="form-group visible-sm visible-md visible-lg">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.search" text="Label value is missing !!!"/></label>
                                             <div class="col-sm-8 col-xs-12">
@@ -83,7 +84,7 @@
                                     </div>
                                 </div>
                                 <table id="dttable" class="table table-bordered table-striped" data-filter="#filter" data-page-size="5">
-                                    <div class="cat-box-title cat-title-font top-radius bottom-radius">Attendance of leave type : ${attendanceReportHeader}</div>
+                                    <div class="cat-box-title cat-title-font top-radius bottom-radius">${attendanceReportHeader}</div>
                                     <thead class="orange-bg border-t">
                                         <tr>
                                             <th data-toggle="true">
