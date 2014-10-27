@@ -10,12 +10,15 @@ import com.tss.ocean.idao.IEmployeesDAO;
 import com.tss.ocean.pojo.AttendanceDate;
 /*   7:    */
 import com.tss.ocean.pojo.EmployeeAttendances;
+import com.tss.ocean.pojo.EmployeeCategory;
+import com.tss.ocean.pojo.EmployeeDepartment;
 /*   8:    */
 import com.tss.ocean.pojo.EmployeeLeaveTypes;
 /*   9:    */
 import com.tss.ocean.pojo.Employees;
 /*  10:    */
 import com.tss.ocean.util.Utilities;
+
 
 /*  11:    */
 import java.io.Serializable;
@@ -38,8 +41,10 @@ import java.util.Map;
 /*  20:    */
 import java.util.Map.Entry;
 
+
 /*  21:    */
 import javax.validation.Valid;
+
 
 /*  22:    */
 import org.slf4j.Logger;
@@ -571,7 +576,43 @@ import org.springframework.web.servlet.ModelAndView;
 		report.getModelMap().put("employees", employees);
 		return report;
 	}
-	/* 377: */
+
+   @RequestMapping(value={"/approved_leaves.html"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+   public ModelAndView displayEmployee(@RequestParam("id") int id, Locale locale, @RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error)
+     throws Exception
+   {
+	   logger.info("Fetching the records of the selected employee");
+	   Employees selected = this.employeesDAO.getRecordByPrimaryKey(id);
+	   List<EmployeeLeaveTypes> allLeaves = this.employeeLeaveTypesDAO.getList();
+	   List<EmployeeLeaveTypes> selectedLeaves = new ArrayList<EmployeeLeaveTypes>();
+	   Date joiningDate = selected.getJoiningDate();
+	   Date currentDate = new Date();
+	   Long timeDiff = currentDate.getTime() - joiningDate.getTime();
+	   Long oneYear = 1000L * 60 * 60 * 24 * 365;
+	   boolean isOld = timeDiff>oneYear;
+	   String empMessage = selected.getFirstName()+" "+selected.getLastName();
+	   if(isOld)
+	   {
+		   empMessage += " has been employed here more than 1 year";
+	   }else{
+		   empMessage += " has been employed here less than a year";
+	   }
+	   logger.warn(empMessage);
+	   for(EmployeeLeaveTypes type: allLeaves){
+		   if(type.getName().toUpperCase().trim().equals("YEARLY") && !isOld){
+			   logger.warn("Not selecting yearly leaves as employee is recent");
+		   }else{
+			   logger.info("Adding leave type: "+type.getName());
+			   selectedLeaves.add(type);
+		   }
+	   }
+	   ModelAndView modelAndView = new ModelAndView("employee_leaves");
+	   modelAndView.getModelMap().put("emp",selected);
+	   modelAndView.getModelMap().put("status", empMessage);
+	   modelAndView.getModelMap().put("leaveTypes", selectedLeaves);
+	   modelAndView.getModelMap().put("isOld", isOld);
+	   return modelAndView;
+   }
 }
 
 /*

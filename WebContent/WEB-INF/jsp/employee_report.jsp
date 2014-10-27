@@ -85,6 +85,9 @@
                                             <th data-hide="phone">
                                                 <spring:message code="label.employee.designation" text="Label value is missing !!!"/> 
                                             </th>
+                                            <th data-hide="leave">
+                                                <spring:message code="label.employee.sal_details" text="Label value is missing !!!"/> 
+                                            </th>
                                             <th data-hide="phone" data-name="Edit">
                                                 <spring:message code="label.employee.edit" text="Label value is missing !!!"/> 
                                             </th>  
@@ -99,6 +102,9 @@
                                                 <td>${empl.employeeNumber}</td>
                                                 <td>${empl.username}</td>                                                
                                                 <td>${empl.jobTitle}</td>
+                                                <td>
+                                                    <a href="approved_leaves.html?id=${empl.id}" class="btn btn-default btn-sm" type="button"><span class="glyphicon glyphicon-new"></span>Details</a>
+                                                </td>
                                                 <td>
                                                     <a href="edit_employee.html?id=${empl.id}" class="btn btn-default btn-sm" type="button"><span class="glyphicon glyphicon-edit"></span>Edit</a>
                                                 </td>
