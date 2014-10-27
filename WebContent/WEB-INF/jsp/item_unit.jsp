@@ -47,8 +47,8 @@
                                 </li>
                                 <li class=''><a href='purchase_order.html'><span>Purchase Order</span></a></li>
                                 <li class=''><a href='purchase_requisition.html'><span>Purchase Requisition</span></a></li>
-                                <li class='last'><a href='account.html'><span><spring:message code="menu.account" text="Label value is missing !!!"/></span></a></li>
-                            </ul>
+<%--                                 <li class='last'><a href='account.html'><span><spring:message code="menu.account" text="Label value is missing !!!"/></span></a></li>
+ --%>                            </ul>
                         </div>
                         <!-- END MUNU -->    
 

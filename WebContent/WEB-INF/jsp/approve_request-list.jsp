@@ -94,11 +94,24 @@
                                             <tr>
                                                 <td>${purrequisition.prno}</td>
                                                 <td>${accountMap[purrequisition.suplierid]}</td>                                                
-                                                <td>${statusList[purrequisition.status]}</td>
+                                                <td>
+                                               
+                                               <c:choose>
+        <c:when test="${purrequisition.msg!=null}">
+            ${purrequisition.msg}
+        </c:when>
+                                                       <c:otherwise>${statusList[purrequisition.status]}</c:otherwise>
+
+    </c:choose>
+                                               
+                                                
+                                                </td>
                                                 <td>${purrequisition.price}</td>
                                                 <td>${purrequisition.createdat}</td>
                                                 <td>
-                                                    <c:if test="${purrequisition.approvalStatus==0}">
+                                                    
+                                                    
+                                                    <c:if test="${purrequisition.approvalStatus==0 && purrequisition.approver1!=userid && purrequisition.approver2!=userid && purrequisition.approver3!=userid }">
                                                     
                                                     
                                                     

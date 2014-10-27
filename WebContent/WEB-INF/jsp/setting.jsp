@@ -29,6 +29,8 @@
                         <!-- MUNU -->    
                          <div id='cssmenu'>
                             <ul>
+                                                                 <li class='last'>&nbsp;</li>
+                            
                                      <li class='last'><a href='account.html'><span>Add User</span></a></li>
                             </ul>
                         </div> 
@@ -69,15 +71,15 @@
                                         <div class="col-sm-8 col-xs-12">
                                             <select class="form-control" name="role">
                                                 
-                                                    <option value="USER_INVENTORY">USER_INVENTORY</option>
+                                                    <option value="ROLE_INVENTORY">USER_INVENTORY</option>
                                                 
-                                                    <option value="USER_HR">USER_HR</option>
+                                                    <option value="ROLE_HR">USER_HR</option>
                                                 
-                                                    <option value="USER_FIN">USER_FIN</option>
-                                                    <option value="USER_CASHIER">USER_CASHIER</option>
-                                                    <option value="USER_PURCHASE">USER_PURCHASE</option>
-                                                    <option value="USER_APPROVE">USER_APPROVE</option>
-                                                    <option value="USER_CASHIER">USER_CASHIER</option>
+                                                    <option value="ROLE_FIN">USER_FIN</option>
+                                                    <option value="ROLE_CASHIER">USER_CASHIER</option>
+                                                    <option value="ROLE_PURCHASE">USER_PURCHASE</option>
+                                                    <option value="ROLE_APPROVE">USER_APPROVE</option>
+                                                    <option value="ROLE_CASHIER">USER_CASHIER</option>
                                                 
                                             </select>                                       
                                         </div>

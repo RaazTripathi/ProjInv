@@ -47,6 +47,23 @@ import org.springframework.format.annotation.DateTimeFormat;
 	private int approvalStatus;
 	private int processed;
 
+	int approver1=0;
+	int approver2=0;
+	int approver3=0;
+	
+	String msg;
+	
+	
+	
+	
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
 	/* 36: */public Purrequisition() {
 	}
 
@@ -288,6 +305,30 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 	public void setProcessed(int processed) {
 		this.processed = processed;
+	}
+
+	public int getApprover1() {
+		return approver1;
+	}
+
+	public void setApprover1(int approver1) {
+		this.approver1 = approver1;
+	}
+
+	public int getApprover2() {
+		return approver2;
+	}
+
+	public void setApprover2(int approver2) {
+		this.approver2 = approver2;
+	}
+
+	public int getApprover3() {
+		return approver3;
+	}
+
+	public void setApprover3(int approver3) {
+		this.approver3 = approver3;
 	}
 }
 

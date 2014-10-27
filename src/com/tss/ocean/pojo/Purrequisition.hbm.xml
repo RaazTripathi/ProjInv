@@ -14,6 +14,20 @@
         <property name="suplierid" type="java.lang.Integer">
             <column name="suplierid" />
         </property>
+        
+        
+         <property name="approver1" type="int">
+            <column name="approver1" />
+        </property>
+         <property name="approver2" type="int">
+            <column name="approver2" />
+        </property>
+         <property name="approver3" type="int">
+            <column name="approver3" />
+        </property>
+        
+        
+        
         <property name="status" type="java.lang.Integer">
             <column name="status" />
         </property>

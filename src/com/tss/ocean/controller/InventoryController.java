@@ -503,7 +503,7 @@ model.addAttribute("id",id);
 	/* 152: */@PreAuthorize("hasAnyRole('ROLE_USER')")
 	/* 153: */public ModelAndView updatecurtstock(
 			
-			@RequestParam int currstock, @RequestParam int id
+			@RequestParam int currstock, @RequestParam int id,@RequestParam int act
 			)
 	/* 154: */throws Exception
 	/* 155: */{
@@ -511,7 +511,17 @@ model.addAttribute("id",id);
 				+ id);
 		Item oldItem = (Item) this.itemDAO
 				.getRecordByPrimaryKey(id);
-			/* 172:175 */oldItem.setCurrstock(currstock);
+			/* 172:175 */
+		int stock =oldItem.getCurrstock();
+		if(act==1)
+		{
+			stock=stock+currstock;
+		}
+		else if (act==0) {
+			stock=stock-currstock;
+		} 
+		
+		oldItem.setCurrstock(stock);
 					
 		/* 173:176 */logger.log(Level.OFF, "Update result ####### ."
 				+ this.itemDAO.update(oldItem));
