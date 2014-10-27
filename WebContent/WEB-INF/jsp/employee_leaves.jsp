@@ -137,6 +137,27 @@
 		                            </td>
 		                            </tr>
 	                            </c:forEach>
+	                            <tr>
+	                            <td colspan="2">
+                                <label class="col-sm-12 col-xs-12">
+                                    <spring:message code="label.leaves.selected" text="Label value is missing !!!"/>
+	                            </label>
+	                            </td>
+	                            </tr>
+	                            <c:forEach var="leave" items="${usedLeaves}">
+	                            	<tr>
+		                            <td>
+	                                <label class="col-sm-4 col-xs-12">
+	                                    ${leaveTypeNamesMap[leave.employeeLeaveTypeId]}
+		                            </label>
+		                            </td>
+		                            <td>
+	                                <label class="col-sm-8 col-xs-12">
+	                                    ${leave.leaveCount}
+		                            </label>
+		                            </td>
+		                            </tr>
+	                            </c:forEach>
 	                            </table>
                     		</div>
                             <div class="form-group">

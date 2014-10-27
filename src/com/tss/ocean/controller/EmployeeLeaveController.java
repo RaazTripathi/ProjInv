@@ -24,6 +24,7 @@ import com.tss.ocean.util.Utilities;
 
 
 
+
 /*  11:    */
 import java.io.Serializable;
 /*  12:    */
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 /*  15:    */
 import java.util.Date;
+import java.util.HashMap;
 /*  16:    */
 import java.util.LinkedHashMap;
 /*  17:    */
@@ -48,8 +50,10 @@ import java.util.Map.Entry;
 
 
 
+
 /*  21:    */
 import javax.validation.Valid;
+
 
 
 
@@ -596,8 +600,12 @@ import org.springframework.web.servlet.ModelAndView;
    {
 	   logger.info("Fetching the records of the selected employee");
 	   Employees selected = this.employeesDAO.getRecordByPrimaryKey(id);
+	   logger.info("Fetching all the leave types");
 	   List<EmployeeLeaveTypes> allLeaves = this.employeeLeaveTypesDAO.getList();
 	   List<EmployeeLeaveTypes> selectedLeaves = new ArrayList<EmployeeLeaveTypes>();
+	   Map<Integer, String> leaveTypeNames = new HashMap<Integer, String>();
+	   logger.info("Fetching used leaves by the employee");
+	   List<EmployeeLeaves> usedLeaves = this.employeeLeavesDAO.getEmployeeLeaves(id);
 	   Date joiningDate = selected.getJoiningDate();
 	   Date currentDate = new Date();
 	   Long timeDiff = currentDate.getTime() - joiningDate.getTime();
@@ -612,6 +620,7 @@ import org.springframework.web.servlet.ModelAndView;
 	   }
 	   logger.warn(empMessage);
 	   for(EmployeeLeaveTypes type: allLeaves){
+		   leaveTypeNames.put(type.getId(), type.getName());
 		   if(type.getName().toUpperCase().trim().equals("YEARLY") && !isOld){
 			   logger.warn("Not selecting yearly leaves as employee is recent");
 		   }else{
@@ -623,6 +632,8 @@ import org.springframework.web.servlet.ModelAndView;
 	   modelAndView.getModelMap().put("emp",selected);
 	   modelAndView.getModelMap().put("status", empMessage);
 	   modelAndView.getModelMap().put("leaveTypes", selectedLeaves);
+	   modelAndView.getModelMap().put("leaveTypeNamesMap", leaveTypeNames);
+	   modelAndView.getModelMap().put("usedLeaves", usedLeaves);
 	   modelAndView.getModelMap().put("isOld", isOld);
 	   return modelAndView;
    }
