@@ -697,7 +697,7 @@ if (!result.hasErrors())
 /* 433:    */     ModelAndView mav;
 /* 434:453 */     if (employees != null)
 /* 435:    */     {
-/* 436:454 */        mav = new ModelAndView("print_employee");
+/* 436:454 */       mav = new ModelAndView("print_employee_all_info");
 /* 437:455 */       mav.getModelMap().put("employee", employees);
 /* 438:456 */       List<Employees> employeeList = this.employeesDAO.getList();
 			
@@ -708,7 +708,7 @@ if (!result.hasErrors())
 /* 442:460 */       mav.getModelMap().put("employeeDepartmentList", departmentList);
 /* 443:461 */       mav.getModelMap().put("employeeCategoryList", categoryList);
 /* 444:462 */       mav.getModelMap().put("employeeList", employeeList);
-/* 444:462 */       mav.getModelMap().put("employee", employees);
+/* 444:462 */      
 
 /* 445:463 */       mav.getModelMap().put("bankList", bankList);
 /* 446:    */     }
@@ -721,7 +721,7 @@ if (!result.hasErrors())
 /* 453:470 */       mav.getModelMap().put("employeeList", employeeList);
 /* 454:471 */       List<EmployeeDepartment> departmentList = this.employeeDepartmentDAO.getList();
 /* 455:472 */       for (EmployeeDepartment employeeDepartment : departmentList) {
-/* 456:473 */         departmentMap.put(employeeDepartment.getId(), employeeDepartment.getDepartment());
+/* 456:473 */       departmentMap.put(employeeDepartment.getId(), employeeDepartment.getDepartment());
 /* 457:    */       }
 /* 458:475 */       mav.getModelMap().put("departmentmap", departmentMap);
 /* 459:    */       

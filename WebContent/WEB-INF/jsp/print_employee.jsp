@@ -126,31 +126,16 @@
                         <div class="cat-box-title cat-title-font top-radius"><spring:message code="label.updateemployee" text="Default Text"/></div>
                         <div class="row text-pad-top visible-lg visible-md visible-sm">
                            
-                           <c:forEach var="employee" items="${employeeList}">
                            <table>
                            <tr>
                            
-                           <td>Employee Name</td><td>${employee.firstName}</td>
-                           <td>Last Name</td><td>&nbsp;</<td>${employee.lastName}</td>
-                            <td>Last Name</td><td>&nbsp;</<td>${employee.lastName}</td>
+                           <td>Employee Name</td><td>&nbsp;</td><td>${employee.firstName}</td>
                            </tr>
-                           <tr>
-                           <td>Employee Name</td><td>${employee.firstName}</td>
-                           <td>Last Name</td><td>&nbsp;</<td>${employee.lastName}</td>
-                            <td>Last Name</td><td>&nbsp;</<td>${employee.lastName}</td>
-                            </tr>
-                            <tr>
-                           <td>Employee Name</td><td>${employee.firstName}</td>
-                           <td>Last Name</td><td>&nbsp;</<td>${employee.lastName}</td>
-                            <td>Last Name</td><td>&nbsp;</<td>${employee.lastName}</td>
-                            </tr>
-                            <td>Employee Name</td><td>${employee.firstName}</td>
-                           <td>Last Name</td><td>&nbsp;</<td>${employee.lastName}</td>
-                            <td>Last Name</td><td>&nbsp;</<td>${employee.lastName}</td>
-                            </tr>
-                           </table>
-                           </c:forEach>
                            
+                           <tr>
+                           
+                           <td>Last Name</td><td>&nbsp;</td><td>${employee.lastName}</td>
+                           </tr>
                             </div>
                         </div>
 
