@@ -16,7 +16,7 @@
             <column name="price"  />
         </property>
       
-      <property name="date" type="java.util.Date">
+      <property name="date" type="string">
             <column name="date"  />
         </property>
         

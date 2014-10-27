@@ -11,6 +11,26 @@
                 function submitDetailsForm() {
                     return true;
                 }
+                $(document).ready(function(){
+                
+                	
+                	$('#sub').click(function(){
+                		
+                		$('#act').val(0);
+                		
+                		alert("hello");
+                		$('#formtopost').submit();
+                		
+                	});
+                	
+                	
+                	
+                	
+                });
+                
+                
+                
+                
             </script>
 
             <style>
@@ -73,11 +93,12 @@
 
                             <div class="row tb-margin">
                                 <div class="col-sm-2"></div>
-                            <form:form action="updatecurtstock.html" method="post"  acceptcharset="UTF-8">
+                            <form:form id="formtopost" action="updatecurtstock.html" method="post"  acceptcharset="UTF-8">
 
 
 <input type="hidden" name="id" value="${id}">
 
+<input type="hidden" id="act" name="act" value="1">
                                 <div class="col-sm-8 visible-lg visible-md visible-sm">
 
                                    
@@ -96,8 +117,8 @@
                                     
                                     <div class="row text-pad-top visible-lg visible-md visible-sm">
                                         <div class="div-center">
-                                            <input type="submit" class="btn btn-orange"   value="Update" />
-                                            <button type="button" class="btn btn-orange">Cancel</button>
+                                            <input id="add" type="submit" class="btn btn-orange"   value="add" />
+                                            <button id="sub" type="button" class="btn btn-orange">Subtract</button>
                                         </div>
                                     </div>                                   
                                 </div>

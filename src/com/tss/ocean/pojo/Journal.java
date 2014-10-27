@@ -1,7 +1,6 @@
 package com.tss.ocean.pojo;
 
 import java.io.Serializable;
-import java.util.Date;
 
 public class Journal implements Serializable
 {
@@ -9,7 +8,7 @@ public class Journal implements Serializable
 	
 	private static final long serialVersionUID = -6929422014912532671L;
 	
-	private Date date;
+	private String date;
 	private int no;
 	private int journalNo;
 	private float price ;
@@ -23,10 +22,10 @@ public class Journal implements Serializable
 	public void setJournalNo(int journalNo) {
 		this.journalNo = journalNo;
 	}
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 	public int getId() {

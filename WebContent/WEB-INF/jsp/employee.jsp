@@ -73,10 +73,7 @@
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="form-group visible-sm visible-md visible-lg">
-                                            <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.search" text="Label value is missing !!!"/></label>
-                                            <div class="col-sm-8 col-xs-12">
-                                                <input id="filter" class="form-control" type="text"/>
-                                            </div>
+                                            <button type="button" class="btn btn-orange" onclick="printEmployeeReport();">Print</button>
                                         </div>
                                         <!--                                        <div class="form-group visible-xs">
                                                                                     <div class="col-xs-12">
@@ -172,6 +169,13 @@
                     return false;
                 });
             });
+            function printEmployeeReport(){
+            	var originalPage = document.body.innerHTML;
+            	var detail = document.getElementById("dttable_wrapper");
+            	document.body.innerHTML = detail.innerHTML;
+            	window.print();
+            	document.body.innerHTML = originalPage;
+            }
         </script>
     </body>
 </html>

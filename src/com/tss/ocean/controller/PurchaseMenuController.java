@@ -1,7 +1,8 @@
 /*   1:    */package com.tss.ocean.controller;
 
 /*   2:    */
-/*   3:    */import com.tss.ocean.idao.IAccountsDAO;
+/*   3:    */import com.tss.ocean.dao.UsersDAO;
+import com.tss.ocean.idao.IAccountsDAO;
 /*   4:    */
 import com.tss.ocean.idao.IEmployeeCategoryDAO;
 /*   5:    */
@@ -26,8 +27,14 @@ import com.tss.ocean.pojo.PurordApprovers;
 import com.tss.ocean.pojo.Purrequisition;
 /*  15:    */
 import com.tss.ocean.pojo.Purrequisitiondt;
+import com.tss.ocean.pojo.Users;
+import com.tss.ocean.service.Userservice;
 /*  16:    */
 import com.tss.ocean.util.Utilities;
+
+
+
+
 /*  17:    */
 import java.security.Principal;
 /*  18:    */
@@ -42,10 +49,18 @@ import java.util.Locale;
 import java.util.Map;
 /*  23:    */
 import java.util.Set;
+
+
+
+
 /*  24:    */
 import javax.servlet.http.HttpServletRequest;
 /*  25:    */
 import javax.validation.Valid;
+
+
+
+
 /*  26:    */
 import org.slf4j.Logger;
 /*  27:    */
@@ -58,6 +73,7 @@ import org.springframework.beans.propertyeditors.CustomCollectionEditor;
 import org.springframework.context.MessageSource;
 /*  31:    */
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.userdetails.User;
 /*  32:    */
 import org.springframework.stereotype.Controller;
 /*  33:    */
@@ -102,7 +118,10 @@ import org.springframework.web.servlet.ModelAndView;
 	/* 60: */private IEmployeesDAO employeesDAO;
 	/* 61: */@Autowired
 	/* 62: */IEmployeeCategoryDAO employeeCategoryDAO;
-
+	@Autowired
+	UsersDAO userDao;
+	
+	
 	/* 63: */
 	/* 64: */@InitBinder
 	/* 65: */protected void initBinder(HttpServletRequest request,
@@ -524,10 +543,15 @@ import org.springframework.web.servlet.ModelAndView;
 	 * JD-Core Version: 0.7.1
 	 */
 
-	/* 332: */@RequestMapping({ "/action.html" })
-	/* 333: */
-	/* 334: */public String approveNonapprove(@RequestParam("id") int id,
-			@RequestParam("act") int act)
+	
+	
+	
+	
+	
+	@RequestMapping({ "/action.html" })
+	
+	public String approveNonapprove(@RequestParam("id") int id,
+			@RequestParam("act") int act,Principal principal)
 	/* 335: */throws Exception
 	/* 336: */{
 		/* 337:345 */LOG.debug("delete_purrequisitiondt called.");
@@ -537,7 +561,27 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 340:348 */if (purrequissition != null)
 		/* 341: */{
 			/* 342:349 */
-			purrequissition.setApprovalStatus(act);
+			String loggedinusername = principal.getName();
+			Users user= userDao.getRecordByKeyandValue("name", loggedinusername);
+
+			if(purrequissition.getApprover1()==0)
+			{
+				purrequissition.setApprover1(user.getId());
+			}
+			else if (purrequissition.getApprover2()==0){
+				purrequissition.setApprover2(user.getId());
+			}
+			else if (purrequissition.getApprover3()==0) {
+				purrequissition.setApprover3(user.getId());
+				purrequissition.setApprovalStatus(act);
+			}
+			
+			
+			
+			
+			
+			
+			
 
 			purrequisitionDAO.update(purrequissition);
 
@@ -558,8 +602,21 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 346:352 */return "redirect:approve.html";
 		/* 353: */}
 
-	/* 354: */
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* 332: */@RequestMapping({ "/finaction.html" })
 	/* 333: */
 	/* 334: */public String Processedforfinance(@RequestParam("id") int id,
@@ -613,6 +670,95 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 230:248 */String loggedinusername = principal.getName();
 		/* 231:249 */Employees employees = (Employees) this.employeesDAO
 				.getRecordByKeyandValue("username", loggedinusername);
+		
+		
+		Users user= userDao.getRecordByKeyandValue("name", loggedinusername);
+		
+	
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	List<Purrequisition> plist=	this.purrequisitionDAO
+		.getList();
+	
+	for(Purrequisition p:plist)
+	{
+		if (p.getApprovalStatus()>0)
+		{
+			
+			Users apr1= userDao.getRecordByKeyandValue("id", p.getApprover1());
+			Users apr2= userDao.getRecordByKeyandValue("id", p.getApprover2());
+			Users apr3= userDao.getRecordByKeyandValue("id", p.getApprover3());
+
+String s="";
+			
+			if(apr1!=null){
+			s=s+"Approved by "+apr1.getName();
+			}
+			if(apr2!=null){
+				s=s+", "+apr2.getName();
+				}
+			if(apr3!=null){
+				s=s+", "+apr3.getName();
+				}
+			
+			p.setMsg(s);			
+			
+		}
+		else {
+			
+			Users apr1= userDao.getRecordByKeyandValue("id", p.getApprover1());
+			Users apr2= userDao.getRecordByKeyandValue("id", p.getApprover2());
+			Users apr3= userDao.getRecordByKeyandValue("id", p.getApprover3());
+
+			String s="";
+			
+			if(apr1!=null){
+			s=s+"Approved by "+apr1.getName();
+			}
+			if(apr2!=null){
+				s=s+", "+apr2.getName();
+				}
+			if(apr3!=null){
+				s=s+", "+apr3.getName();
+				}
+			
+			p.setMsg(s);
+
+		}
+		
+		
+		
+		
+		
+		
+	}
+		
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+		
 		/* 232:250 */int userid = 0;
 		/* 233:251 */if (employees != null) {
 			/* 234:252 */userid = employees.getId().intValue();
@@ -624,12 +770,8 @@ import org.springframework.web.servlet.ModelAndView;
 			/* 239: */}
 		/* 240:262 */mav.getModelMap().put(
 				"purrequisitionList",
-				this.purrequisitionDAO
-						.getListByCondition("t where t.nextapprovedby="
-								+ userid));
-		/* 241: */
-		/* 242: */
-		/* 243: */
+				plist);
+		mav.getModelMap().put("userid", user.getId());
 		/* 244:266 */mav.getModelMap().put("accountMap", accountMap);
 		/* 245:267 */mav.getModelMap().put("statusList", getStatusList(locale));
 		/* 246:268 */if (success != null) {

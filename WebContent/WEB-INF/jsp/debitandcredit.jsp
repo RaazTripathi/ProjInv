@@ -49,7 +49,7 @@
 	                    </c:if>
 	                    <div class="tab-content">
                             <div class="tab-pane active" id="demo">
-                            <form:form action="addJournal.html" method="POST" modelAttribute="journal">
+                            <form:form action="addjournal.html" method="POST" modelAttribute="journal">
                                 <!--  <form:errors path="*" cssClass="errorblock" element="div" /> -->
                                 <form:hidden path="id" />
                                 <form:hidden path="io" value="${type}" />
