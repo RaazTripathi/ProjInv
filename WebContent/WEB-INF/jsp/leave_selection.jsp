@@ -42,7 +42,7 @@
                         <div class="desh-icon-bg">
                             <img src="img/i-mgmt.png">
                         </div>
-                        <div class="page-title-text"><spring:message code="add.attendance" text="Default Text"/></div>
+                        <div class="page-title-text"><spring:message code="menu.addleave" text="Default Text"/></div>
                 </div>
             </div>	
             <div class="row">
@@ -82,48 +82,32 @@
                 <spring:message code="label.attendance.date.placeholder" var="attendancedateplaceholder" text="Default Text" />                
                 <div class="col-md-9">
                     <div class="catagory-main-box top-radius">
-                        <div class="cat-box-title cat-title-font top-radius"><spring:message code="label.attendance" text="Default Text"/></div>
+                        <div class="cat-box-title cat-title-font top-radius"><spring:message code="label.addleave" text="Default Text"/></div>
                         <div class="row text-pad-top visible-lg visible-md visible-sm">
-                            <form:form action="get_attendance.html" method="POST" modelAttribute="attendance">                                
+                            <form:form action="save_leave.html" method="POST" modelAttribute="employeeleave">
                                 <div class="row tb-margin">
                                     <div class="col-sm-2"></div>
                                     <div class="col-sm-8">
-                                        <c:if test="${not empty error}">  
-                                            <div class="row text-pad-top visible-lg visible-md visible-sm"><div class="errorblock">${error}</div></div>
-                                            </c:if>
-                                            <c:if test="${not empty success}">  
-                                            <div class="row text-pad-top visible-lg visible-md visible-sm"><div class="successblock">${success}</div></div>
-                                            </c:if>
+                                        <c:if test="${not empty flash}">  
+                                        	<div class="row text-pad-top visible-lg visible-md visible-sm"><div class="successblock">${flash}</div></div>
+                                        </c:if>
 
-                                       
-                                        <div class="form-group">
-                                            <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.attendance.fromdate" text="Default Text"/></label>
-                                            <div class="col-sm-8 col-xs-12">                                            
-                                                <form:input type="text" class="form-control datepicker" path="fromDate" placeholder="${fromdateplaceholder}" />
-                                                <form:errors path="fromDate" cssClass="error" />
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.attendance.todate" text="Default Text"/></label>
-                                            <div class="col-sm-8 col-xs-12">                                            
-                                                <form:input type="text" class="form-control datepicker" path="toDate" placeholder="${todateplaceholder}" />
-                                                <form:errors path="toDate" cssClass="error" />
-                                            </div>
-                                        </div>
                                         <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">Leave Type:</label>
                                         <div class="col-sm-8 col-xs-12">
                                             <form:select class="form-control" path="employeeLeaveTypeId">
                                             	<option value="-1">Select</option>
-                                                <c:forEach items="${leaveTypes}" var="item">
+                                                <c:forEach items="${leaves}" var="item">
                                                     <option value="${item.id}"><c:out value="${item.name}" /></option>
                                                 </c:forEach>
                                             </form:select>
                                         </div>
-                                        </div><div class="form-group">
+                                        </div>
+                                        
+                                        <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">Employee Name:</label>
                                         <div class="col-sm-8 col-xs-12">
-                                            <form:select class="form-control" path="employee">
+                                            <form:select class="form-control" path="employeeId">
                                                    <option value="-1">Select</option>
                                                 <c:forEach items="${employees}" var="emp">
                                                     <option value="${emp.id}"><c:out value="${emp.username}" /></option>
@@ -132,10 +116,17 @@
                                         </div>
                                         </div>
                                         
+                                        <div class="form-group">
+	                                        <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">Leave Count:</label>
+	                                        <div class="col-sm-8 col-xs-12">
+	                                            <form:input type="text" class="form-control" path="leaveCount" placeholder="0.0" />
+                                                <form:errors path="leaveCount" cssClass="error" />
+	                                        </div>
+                                        </div>
                                         <div class="col-sm-2"></div>
                                     </div>
                                     <div class="div-center">
-                                        <button type="submit" class="btn btn-orange" onclick="return submitDetailsForm();"><spring:message code="label.attendance.getreport" text="Default Text"/></button>
+                                        <button type="submit" class="btn btn-orange" onclick="return submitDetailsForm();"><spring:message code="label.addleave" text="Default Text"/></button>
                                         
                                     </div>
                                 </form:form>

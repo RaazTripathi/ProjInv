@@ -4,6 +4,7 @@
 /*   3:    */import com.tss.ocean.idao.IEmployeeAttendancesDAO;
 /*   4:    */
 import com.tss.ocean.idao.IEmployeeLeaveTypesDAO;
+import com.tss.ocean.idao.IEmployeeLeavesDAO;
 /*   5:    */
 import com.tss.ocean.idao.IEmployeesDAO;
 /*   6:    */
@@ -14,10 +15,13 @@ import com.tss.ocean.pojo.EmployeeCategory;
 import com.tss.ocean.pojo.EmployeeDepartment;
 /*   8:    */
 import com.tss.ocean.pojo.EmployeeLeaveTypes;
+import com.tss.ocean.pojo.EmployeeLeaves;
 /*   9:    */
 import com.tss.ocean.pojo.Employees;
 /*  10:    */
 import com.tss.ocean.util.Utilities;
+
+
 
 
 /*  11:    */
@@ -42,8 +46,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 
+
+
 /*  21:    */
 import javax.validation.Valid;
+
+
 
 
 /*  22:    */
@@ -84,6 +92,8 @@ import org.springframework.web.servlet.ModelAndView;
 	/* 43: */private MessageSource messageSource;
 	/* 44: */@Autowired
 	/* 45: */IEmployeeAttendancesDAO employeeAttendancesDAO;
+			@Autowired
+	        IEmployeeLeavesDAO employeeLeavesDAO;
 	/* 46: 55 */private static final Logger logger = LoggerFactory
 			.getLogger(EmployeeLeaveController.class);
 
@@ -577,6 +587,9 @@ import org.springframework.web.servlet.ModelAndView;
 		return report;
 	}
 
+	/**
+	 * Displays employee information
+	 */
    @RequestMapping(value={"/approved_leaves.html"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
    public ModelAndView displayEmployee(@RequestParam("id") int id, Locale locale, @RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error)
      throws Exception
@@ -613,6 +626,31 @@ import org.springframework.web.servlet.ModelAndView;
 	   modelAndView.getModelMap().put("isOld", isOld);
 	   return modelAndView;
    }
+
+   /**
+    * Provides the form to enter leaves for employee by the HR
+    */
+	@RequestMapping(value = { "/hr_addleave.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView addLeaveEntries(@ModelAttribute("employeeLeave") @Valid EmployeeLeaves employeeLeaves, String message) {
+		logger.info("Populating leaves and employees data");
+		List<Employees> employees = this.employeesDAO.getList();
+		List<EmployeeLeaveTypes> leaveTypes = this.employeeLeaveTypesDAO.getList();
+
+		ModelAndView view = new ModelAndView("leave_selection", "employeeleave", employeeLeaves);
+		view.getModelMap().put("employees", employees);
+		view.getModelMap().put("leaves", leaveTypes);
+		view.getModelMap().put("flash", message);
+		return view;
+	}
+	
+	@RequestMapping(value = { "/save_leave.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
+	public ModelAndView saveEnteredLeave(@ModelAttribute("employeeLeave") @Valid EmployeeLeaves employeeLeaves,
+			BindingResult result, ModelMap model, Locale locale){
+		int res = this.employeeLeavesDAO.insert(employeeLeaves);
+		logger.warn("Data entered sucessfully with result as: "+res);
+		return addLeaveEntries(employeeLeaves, "Leave saved successfully!");
+	}
+
 }
 
 /*
