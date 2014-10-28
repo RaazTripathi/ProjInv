@@ -100,7 +100,7 @@
 	                            </label>
 	                            </td>
 	                            </tr>
-	                            <tr>
+	                            <%-- <tr>
 	                            <td style="padding-right: 200px;">
                                 <label>
                                     <spring:message code="label.employee.category" text="Label value is missing !!!"/>
@@ -110,7 +110,7 @@
                                 <label>${category}
 	                            </label>
 	                            </td>
-	                            </tr>
+	                            </tr> --%>
 	                            
 	                            <tr>
 	                            <td style="padding-right: 200px;">

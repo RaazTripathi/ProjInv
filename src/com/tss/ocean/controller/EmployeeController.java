@@ -756,8 +756,8 @@ if (!result.hasErrors())
 	   ModelAndView modelAndView = new ModelAndView("employee_display");
 	   modelAndView.getModelMap().put("emp",selected);
 	   modelAndView.getModelMap().put("department", employeeDepartment.getDepartment());
-	   modelAndView.getModelMap().put("category", employeeCategory.getCategory());
-	   return modelAndView;
+/*	   modelAndView.getModelMap().put("category", employeeCategory.getCategory());
+*/	   return modelAndView;
    }
 
  }
