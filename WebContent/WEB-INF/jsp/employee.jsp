@@ -110,7 +110,7 @@
                                             <tr>
                                                 <td>${employee.employeeNumber}</td>
                                                 <td>
-                                                <a href="view_employee.html?id=${employee.id}" > 
+                                                <a href="display_employee.html?id=${employee.id}" > 
                                                 ${employee.firstName}
                                                 </a>
                                                 </td>
