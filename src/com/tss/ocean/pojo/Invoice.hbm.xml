@@ -38,5 +38,9 @@
         <property name="mealType" type="string">
             <column name="meal_type" />
         </property>
+         <property name="mealaccount" type="int">
+            <column name="mealaccount" />
+        </property>
+        
     </class>
 </hibernate-mapping>

@@ -63,13 +63,40 @@
 	                                      <spring:message code="label.invoice.mode" text="Default Text"/>
 	                                    </label>
 	                                    <div class="col-sm-8 col-xs-12">
-	                                        <form:select class="form-control" path="boxMode">
+	                                        <form:select id="acctype" class="form-control" path="boxMode">
 	                                            <form:option value="true"><spring:message code="label.invoice.boxtype" text="Default Text"/></form:option>
 	                                            <form:option value="false"><spring:message code="label.invoice.banktype" text="Default Text"/></form:option>
 	                                        </form:select>
+	                                       
+	                                                
 	                                        <form:errors path="boxMode" cssClass="error" />
 	                                    </div>
+	                                    
+	                                    
 	                                </div>
+	                                
+	                                
+	                                
+	                                 <div id="subdv" class="form-group">
+	                                    <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">
+	                                      Account Subtype
+	                                    </label>
+	                                    <div class="col-sm-8 col-xs-12">
+	                                   
+	                                      
+	                                       <form:select id="accbank" class="form-control" items="${bank}" path="mealaccount"  itemLabel="name" itemValue="id">
+	                                             </form:select>
+	                                        <form:errors path="boxMode" cssClass="error" />
+	                                       
+	                                        <form:select id="accbox" class="form-control" items="${box}" path="mealaccount"  itemLabel="name" itemValue="id">
+	                                             </form:select>
+	                                       
+	                                        <form:errors path="boxMode" cssClass="error" />
+	                                    </div>
+	                                    
+	                                    
+	                                </div>
+	                                
                                     <div class="form-group">
 	                                    <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">
 	                                      <spring:message code="label.meal.employeename" text="Default Text"/>
@@ -168,6 +195,38 @@
                 $("#fromDate").datepicker({
                     dateFormat: 'yy/mm/dd'
                 });
+                
+                
+                
+                $('#accbank').hide();
+                
+                $('#accbox').hide(); 
+                $('#subdv').hide();
+                
+                
+                $('#acctype').change(function(){
+                	var val=$('#acctype').val();
+                	
+                	if(val=='true')
+                		{
+                		$('#subdv').show();
+                		 $('#accbox').show();
+                		 $('#accbank').hide();
+                		
+                		}
+                	else{
+                		$('#subdv').show();
+                		
+                		 $('#accbox').hide();
+                		 $('#accbank').show();
+                		
+                	}
+                	
+                });
+                
+                
+                
+                
                 $("#mealFormDate").val(new Date().getFullYear()
                         + "-"
                         + ("0" + (new Date().getMonth() + 1)).slice(-2)

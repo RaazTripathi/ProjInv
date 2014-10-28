@@ -6,6 +6,8 @@
      <li class="active"><a href='bank_vouchers.html'><span>Bank</span></a></li>
      
      </ul>
+             <li class=''><a href='finacc.html'><span>Finance Accounts</span></a></li>
+     
     </li>
     <li class=''><a href='debit_entry.html'><span>Debit</span></a>
     </li>
@@ -33,8 +35,8 @@
     
     
     
-                                        <li class='last'><a href='account.html'><span><spring:message code="menu.account" text="Label value is missing !!!"/></span></a></li>
-    
+<!--                                         <li class='last'><a href='account.html'><span><spring:message code="menu.account" text="Label value is missing !!!"/></span></a></li>
+ -->    
     
    <!--  <li class='has-sub active'><a href='#'><span>Reports</span></a>
         <ul style='display: block;'>

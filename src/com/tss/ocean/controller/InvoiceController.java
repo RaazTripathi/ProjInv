@@ -134,6 +134,20 @@ public class InvoiceController {
 		mav.getModelMap().put("title_text", "Bank based invoice");
 		return mav;
 	}
+	
+	@RequestMapping(value = { "/view_vouchers.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView view_vouchers(@RequestParam(value="success", required=false) String success,@RequestParam("id")int id, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+		logger.info("Starting the save of data.");
+		List<Invoice> invoices = this.invoiceDAO.getListByKeyandValue("mealaccount", id);
+		logger.info("returned with "+invoices.size()+" cash invoices");
+		ModelAndView mav = new ModelAndView("invoice_list");
+		mav.getModelMap().put("useFinanceMenus", "true");
+		mav.getModelMap().put("invoices", invoices);
+		mav.getModelMap().put("title_text", "Bank based invoice");
+		return mav;
+	}
+	
+	
 	/*
 	 * Makes the invoice editable
 	 */

@@ -1,5 +1,6 @@
 package com.tss.ocean.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -12,7 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tss.ocean.dao.FinAccountDAO;
+import com.tss.ocean.idao.IFinAccountDAO;
 import com.tss.ocean.idao.IInvoiceDAO;
+import com.tss.ocean.pojo.FinAccount;
 import com.tss.ocean.pojo.Invoice;
 
 @Controller
@@ -22,6 +26,10 @@ public class CashierController
 	@Autowired
 	IInvoiceDAO invoiceDAO;
 	
+	@Autowired
+	IFinAccountDAO finaccDao;
+	
+	
 	@RequestMapping(value = { "/cashierHome.htm" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	public String cashier() {
 		return "invoice";
@@ -30,6 +38,7 @@ public class CashierController
 
 	@RequestMapping(value = { "/breakfast.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	public ModelAndView breakfastVoucherEntry() throws Exception {
+		
 		return mealEntryViewProvider("breakfast");
 	}
 	@RequestMapping(value = { "/lunch.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
@@ -71,6 +80,16 @@ public class CashierController
 		modelAndView.getModelMap().put("flash", message);
 		modelAndView.getModelMap().put("meals", new String[]{"breakfast", "lunch", "dinner"});
 		modelAndView.getModelMap().put("mealtype", mealName);
+		
+		List<FinAccount>bank=finaccDao.getListByKeyandValue("type", 1);
+		List<FinAccount>box=finaccDao.getListByKeyandValue("type", 2);
+
+		
+		modelAndView.getModelMap().put("bank", bank);
+		modelAndView.getModelMap().put("box", box);
+
+
+		
 		return modelAndView;		
 	}
 
