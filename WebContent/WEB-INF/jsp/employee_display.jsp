@@ -57,65 +57,115 @@
                         <div class="cat-box-title cat-title-font top-radius"><spring:message code="menu.main.employeereport" text="Label value is missing !!!"/></div>
                             <table class="tab-pane active" id="employee_detailed_information">
                               <tr>
-                                <td>
-                                <label class="col-sm-4 col-xs-12">
+                                <td style="padding-right: 200px;">
+                                <label>
                                     <spring:message code="label.employee.number" text="Label value is missing !!!"/>
 	                            </label>
 	                            </td>
 	                            <td>
-                                <label class="col-sm-8 col-xs-12">
-                                    <input type="text" readonly="readonly" value="${emp.employeeNumber}" />
+                                <label>${emp.employeeNumber}
 	                            </label>
 	                            </td>
 	                            </tr>
 	                            <tr>
-	                            <td>
-                                <label class="col-sm-4 col-xs-12">
+	                            <td style="padding-right: 200px;"u>
+                                <label>
                                     <spring:message code="label.employee.firstname" text="Label value is missing !!!"/>
 	                            </label>
 	                            </td>
 	                            <td>
-                                <label class="col-sm-8 col-xs-12">
-                                    <input type="text" readonly="readonly" value="${emp.firstName}" />
+                                <label>${emp.firstName}
 	                            </label>
 	                            </td>
 	                            </tr>
 	                            <tr>
-	                            <td>
-                                <label class="col-sm-8 col-xs-12">
+	                            <td style="padding-right: 200px;">
+                                <label>
                                     <spring:message code="label.employee.birthdate" text="Label value is missing !!!"/>
 	                            </label>
 	                            </td>
 	                            <td>
-                                <label class="col-sm-8 col-xs-12">
-                                    <input type="text" readonly="readonly" value="${emp.dateOfBirth}" />
+                                <label>${emp.dateOfBirth}
 	                            </label>
 	                            </td>
 	                            </tr>
 	                            <tr>
-	                            <td>
-                                <label class="col-sm-4 col-xs-12">
+	                            <td style="padding-right: 200px;">
+                                <label>
                                     <spring:message code="label.employee.department" text="Label value is missing !!!"/>
 	                            </label>
 	                            </td>
 	                            <td>
-                                <label class="col-sm-8 col-xs-12">
-                                    <input type="text" readonly="readonly" value="${department}" />
+                                <label>${department}
 	                            </label>
 	                            </td>
 	                            </tr>
 	                            <tr>
-	                            <td>
-                                <label class="col-sm-4 col-xs-12">
+	                            <td style="padding-right: 200px;">
+                                <label>
                                     <spring:message code="label.employee.category" text="Label value is missing !!!"/>
 	                            </label>
 	                            </td>
 	                            <td>
-                                <label class="col-sm-8 col-xs-12">
-                                    <input type="text" readonly="readonly" value="${category}" />
+                                <label>${category}
 	                            </label>
 	                            </td>
 	                            </tr>
+	                            
+	                            <tr>
+	                            <td style="padding-right: 200px;">
+                                <label>
+                                    <spring:message code="label.employee.passportno" text="Label value is missing !!!"/>
+	                            </label>
+	                            </td>
+	                            <td>
+                                <label>${emp.passportNumber}
+	                            </label>
+	                            </td>
+	                            </tr>
+	                            <tr>
+	                            <td style="padding-right: 200px;">
+                                <label>
+                                    <spring:message code="label.employee.passportexpiry" text="Label value is missing !!!"/>
+	                            </label>
+	                            </td>
+	                            <td>
+                                <label>${emp.passportExpiryDate}
+	                            </label>
+	                            </td>
+	                            </tr>
+	                            <tr>
+	                            <td style="padding-right: 200px;">
+                                <label>
+                                    <spring:message code="label.employee.iqamano" text="Label value is missing !!!"/>
+	                            </label>
+	                            </td>
+	                            <td>
+                                <label>${emp.iqamaNumber}
+	                            </label>
+	                            </td>
+	                            </tr>
+	                            <tr>
+	                            <td style="padding-right: 200px;">
+                                <label>
+                                    <spring:message code="label.employee.iqamaexpiry" text="Label value is missing !!!"/>
+	                            </label>
+	                            </td>
+	                            <td>
+                                <label>${emp.iqamaExpiryDate}
+	                            </label>
+	                            </td>
+	                            </tr>
+	                            <tr>
+	                            <td style="padding-right: 200px;">
+                                <label>
+                                    <spring:message code="label.journal.remark" text="Label value is missing !!!"/>
+	                            </label>
+	                            </td>
+	                            <td>
+	                            	<textarea name="result" rows="5" cols="50">
+	                            	Remarks...
+	                            	</textarea>
 	                            </table>
                     		</div>
                             <div class="form-group">
