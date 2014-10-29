@@ -4,7 +4,10 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
+
     <head>
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <%--<%@include file="header.jsp" %>--%>
         <jsp:include page="header.jsp"></jsp:include>
             <script type="text/javascript">
@@ -30,7 +33,13 @@
         </head>
 
         <body role="document">
-
+ <%
+       request.setCharacterEncoding("UTF-8");
+  
+ 
+ 
+ out.print(request.getCharacterEncoding());
+     %>
         <jsp:include page="headermenu.jsp"></jsp:include>
 
             <div class="container">
@@ -67,13 +76,15 @@
 
                         </div>
                     </div>
+                    
+                    
                     <div class="col-md-9">
                         <div class="catagory-main-box top-radius">
                             <div class="cat-box-title cat-title-font top-radius">Add Item </div>
 
                             <div class="row tb-margin">
                                 <div class="col-sm-2"></div>
-                            <form:form action="AddItem.html" method="post" commandName="itemForm" acceptcharset="UTF-8">
+                            <form:form action="AddItem.html" method="post" commandName="itemForm"  acceptCharset="UTF-8">
                                 <form:hidden path="id" />
                                 <form:errors path="*" cssClass="errorblock" element="div" />
 

@@ -20,25 +20,17 @@
                 	});
                 	});
                 
-                $( document ).ready(function() {
-                	
-/*                 	$(".bcTarget").barcode("1234567890128", "ean13");    
- */                
- 
- 
- 
- 
- 
-/*  $(".bcTarget").load(function(){
-	 
-	 
-	 alert('hello');
- }
-		 
- );
- $(".bcod").children('.bcTarget').barcode(this.children('.bheaden').val(),'ean13');
-   */              	
-                });
+               
+                
+                function printbarcode(val) {
+                
+                 	var originalPage = document.body.innerHTML;
+                 	var detail = val;
+                 	document.body.innerHTML = detail.innerHTML;
+                 	window.print();
+                 	document.body.innerHTML = originalPage;
+                 }
+                
             </script>
 
 
@@ -137,11 +129,13 @@
                                                 <td data-value="78025368997"><c:out value="${listVar.unitid.name}"/></td>
                                                 <td data-value="1"><span class="status-metro status-active" title="Active"><c:out value="${listVar.price}"/></span></td>
                                                <td class="bcod">
-                                               <c:if test="${listVar.barcode!=0}">
-                                               <div class="bcTarget" rel="${listVar.barcode}">
+                                               
+                                               
+                                               <c:if test="${listVar.barcode!=0}"><button>
+                                               <div onclick="printbarcode(this)" class="bcTarget" rel="${listVar.barcode}">
                                             
                                                
-                                               </div>   </c:if></td>
+                                               </div>  </button>   </c:if></td>
                                                
                                                
                                                 <td data-value="78025368997" style="text-align:center;">
@@ -223,7 +217,15 @@ $(&#39;.add-row&#39;).click(function(e) {
         <script src="js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" language="javascript" src="js/dataTables.responsive.min.js"></script>
         <script >
+        
+        
+       
             $(document).ready(function () {
+            	
+            	
+            	
+            	
+            	
 
                 var tableElement = $('#dttable');
                 tableElement.dataTable();

@@ -127,10 +127,14 @@
                         <div class="row text-pad-top visible-lg visible-md visible-sm">
                             <form:form action="edit_employee.html" method="POST" modelAttribute="employee">
                                 <form:hidden path="id" />
-                                <div class="row tb-margin">
+                                <div class="row tb-margin"></div>
                                     <div class="col-sm-2"></div>
-                                    <div class="col-sm-8">
-
+                                    <div  class="col-sm-8 printdiv ">
+<div class="form-group visible-sm visible-md visible-lg">
+                                            <button type="button" class="btn btn-orange" onclick="printEmployeeDetails();">Print</button>
+                                        </div>
+                                        <br>
+                                        <br>
                                         <c:if test="${not empty error}">  
                                             <div class="row text-pad-top visible-lg visible-md visible-sm"><div class="errorblock">${error}</div></div>
                                             </c:if>
@@ -144,31 +148,34 @@
                                                 ${employee.employeeNumber}
                                             </div>
                                         </div>
+                                        <br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.category" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">
                                                ${employee.employeeCategoryId}
                                             </div>
                                         </div>
+                                        <br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.employee.joiningdate" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                ${employee.joiningDate}
                                             </div>
                                         </div>
+                                        <br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.firstname" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.firstName}
                                             </div>
                                         </div>
-
+<br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.lastname" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                  ${employee.lastName}
                                             </div>
-                                        </div>
+                                        </div><br>
 
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.middlename" text="Default Text"/></label>
@@ -176,7 +183,7 @@
                                                  ${employee.middleName}
                                             </div>
                                         </div>
-                                        
+                                        <br>
                                         
                                         
                                         
@@ -198,201 +205,201 @@
                                                
                                                      ${employee.gender}
                                                
-                                            </div>
+                                            </div><br>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.jobtitle" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                  ${employee.jobTitle}
                                             </div>
-                                        </div>
+                                        </div><br><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.department" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">
                                                ${employee.firstName}
                                             </div>
-                                        </div>
+                                        </div><br><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.reportingmanager" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">
                                                  ${employee.firstName}                                            </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.qualification" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.qualification}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.experiencedetail" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.experienceDetail}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.expyears" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.experienceYear}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.expmonths" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.experienceMonth}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.employee.birthdate" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.dateOfBirth}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.maritalstatus" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">
                                                 
                                              ${employee.maritalStatus}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.childrencount" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                ${employee.childrenCount}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.fathername" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.fatherName}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.mothername" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                ${employee.motherName}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.husbandname" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.husbandName}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.bloodgroup.placeholder" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">
                                                ${employee.bloodGroup}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.homeaddress1" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                  ${employee.homeAddressLine1}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.homeaddress2" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.homeAddressLine2}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.homecity" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                ${employee.homeCity}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.homestate" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                  ${employee.homeState}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.homepincode" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                  ${employee.homePinCode}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.officeaddress1" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                  ${employee.officeAddressLine1}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.officeaddress2" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.officeAddressLine2}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.officecity" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.officeCity}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.officestate" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.officeState}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.officepincode" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.officeState}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.officephone1" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.officePhone1}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.officephone2" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.officePhone2}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.mobilephone" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                  ${employee.mobilePhone}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.homephone" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.homePhone}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.email" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.email}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.fax" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.fax}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.passportno" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                               ${employee.passportNumber}
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.employee.passportexpiry" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                ${employee.passportExpiryDate}  
                                             </div>
                                         </div>
-                                        
+                                        <br>
                                         
                                       <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.iqamano" text="Default Text"/></label>
@@ -401,7 +408,7 @@
                                             </div>
                                         </div>
                                         
-                                
+                                <br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.employee.iqamaexpiry" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
@@ -409,7 +416,7 @@
                                             </div>
                                         </div>
                                         
-                                        
+                                        <br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.salary" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
@@ -417,34 +424,34 @@
                                             </div>
                                         </div>
 
-                                        
+                                        <br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.accountnumber" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.accountNumber} 
                                             </div>
-                                        </div>
+                                        </div><br>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.codeno" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 ${employee.codeNumber}                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                        </div><br>
+                                        <%-- <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.uploadimage" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 <form:input path="fileData" type="file"/>
 <!--                                                <img src="/employee_image.html?id=?id=${employee.id}" height="75px" width="75px" align="left" />-->
                                                 <form:errors path="fileData" cssClass="error" />
                                             </div>
-                                        </div>
+                                        </div> --%>
 
                                         <div class="col-sm-2"></div>
                                     </div>
 
-                                    <div class="div-center">
+                                    <%-- <div class="div-center">
                                         <button type="submit" class="btn btn-orange" onclick="return submitDetailsForm();"><spring:message code="label.update" text="Default Text"/></button>
                                         <button type="button" class="btn btn-orange" onclick="javascript:history.back();"><spring:message code="label.cancel" text="Default Text"/></button>
-                                    </div>
+                                    </div> --%>
                                 </form:form>
                             </div>
                         </div>
@@ -467,7 +474,15 @@
         <!-- Jquery UI Javascript -->
         <script src="js/jquery-ui.js"></script>
         <script type="text/javascript">
-                                         $(".datepicker").datepicker({dateFormat: 'dd/mm/yy'})
+                                         $(".datepicker").datepicker({dateFormat: 'dd/mm/yy'});
+                                         
+                                         function printEmployeeDetails() {
+                                         	var originalPage = document.body.innerHTML;
+                                         	var detail = document.getElementsByClassName("printdiv")[0];
+                                         	document.body.innerHTML = detail.innerHTML;
+                                         	window.print();
+                                         	document.body.innerHTML = originalPage;
+                                         }
         </script>
     </body>
 </html>

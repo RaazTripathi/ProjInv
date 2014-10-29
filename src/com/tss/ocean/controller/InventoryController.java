@@ -165,9 +165,12 @@ import org.springframework.web.servlet.ModelAndView;
 	/* 109: */@PreAuthorize("hasAnyRole('ROLE_USER') ")
 	/* 110: */public ModelAndView addItem(
 			@ModelAttribute("itemForm") @Valid Item item, BindingResult result,
-			Map<String, Object> model)
+			Map<String, Object> model, HttpServletRequest req)
 	/* 111: */throws Exception
 	/* 112: */{
+		
+		
+		System.out.println(req.getCharacterEncoding()+"KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
 		/* 113:119 */if (item.getId() == null)
 		/* 114: */{
 			/* 115:120 */logger.log(Level.OFF, "Add Item with detail ####### ."
@@ -217,7 +220,7 @@ import org.springframework.web.servlet.ModelAndView;
 		oldItem.setBarcode(item.getBarcode());
 		/* 147:152 */logger.log(Level.OFF, "Update result ####### ."
 				+ this.itemDAO.update(oldItem));
-		System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"+ this.itemDAO.update(oldItem));
+		System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"+ item.getName().getBytes("UTF-8"));
 		/* 148:153 */return new ModelAndView("redirect:/item.html");
 		/* 149: */}
 

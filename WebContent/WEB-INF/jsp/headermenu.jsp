@@ -7,10 +7,10 @@
     <div class="container logo_paddingtop">
         <div class="navbar-header">
             <div class="container">
-                <a href="index.htm">
+                <a href="index.html">
                     <img  src="img/logo.jpg"  class="logo " style="width: 100px; height: 100px; margin-top: -2px">
                 </a>
-                <a href="index.htm">
+                <a href="index.html">
                     <img src="img/mobile-logo.jpg" class="logo img-responsive visible-xs">
                 </a>
             <center> <span  style=" font-size: 17px; text-align:justify; color: green; margin-top: 100px">   SECURITY FORCES OFFICERS CLUB</span></center>
