@@ -54,7 +54,9 @@ public class CashierController
 				return mealEntryViewProvider(invoice.getMealType());
 		
 		System.out.println("obj>> " + invoice + " , status: "+status);
-		return new ModelAndView("invoice_data_entry");
+		ModelAndView resultView = new ModelAndView("invoice_data_entry");
+		resultView.getModelMap().put("invoice", invoice);
+		return resultView;
 	}
 	
 
