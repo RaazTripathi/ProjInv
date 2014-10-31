@@ -68,8 +68,11 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="demo">
                                 <div class="row tb-margin">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-2">
                                         <a href="add_leave_type.html" class="btn btn-info add-row addrow-btn-left"><spring:message code="leavetypes.add" text="Label value is missing !!!"/></a>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-info add-row addrow-btn-left" onclick="printForm()">Print Leave Types</button>
                                     </div>
                                     <div class="col-sm-8">
                                         <div class="form-group visible-sm visible-md visible-lg">
@@ -167,6 +170,16 @@
                     return false;
                 });
             });
+            function printForm(){
+            	var originalPage = document.body.innerHTML;
+            	var detail = document.getElementById("dttable_wrapper");
+            	//Remove extra childnodes of the wrapper div
+            	detail.removeChild(detail.childNodes[0]);
+            	detail.removeChild(detail.childNodes[0]);
+            	document.body.innerHTML = detail.innerHTML;
+            	window.print();
+            	document.body.innerHTML = originalPage;
+            }
         </script>
     </body>
 </html>

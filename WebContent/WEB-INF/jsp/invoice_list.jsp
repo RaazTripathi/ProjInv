@@ -30,6 +30,10 @@
                         </c:if>
                     </div>
                 </div>
+                
+                <div class="col-md-3">
+                    <button class="btn btn-info add-row addrow-btn-left" onclick="printReport()">Print Details</button>
+                </div>
                 <div class="col-md-9">
                     <div class="catagory-main-box top-radius">
                         <div class="cat-box-title cat-title-font top-radius">
@@ -123,6 +127,16 @@
                     return false;
                 });
             });
+            function printReport(){
+            	var originalPage = document.body.innerHTML;
+            	var detail = document.getElementById("dttable_wrapper");
+            	//Remove extra childnodes of the wrapper div
+            	detail.removeChild(detail.childNodes[0]);
+            	detail.removeChild(detail.childNodes[0]);
+            	document.body.innerHTML = detail.innerHTML;
+            	window.print();
+            	document.body.innerHTML = originalPage;
+            }
         </script>
     </body>
 </html>
