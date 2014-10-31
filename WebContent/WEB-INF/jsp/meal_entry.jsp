@@ -140,6 +140,7 @@
                                         <div class="div-center-xs">
                                             <input type="submit" class="btn btn-orange"  onclick="return submitDetailsForm();" value="Save" />
                                             <button type="button" class="btn btn-orange" onclick="javascript:history.back();">Cancel</button>
+                                            <button type="button" class="btn btn-orange" onclick="printFormDetails()">Print</button>
                                         </div>
                                     </div>
                                     </div>
@@ -192,6 +193,13 @@
             });
             function submitDetailsForm() {
                 return true;
+            }
+            function printFormDetails(){
+            	var originalPage = document.body.innerHTML;
+            	var detail = document.getElementById("demo");
+            	document.body.innerHTML = detail.innerHTML;
+            	window.print();
+            	document.body.innerHTML = originalPage;
             }
         </script>
     </body>
