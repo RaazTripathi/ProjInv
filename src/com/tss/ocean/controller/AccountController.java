@@ -192,7 +192,6 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 131:139 */return new ModelAndView("account", model);
 		/* 132: */}
 
-	/* 133: */
 	/* 134: */@RequestMapping(value = { "/account.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	/* 135: */@PreAuthorize("hasAnyRole('ROLE_USER') ")
 	/* 136: */public ModelAndView account(
@@ -214,7 +213,32 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 149:157 */return mav;
 		/* 150: */}
 
-	/* 151: */
+
+	
+	/* 134: */@RequestMapping(value = { "/suppliers.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	/* 135: */@PreAuthorize("hasAnyRole('ROLE_USER') ")
+	/* 136: */public ModelAndView supplieraccounts(
+			@RequestParam(value = "success", required = false) String success,
+			@RequestParam(value = "error", required = false) String error)
+	/* 137: */throws Exception
+	/* 138: */{
+		/* 139:147 */logger.log(Level.FINE, "add-account called.");
+		/* 140:148 */ModelAndView mav = new ModelAndView("supplieraccounts");
+		/* 141:149 */List<Accounts> accountsList = this.accountsDAO
+				.getListByFromClause(" FROM Accounts a WHERE a.visible=true");
+		/* 142:150 */if (success != null) {
+			/* 143:151 */mav.getModelMap().put("success", success);
+			/* 144: */}
+		/* 145:153 */if (error != null) {
+			/* 146:154 */mav.getModelMap().put("error", error);
+			/* 147: */}
+		/* 148:156 */mav.getModelMap().put("accountList", accountsList);
+		/* 149:157 */return mav;
+		/* 150: */}
+
+	
+	
+	
 	/* 152: */@RequestMapping({ "/delete-account.html" })
 	/* 153: */@ResponseBody
 	/* 154: */@PreAuthorize("hasAnyRole('ROLE_USER') ")

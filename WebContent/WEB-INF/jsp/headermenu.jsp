@@ -13,7 +13,7 @@
                 <a href="index.html">
                     <img src="img/mobile-logo.jpg" class="logo img-responsive visible-xs">
                 </a>
-            <center> <span  style=" font-size: 17px; text-align:justify; color: green; margin-top: 100px">   SECURITY FORCES OFFICERS CLUB</span></center>
+           
 
                 <div class="user-details-box">
                     <a href="#"><spring:message code="header.home"/></a> | <a href="<%= request.getContextPath()%>/logout.htm"><spring:message code="header.logout"/></a><br>
@@ -21,6 +21,9 @@
                     <fmt:formatDate value="${today}" pattern="MMMM d,yyyy" /><br>
                     <span class="normal-text">Welcome admin<br></span>
                     <a href="?lang=en">English</a> | <a href="?lang=ar">Arabic</a>
+              <div style="margin-top: -20px;"> <center> <span  style=" font-size: 20px; text-align:justify; color: green; margin-right: 444px;  ">   SECURITY FORCES OFFICERS CLUB</span></center></div>
+               
+               
                 </div>
 
             </div>
