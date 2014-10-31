@@ -48,7 +48,7 @@
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane active" id="demo">
-                                
+                                <button type="button" class="btn btn-orange" onclick="printDetails()">Print Form Details</button>
                                 <table id="dttable" class="table table-bordered table-striped" data-filter="#filter" data-page-size="5">
                                     <thead class="orange-bg border-t">
                                         <tr>
@@ -130,6 +130,16 @@
                     return false;
                 });
             });
+            function printDetails(){
+            	var originalPage = document.body.innerHTML;
+            	var detail = document.getElementById("dttable_wrapper");
+            	//Remove extra childnodes of the wrapper div
+            	detail.removeChild(detail.childNodes[0]);
+            	detail.removeChild(detail.childNodes[0]);
+            	document.body.innerHTML = detail.innerHTML;
+            	window.print();
+            	document.body.innerHTML = originalPage;
+            }
         </script>
     </body>
 </html>
