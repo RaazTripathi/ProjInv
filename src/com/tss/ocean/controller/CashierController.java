@@ -48,26 +48,28 @@ public class CashierController
 	public ModelAndView saveInvoiceData(@ModelAttribute("invoice") @Valid Invoice invoice, BindingResult result, ModelMap model, Locale locale) throws Exception {
 		String status="";
 			status = "received the invoice data ";
-			int i = (Integer)this.invoiceDAO.insert(invoice).intValue();
-			System.out.println("Data inserted successfully with value: "+i);
+			this.invoiceDAO.insertOrUpdate(invoice);
+			System.out.println("Data saved successfully!");
 			if(invoice.getMealType()!=null)
-				return mealEntryViewProvider(invoice.getMealType());
+				return mealEntryViewProvider(invoice.getMealType(), invoice.getMealType()+" Invoice saved!", invoice);
 		
 		System.out.println("obj>> " + invoice + " , status: "+status);
 		ModelAndView resultView = new ModelAndView("invoice_data_entry");
 		resultView.getModelMap().put("invoice", invoice);
+		resultView.getModelMap().put("flash", "Saved invoice details");
 		return resultView;
 	}
 	
 
 	ModelAndView mealEntryViewProvider(String mealName){
-		return mealEntryViewProvider(mealName, "Enter the details for "+mealName);
+		return mealEntryViewProvider(mealName, "Enter the details for "+mealName, null);
 	}
 	/*
 	 * Provides a customized form for entry of meal related vouchers.
 	 */
-	ModelAndView mealEntryViewProvider(String mealName, String message){
-		Invoice invoice = new Invoice();
+	ModelAndView mealEntryViewProvider(String mealName, String message, Invoice invoice){
+		if(invoice==null)
+			invoice = new Invoice();
 		ModelAndView modelAndView = new ModelAndView("meal_entry");
 		modelAndView.getModelMap().put("invoice", invoice);
 		modelAndView.getModelMap().put("flash", message);

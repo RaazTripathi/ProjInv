@@ -43,10 +43,11 @@ public class InvoiceController {
 	 */
 	@RequestMapping(value = { "/invoice_entry.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	@PreAuthorize("hasAnyRole('ROLE_CASHIER','ROLE_ADMIN')")
-	public ModelAndView invoiceEntryDisplay(String flashMessage) throws Exception {
+	public ModelAndView invoiceEntryDisplay(String flashMessage, Invoice invoice) throws Exception {
 		logger.info("Initializing the invoice entry view.");
 		ModelAndView modelAndView = new ModelAndView("invoice_data_entry");
-		Invoice invoice = new Invoice();
+		if(invoice==null)
+			invoice = new Invoice();
 		List<Item> itemList = null;
 		try {
 			logger.info("Fetching items to populate the invoice.");
@@ -78,7 +79,7 @@ public class InvoiceController {
 			logger.error(status);
 		}
 
-		return invoiceEntryDisplay(status);
+		return invoiceEntryDisplay(status, invoice);
 	}	
 	/*
 	 * Provides the report of the cash/box collections of the different reports
@@ -188,6 +189,6 @@ public class InvoiceController {
 			logger.error(status);
 		}
 
-		return invoiceEntryDisplay(status);
+		return invoiceEntryDisplay(status, invoice);
 	}
 }
