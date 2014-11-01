@@ -1,5 +1,6 @@
 package com.tss.ocean.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -18,6 +19,7 @@ import com.tss.ocean.dao.FinAccountDAO;
 import com.tss.ocean.idao.IAccountsDAO;
 import com.tss.ocean.idao.IEmployeeCategoryDAO;
 import com.tss.ocean.idao.IEmployeesDAO;
+import com.tss.ocean.idao.IFinAccountDAO;
 import com.tss.ocean.idao.IInvoiceDAO;
 import com.tss.ocean.idao.IItemDAO;
 import com.tss.ocean.idao.IPurchaseApproverDAO;
@@ -46,7 +48,7 @@ public class FinAccController {
 	/* 55: */@Autowired
 	/* 56: */private MessageSource messageSource;
 	/* 57: */@Autowired
-	/* 58: */private FinAccountDAO finAccDAO;
+	/* 58: */private IFinAccountDAO finAccDAO;
 	/* 59: */@Autowired
 	/* 60: */private IEmployeesDAO employeesDAO;
 	/* 61: */@Autowired
@@ -69,15 +71,17 @@ public class FinAccController {
 	}
 	
 	
-	
-	
+	/**
+	 * Add financial account form, now pre-populated with mainTypes
+	 **/
 	@RequestMapping(value = { "/addfinacc.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public String addassetform(@ModelAttribute("asset") Asset asset) throws Exception {
-		logger.info("************************************");
-		
-	
-	
-		return "add_fin_accounts";
+	public ModelAndView addFinancialAccount(@ModelAttribute("finAcc") FinAccount account) throws Exception {
+		logger.info("Calling the form for the creation of financial account");
+		List<FinAccount> existingTypes = finAccDAO.getMainAccounts();
+		logger.info("Found "+existingTypes.size()+" main accounts.");
+		ModelAndView addFinAcc = new ModelAndView("add_fin_accounts");
+		addFinAcc.getModelMap().put("types", existingTypes);
+		return addFinAcc;
 	}
 
 

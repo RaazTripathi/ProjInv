@@ -70,10 +70,16 @@
 									<div class="col-sm-8 col-xs-12">
 										<input type="radio" class="" name="type"
 											path="type" value="1" placeholder="Bank" />Bank<br> 
-											<input
-											type="radio" class="" name="type" path="type"
-											value="2" placeholder="Bank" />Box<br>
-
+										<input type="radio" class="" name="type"
+										    path="type" value="2" placeholder="Bank" />Box<br>
+										<c:if test="${ types != null}">
+										    <c:forEach var="type" items="${types}">
+										        <input type="radio" class="" name="type"
+										        path="type" value="${type.id}" placeholder="Bank" />${type.name}<br>
+										    </c:forEach>
+										</c:if>
+										<input type="radio" class="" name="type"
+											path="type" value="0" placeholder="New Type" /><b>Create a new main type</b><br />
 									</div>
 								</div>
 

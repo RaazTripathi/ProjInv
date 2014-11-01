@@ -88,6 +88,10 @@ Action                                            </th>
                                                  Bank</c:if>
                                                  <c:if test="${finacc.type==2}">
                                                  Box</c:if>
+                                                 <c:if test="${finacc.type==0}">
+                                                 <b>Main Type</b></c:if>
+                                                 <c:if test="${finacc.type>2}">
+                                                 Sub Type</c:if>
                                                  </td>
                                                  <td>
                                                  <a href="view_vouchers.html?id=${finacc.id}"><button>View orders</button></a>

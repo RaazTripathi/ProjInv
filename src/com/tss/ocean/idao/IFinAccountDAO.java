@@ -10,6 +10,8 @@ import com.tss.ocean.pojo.Item;
 public abstract interface IFinAccountDAO
   extends GenericDAO<FinAccount, Integer>
 {
+
+	List<FinAccount> getMainAccounts();
 	
 
 }
