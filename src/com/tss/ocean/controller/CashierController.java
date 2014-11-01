@@ -87,8 +87,9 @@ public class CashierController
 		
 		List<FinAccount>bank=finaccDao.getListByKeyandValue("type", 1);
 		List<FinAccount>box=finaccDao.getListByKeyandValue("type", 2);
+		List<FinAccount> otherMain= finaccDao.getMainAccounts();
 
-		
+		modelAndView.getModelMap().put("types", otherMain);
 		modelAndView.getModelMap().put("bank", bank);
 		modelAndView.getModelMap().put("box", box);
 
