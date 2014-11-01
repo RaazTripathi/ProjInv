@@ -29,10 +29,11 @@ public class InvoiceDAO extends GenericDAOImpl<Invoice, Integer> implements
 	public List<Invoice> getCollectionByType(Boolean isCashMode) {
 		Session session = getSession();
 		List<Invoice> invoices = null;
+		int modeCode = isCashMode?2:1;
 		try {
 			invoices = session
 					.createQuery("from Invoice i where i.boxMode=:modeType")
-					.setParameter("modeType", isCashMode).list();
+					.setParameter("modeType", modeCode).list();
 		} catch (HibernateException e) {
 			log.error("error occured in fetching the data: " + e);
 		} finally {

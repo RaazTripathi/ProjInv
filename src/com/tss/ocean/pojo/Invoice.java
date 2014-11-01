@@ -10,7 +10,7 @@ public class Invoice implements Serializable {
 	private String date;
 	private String buyerName;
 	private String address;
-	private Boolean boxMode;
+	private Integer boxMode;
 	private BigDecimal discount;
 	private BigDecimal tax;
 	private Number grossAmount;
@@ -22,7 +22,7 @@ public class Invoice implements Serializable {
 	public Invoice(){
 	}
 
-	public Invoice(Integer id, String date, String buyerName, String address, Boolean boxMode, BigDecimal discount, BigDecimal tax, Number grossAmount, Integer item_id, Integer quantity){
+	public Invoice(Integer id, String date, String buyerName, String address, Integer boxMode, BigDecimal discount, BigDecimal tax, Number grossAmount, Integer item_id, Integer quantity){
 		try {
 			this.id = id;
 			this.date = date;
@@ -64,10 +64,10 @@ public class Invoice implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public Boolean getBoxMode() {
+	public Integer getBoxMode() {
 		return boxMode;
 	}
-	public void setBoxMode(Boolean boxMode) {
+	public void setBoxMode(Integer boxMode) {
 		this.boxMode = boxMode;
 	}
 	public BigDecimal getDiscount() {
@@ -121,7 +121,7 @@ public class Invoice implements Serializable {
 		if(this.address!=null)
 			string += this.address;
 		if(this.boxMode!=null)
-			string += boxMode ? "bank collection":"cash collection";
+			string += boxMode;
 		if(this.discount!=null)
 			string += this.discount;
 		if(this.tax!=null)

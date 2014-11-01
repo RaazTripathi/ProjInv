@@ -17,7 +17,7 @@
         <property name="address" type="string">
             <column name="address" />
         </property>
-        <property name="boxMode" type="java.lang.Boolean">
+        <property name="boxMode" type="java.lang.Integer">
             <column name="boxMode" />
         </property>
         <property name="discount" type="java.math.BigDecimal">

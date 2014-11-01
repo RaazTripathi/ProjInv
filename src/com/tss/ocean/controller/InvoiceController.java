@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tss.ocean.idao.IFinAccountDAO;
 import com.tss.ocean.idao.IInvoiceDAO;
 import com.tss.ocean.idao.IItemDAO;
+import com.tss.ocean.pojo.FinAccount;
 import com.tss.ocean.pojo.Invoice;
 import com.tss.ocean.pojo.Item;
 
@@ -34,9 +36,12 @@ public class InvoiceController {
 	
 	@Autowired
 	IInvoiceDAO invoiceDAO;
-	
+
 	@Autowired
 	IItemDAO itemDAO;
+	
+	@Autowired
+	IFinAccountDAO finAccDAO;
 
 	/*
 	 * Maps to the invoice filling form
@@ -49,16 +54,19 @@ public class InvoiceController {
 		if(invoice==null)
 			invoice = new Invoice();
 		List<Item> itemList = null;
+		List<FinAccount> existingTypes = null;
 		try {
 			logger.info("Fetching items to populate the invoice.");
-			itemList = this.itemDAO.getList();			
+			itemList = this.itemDAO.getList();
+			existingTypes = finAccDAO.getMainAccounts();
 		} catch (Exception e) {
-			logger.error("Error in fetching items for the invoice: "+e.getMessage());
+			logger.error("Error in fetching items/accounts for the invoice: "+e.getMessage());
 			logger.warn("Since no item was fetched, so creating the invoice form without any item selection");
 		}
 		modelAndView.getModelMap().put("invoice", invoice);
 		modelAndView.getModelMap().put("flash", flashMessage);
 		modelAndView.getModelMap().put("items", itemList);
+		modelAndView.getModelMap().put("types", existingTypes);
 		return modelAndView;
 	}
 	
@@ -128,7 +136,7 @@ public class InvoiceController {
 	public ModelAndView listBankCollectionsOnFinanceMenu(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
 		logger.info("Starting the save of data.");
 		List<Invoice> invoices = this.invoiceDAO.getCollectionByType(false);
-		logger.info("returned with "+invoices.size()+" cash invoices");
+		logger.info("returned with "+invoices.size()+" bank invoices");
 		ModelAndView mav = new ModelAndView("invoice_list");
 		mav.getModelMap().put("useFinanceMenus", "true");
 		mav.getModelMap().put("invoices", invoices);

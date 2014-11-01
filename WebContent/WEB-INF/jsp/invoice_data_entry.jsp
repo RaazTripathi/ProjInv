@@ -70,8 +70,13 @@
 	                                    </label>
 	                                    <div class="col-sm-8 col-xs-12">
 	                                        <form:select class="form-control" path="boxMode">
-	                                            <form:option value="true"><spring:message code="label.invoice.boxtype" text="Default Text"/></form:option>
-	                                            <form:option value="false"><spring:message code="label.invoice.banktype" text="Default Text"/></form:option>
+	                                            <form:option value="2"><spring:message code="label.invoice.boxtype" text="Default Text"/></form:option>
+	                                            <form:option value="1"><spring:message code="label.invoice.banktype" text="Default Text"/></form:option>
+	                                            <c:if test="${types != null}">
+	                                                <c:forEach items="${types}" var="type">
+	                                                    <form:option value="${type.id}">${type.name}</form:option>
+	                                                </c:forEach>
+	                                            </c:if>
 	                                        </form:select>
 	                                        <form:errors path="boxMode" cssClass="error" />
 	                                    </div>
