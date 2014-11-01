@@ -772,7 +772,7 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   `bill_date` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `buyername` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `address` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `boxmode` tinyint(1) DEFAULT NULL,
+  `boxmode` int(10) DEFAULT NULL,
   `discount` decimal(10,2) DEFAULT '0.00',
   `tax` decimal(10,2) DEFAULT '0.00',
   `amount` decimal(10,2) NOT NULL,
