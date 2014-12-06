@@ -201,6 +201,24 @@ public class InvoiceController {
 		return mav;
 	}
 	
+
+	/**
+	 * Provides invoice related with that main finance account
+	 * This main finance account is some other account other than bank
+	 */
+	@RequestMapping(value = { "/account_vouchers.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView view_specific_vouchers(@RequestParam(value="success", required=false) String success,@RequestParam("id")int id, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+		logger.info("Starting the save of data.");
+		FinAccount account = this.finAccDAO.getRecordByPrimaryKey(id);
+		List<Invoice> invoices = this.invoiceDAO.getListByKeyandValue("boxMode", id);
+		if(invoices!=null && account!=null)
+			logger.info("returned with "+invoices.size()+" invoices of the "+account.getName()+ " account");
+		ModelAndView mav = new ModelAndView("invoice_list");
+		mav.getModelMap().put("useFinanceMenus", "true");
+		mav.getModelMap().put("invoices", invoices);
+		mav.getModelMap().put("title_text", "Invoices ");
+		return mav;
+	}
 	
 	/*
 	 * Makes the invoice editable

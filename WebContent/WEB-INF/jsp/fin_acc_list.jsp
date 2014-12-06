@@ -96,7 +96,7 @@ Action                                            </th>
                                                  Sub Type</c:if>
                                                  </td>
                                                  <td>
-                                                 <a href="view_vouchers.html?id=${finacc.id}"><button>View orders</button></a>
+                                                 <a href="account_vouchers.html?id=${finacc.id}"><button>View orders</button></a>
                                                  </td>
                                                
                                             </tr>  
