@@ -2,12 +2,18 @@ package com.tss.ocean.pojo;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 public class Invoice implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	private Integer id;
-	private String date;
+	
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+
+	private Date date;
 	private String buyerName;
 	private String address;
 	private Integer boxMode;
@@ -19,10 +25,21 @@ public class Invoice implements Serializable {
 	private String mealType;
 	
 	private int mealaccount;
+	
+	public int getFinyear() {
+		return finyear;
+	}
+
+	public void setFinyear(int finyear) {
+		this.finyear = finyear;
+	}
+
+	int finyear;
+	
 	public Invoice(){
 	}
 
-	public Invoice(Integer id, String date, String buyerName, String address, Integer boxMode, BigDecimal discount, BigDecimal tax, Number grossAmount, Integer item_id, Integer quantity){
+	public Invoice(Integer id, Date date, String buyerName, String address, Integer boxMode, BigDecimal discount, BigDecimal tax, Number grossAmount, Integer item_id, Integer quantity){
 		try {
 			this.id = id;
 			this.date = date;
@@ -46,10 +63,10 @@ public class Invoice implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public String getBuyerName() {

@@ -76,6 +76,9 @@
                                 <table id="dttable" class="table table-bordered table-striped"  data-page-size="5">
                                     <thead class="orange-bg border-t">
                                         <tr>
+                                          
+                                           <th data-hide="phone">
+Journal No                                            </th>
                                             
                                             <th data-hide="phone">
 Journal No                                            </th>
@@ -91,6 +94,8 @@ Remark text                                            </th>
                                     <tbody>
                                         <c:forEach var="jn" items="${journal}">
                                             <tr>
+                                               <td>${jn.date}</td>  
+                                              
                                                 <td>${jn.journalNo}</td>                                                
                                                <td>${jn.price}</td>
                                                 <td>${jn.remark}</td>
@@ -99,7 +104,7 @@ Remark text                                            </th>
                                             </tr>                                        
                                         </c:forEach> 
                                         
-                                         <tr>
+                                        <%--  <tr>
                                                 <td colspan="">Total</td>
                                               <td colspan=""></td>
                                               
@@ -107,7 +112,7 @@ Remark text                                            </th>
                                                 <td>${totalval}</td>
                                                 
                                                
-                                            </tr>  
+                                            </tr>  --%> 
                                                                                
                                     </tbody>
                                     <!--<tfoot class="hide-if-no-paging">

@@ -67,8 +67,10 @@
                                             </th>
                                             
                                             <th data-hide="phone">
-                                                <spring:message code="label.asset.price" text="Label value is missing !!!"/> 
-                                            </th>
+Acc No                                            </th>
+
+<th data-hide="phone">
+Amount                                            </th>
                                             <th data-hide="phone">
 Account Type                                            </th> 
 <th data-hide="phone">
@@ -82,7 +84,7 @@ Action                                            </th>
                                                 <td>${finacc.name}</td>
                                                
                                                 <td>${finacc.number}</td>
-                                                
+                                                <td>${finacc.limits}</td>
                                                  <td>
                                                  <c:if test="${finacc.type==1}">
                                                  Bank</c:if>

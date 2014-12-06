@@ -2,6 +2,7 @@ package com.tss.ocean.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tss.ocean.dto.Dateselecter;
 import com.tss.ocean.idao.IFinAccountDAO;
 import com.tss.ocean.idao.IInvoiceDAO;
 import com.tss.ocean.idao.IItemDAO;
@@ -93,9 +95,18 @@ public class InvoiceController {
 	 * Provides the report of the cash/box collections of the different reports
 	 */
 	@RequestMapping(value = { "/cash_collections.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView listCashCollections(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+	public ModelAndView listCashCollections(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale,HttpSession session) throws Exception {
 		logger.info("Starting the save of data.");
-		List<Invoice> invoices = this.invoiceDAO.getCollectionByType(true);
+/*		List<Invoice> invoices = this.invoiceDAO.getCollectionByType(1);
+*/	
+		int a= (Integer) session.getAttribute("finyear");
+
+		Dateselecter ds=new Dateselecter();
+		ds.setfinyear(a);
+		
+		List<Invoice> invoices = this.invoiceDAO.getListByHQLQuery("from Invoice i where i.boxMode=0 and i.date > '"+ds.getFinyearStart()+"'  and i.date <   '"+ds.getFinyearEnd()+"' " );
+	
+		
 		logger.info("returned with "+invoices.size()+" cash invoices");
 		ModelAndView mav = new ModelAndView("invoice_list");
 		mav.getModelMap().put("invoices", invoices);
@@ -106,9 +117,18 @@ public class InvoiceController {
 	 * Provides the report of the bank collections of the different reports
 	 */
 	@RequestMapping(value = { "/bank_collections.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView listBankCollections(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+	public ModelAndView listBankCollections(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale,HttpSession session) throws Exception {
 		logger.info("Starting the save of data.");
-		List<Invoice> invoices = this.invoiceDAO.getCollectionByType(false);
+/*		List<Invoice> invoices = this.invoiceDAO.getCollectionByType(0);
+*/	
+		int a= (Integer) session.getAttribute("finyear");
+
+		Dateselecter ds=new Dateselecter();
+		ds.setfinyear(a);
+		
+		List<Invoice> invoices = this.invoiceDAO.getListByHQLQuery("from Invoice i where i.boxMode=0 and i.date > '"+ds.getFinyearStart()+"'  and i.date <   '"+ds.getFinyearEnd()+"' " );
+	
+		
 		logger.info("returned with "+invoices.size()+" cash invoices");
 		ModelAndView mav = new ModelAndView("invoice_list");
 		mav.getModelMap().put("invoices", invoices);
@@ -119,9 +139,18 @@ public class InvoiceController {
 	 * Provides the report of the cash/box collections within finance section
 	 */
 	@RequestMapping(value = { "/cash_vouchers.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView listCashCollectionsOnFinanceMenu(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+	public ModelAndView listCashCollectionsOnFinanceMenu(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale,HttpSession session) throws Exception {
+	
+		
 		logger.info("Starting the save of data.");
-		List<Invoice> invoices = this.invoiceDAO.getCollectionByType(true);
+		
+		int a= (Integer) session.getAttribute("finyear");
+		
+		Dateselecter ds=new Dateselecter();
+		ds.setfinyear(a);
+		
+		List<Invoice> invoices = this.invoiceDAO.getListByHQLQuery("from Invoice i where i.boxMode=1 and i.date > '"+ds.getFinyearStart()+"'  and i.date <   '"+ds.getFinyearEnd()+"' " );
+
 		logger.info("returned with "+invoices.size()+" cash invoices");
 		ModelAndView mav = new ModelAndView("invoice_list");
 		mav.getModelMap().put("useFinanceMenus", "true");
@@ -133,9 +162,14 @@ public class InvoiceController {
 	 * Provides the report of the bank collections within finance section
 	 */
 	@RequestMapping(value = { "/bank_vouchers.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView listBankCollectionsOnFinanceMenu(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+	public ModelAndView listBankCollectionsOnFinanceMenu(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale, HttpSession session) throws Exception {
 		logger.info("Starting the save of data.");
-		List<Invoice> invoices = this.invoiceDAO.getCollectionByType(false);
+		int a= (Integer) session.getAttribute("finyear");
+
+		Dateselecter ds=new Dateselecter();
+		ds.setfinyear(a);
+		
+		List<Invoice> invoices = this.invoiceDAO.getListByHQLQuery("from Invoice i where i.boxMode=0 and i.date > '"+ds.getFinyearStart()+"'  and i.date <   '"+ds.getFinyearEnd()+"' " );
 		logger.info("returned with "+invoices.size()+" bank invoices");
 		ModelAndView mav = new ModelAndView("invoice_list");
 		mav.getModelMap().put("useFinanceMenus", "true");
@@ -145,9 +179,20 @@ public class InvoiceController {
 	}
 	
 	@RequestMapping(value = { "/view_vouchers.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView view_vouchers(@RequestParam(value="success", required=false) String success,@RequestParam("id")int id, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+	public ModelAndView view_vouchers(@RequestParam(value="success", required=false) String success,@RequestParam("id")int id, @RequestParam(value="error", required=false) String error, Locale locale,HttpSession session) throws Exception {
 		logger.info("Starting the save of data.");
-		List<Invoice> invoices = this.invoiceDAO.getListByKeyandValue("mealaccount", id);
+/*		List<Invoice> invoices = this.invoiceDAO.getListByKeyandValue("mealaccount", id);
+*/	
+		
+		int a= (Integer) session.getAttribute("finyear");
+
+		Dateselecter ds=new Dateselecter();
+		ds.setfinyear(a);
+		
+		List<Invoice> invoices = this.invoiceDAO.getListByHQLQuery("from Invoice i where i.mealaccount="+id+" and i.date > '"+ds.getFinyearStart()+"'  and i.date <   '"+ds.getFinyearEnd()+"' " );
+
+		
+		
 		logger.info("returned with "+invoices.size()+" cash invoices");
 		ModelAndView mav = new ModelAndView("invoice_list");
 		mav.getModelMap().put("useFinanceMenus", "true");
@@ -180,9 +225,22 @@ public class InvoiceController {
 	 * Provides a read-only view for the invoice (to enable its printing)
 	 */
 	@RequestMapping(value = { "/view-invoice.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView invoiceDisplay(@RequestParam("id") int id, Locale locale, @RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error) throws Exception {
+	public ModelAndView invoiceDisplay(@RequestParam("id") int id, Locale locale, @RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error,HttpSession session) throws Exception {
 		logger.info("Fetching the invoice from the database.");
+		
+	
+		
+		
 		Invoice existingInvoice = this.invoiceDAO.getRecordByPrimaryKey(id);
+		
+		int a= (Integer) session.getAttribute("finyear");
+
+		Dateselecter ds=new Dateselecter();
+		ds.setfinyear(a);
+		
+		List<Invoice> invoices = this.invoiceDAO.getListByHQLQuery("from Invoice i where i.id="+id+" and i.date > '"+ds.getFinyearStart()+"'  and i.date <   '"+ds.getFinyearEnd()+"' " );
+
+		
 		List<Item> itemList = null;
 		try {
 			logger.info("Fetching items for the invoice.");

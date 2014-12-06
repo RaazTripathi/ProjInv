@@ -8,7 +8,7 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <property name="date" type="string">
+        <property name="date" type="date">
             <column name="bill_date" />
         </property>
         <property name="buyerName" type="string">
@@ -17,9 +17,17 @@
         <property name="address" type="string">
             <column name="address" />
         </property>
+        
+        
         <property name="boxMode" type="java.lang.Integer">
             <column name="boxMode" />
         </property>
+        
+        
+        <property name="finyear" type="java.lang.Integer">
+            <column name="finyear" />
+        </property>
+        
         <property name="discount" type="java.math.BigDecimal">
             <column name="discount" />
         </property>

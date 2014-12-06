@@ -84,7 +84,7 @@
 
                             <div class="row tb-margin">
                                 <div class="col-sm-2"></div>
-                            <form:form action="AddItem.html" method="post" commandName="itemForm"  acceptCharset="UTF-8">
+                            <form:form action="AddItem.html" enctype="multipart/form-data" method="post" commandName="itemForm"  acceptCharset="UTF-8">
                                 <form:hidden path="id" />
                                 <form:errors path="*" cssClass="errorblock" element="div" />
 
@@ -143,6 +143,31 @@
                                             <form:errors path="barcode" cssClass="error" />
                                         </div>
                                     </div>
+                                    
+                                    
+                                    
+                                    
+                                    
+                                      <div class="form-group">
+                                        <label class="col-sm-4 col-xs-12 control-label search-text"> Alarm Unit:</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <form:input  type="text" class="form-control" path="alarmunit" placeholder="alarmunit"/>
+                                            <form:errors path="alarmunit" cssClass="error" />
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                    
+                                    
+                                     <div class="form-group">
+                                        <label class="col-sm-4 col-xs-12 control-label search-text"> Image:</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <form:input  type="file" class="form-control" path="file" placeholder="File"/>
+                                            <form:errors path="file" cssClass="error" />
+                                        </div>
+                                    </div>
+                                    
+                                    
                                     
                                     
                                     <div class="row text-pad-top visible-lg visible-md visible-sm">
@@ -204,6 +229,9 @@
                                             <form:errors path="barcode" cssClass="error" />
                                         </div>
                                    	 </div>
+                                   	 
+                                   	 
+                                   	 
                                     
                                     <div class="row text-pad-top visible-xs ">
                                         <div class="div-center-xs">

@@ -22,5 +22,10 @@
             <column name="purpose"  />
         </property>
       
+       <property name="finyear" type="int">
+            <column name="finyear"  />
+        </property>
+      
+      
     </class>
 </hibernate-mapping>

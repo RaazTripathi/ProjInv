@@ -39,10 +39,17 @@
                                 <li class='last'><a href='account.html'><span><spring:message code="menu.account" text="Label value is missing !!!"/></span></a></li>
                             </ul>
                         </div> --%>
-                        <!-- END MUNU -->    
+                        <!-- END MUNU -->   
+                        
+                        <div id='cssmenu'>
+                            <ul>
+                                <li class=''><a href='#'><span>&nbsp;</span></a></li>
+                                <li class='last'><a href='suppliers.html'>Supplier</span></a></li>
+                            </ul>
+                        </div>  
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-9">
                     <div class="catagory-main-box top-radius">
                         <div class="cat-box-title cat-title-font top-radius"><spring:message code="purrequisition.list" text="Label value is missing !!!"/></div>
                         <spring:message text="Default Text" code="purrequisition.search.placeholder" var="search"/>

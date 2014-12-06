@@ -99,7 +99,7 @@
                                         </div>
                                     </div>-->
                                             <form:hidden path="prno" />
-                                    <div class="form-group">
+                                   <%--  <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.purrequisition.supplier" text="Default Text"/></label>
                                         <div class="col-sm-8 col-xs-12">
                                             <form:select class="form-control" path="suplierid">
@@ -108,12 +108,11 @@
                                             </form:select>
                                             <form:errors path="suplierid" cssClass="error" />
                                         </div>
-                                    </div>
+                                    </div> --%>
                                     <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.purrequisition.status" text="Default Text"/></label>
                                         <div class="col-sm-8 col-xs-12">
                                             <form:select class="form-control" path="status">
-                                                <form:option value=""><spring:message code="label.purrequisition.status.placeholder" text="Default Text"/></form:option>
                                                 <form:options items="${statusList}" />
                                             </form:select>
                                             <form:errors path="status" cssClass="error" />
@@ -129,13 +128,13 @@
                                             <form:errors path="isbilled" cssClass="error" />
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                  <%--   <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.purrequisition.price" text="Default Text"/></label>
                                         <div class="col-sm-8 col-xs-12">                                            
                                             <form:input type="text" class="form-control" path="price" placeholder="${priceplaceholder}" />
                                             <form:errors path="price" cssClass="error" />
                                         </div>
-                                    </div>
+                                    </div> --%>
                                     <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.purrequisition.createdat" text="Default Text"/></label>
                                         <div class="col-sm-8 col-xs-12">                                            

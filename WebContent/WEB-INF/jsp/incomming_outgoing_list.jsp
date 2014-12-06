@@ -3,8 +3,16 @@
 <!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
-    <head>        
+    <head>  
+    
+          
         <jsp:include page="header.jsp" />
+        
+         <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+        <script src="js/jQuery.print.js"></script>
+        
     </head>
 	<body role="document">
         <jsp:include page="headermenu.jsp" />
@@ -67,8 +75,11 @@
                                     </thead>
                                     <tbody>
                                         <c:forEach var="invoice" items="${invoices}">
-                                            <tr>
-                                                <td>${invoice.date}</td>
+                                            <tr  class="rowclick">
+                                                <td class="tdhid">${invoice.date} 
+                                                
+                                                
+                                              
                                                 <td>${invoice.buyerName}</td>
                                                
                                                 <td>${invoice.grossAmount}</td>
@@ -114,7 +125,55 @@
         <script src="js/dataTables.responsive.min.js"></script>
         <script src="js/ajax-bootstrap3.js"></script>
         <script type="text/javascript">
+       
+
+        
+        
+        $(function() {
+        	
+        	$('.dialog').dialog({
+        		autoOpen: false,
+        		title: 'Create recept'
+        	});
+        	
+        var	dialoger;
+        	
+        	$( ".rowclick" ).click(function(){
+        		
+        		
+        		dialoger=$(this);
+        		 
+        		$( ".dialog" ).dialog('open');
+        	});
+        	
+        	
+        	$('#submitrecptform').click (function(){
+        		alert(dialoger.append("<tr><td>row content</td></tr>"));
+        		  var win = window.open(function(){
+        			  
+        		  });
+        		    win.document.write(dialoger.html());
+        		    win.print();
+        		    win.close();
+        		    $('#myfrm').submit();
+        		    
+        	});
+        
+        
+        
+        
+        });
+        
+        
+        
+        
+        
+        
+        
             $(document).ready(function() {
+            	
+                $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+            	
                 var table = $('#dttable').DataTable();
                 $('.row-delete').click(function(eve) {
                     var row = this;
@@ -141,5 +200,25 @@
             	document.body.innerHTML = originalPage;
             }
         </script>
+        
+     
+          <div class="dialog" title="Create recept">
+
+<form id="myfrm" action="addrecept.html" >
+    
+  Inter recept no :  <input type="text" class="form-control"> <br>
+    Select date:  <input type="text" class="datepicker form-control"> 
+
+<input type="button" value="Print" class="btn btn-orange" id="submitrecptform"  >
+
+</form>
+
+
+
+
+</div>
+                                                 </td>
+        
     </body>
 </html>
+

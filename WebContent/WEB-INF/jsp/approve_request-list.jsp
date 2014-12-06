@@ -25,17 +25,17 @@
 
                         <!--<div class="cat-table-title"></div>-->
                         <!-- MUNU -->    
-                      <div id='cssmenu'>
+                     <!--  <div id='cssmenu'>
                             <ul>
                                 <li class=''><a href='#'><span>&nbsp;</span></a></li>
                                 <li class='last'><a href='suppliers.html'>Supplier</span></a></li>
                             </ul>
-                        </div> 
+                        </div>  -->
                         
                         <!-- END MUNU -->    
                     </div>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-12">
                     <div class="catagory-main-box top-radius">
                         <div class="cat-box-title cat-title-font top-radius"><spring:message code="approve.list.header" text="Label value is missing !!!"/></div>
                         <spring:message text="Default Text" code="purrequisition.search.placeholder" var="search"/>
@@ -104,7 +104,7 @@
                                                 <td>
                                                     
                                                     
-                                                    <c:if test="${purrequisition.approvalStatus==0 && purrequisition.approver1!=userid && purrequisition.approver2!=userid && purrequisition.approver3!=userid }">
+                                                    <c:if test="${purrequisition.approvalStatus==0 && purrequisition.approver1!=userid && purrequisition.approver2!=userid && purrequisition.approver3!=userid && purrequisition.approver4!=userid}">
                                                     
                                                     
                                                     

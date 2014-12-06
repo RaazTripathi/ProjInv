@@ -29,6 +29,14 @@
         <property name="currstock" type="int">
             <column name="currstock" not-null="true" />
         </property>
+       
+        <property name="alarmunit" type="int">
+            <column name="alarmunit" not-null="true" />
+        </property>
+        
+         <property name="filename" type="string">
+            <column name="filename"  />
+        </property>
         
         <many-to-one name="unitid" class="com.tss.ocean.pojo.Itemunit" fetch="select" lazy="false">
             <column name="unitid" not-null="true" />

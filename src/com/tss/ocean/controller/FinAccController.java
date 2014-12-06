@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tss.ocean.dao.AccValueDao;
 import com.tss.ocean.dao.AssetDAO;
 import com.tss.ocean.dao.FinAccountDAO;
 import com.tss.ocean.idao.IAccountsDAO;
@@ -25,6 +26,7 @@ import com.tss.ocean.idao.IItemDAO;
 import com.tss.ocean.idao.IPurchaseApproverDAO;
 import com.tss.ocean.idao.IPurrequisitionDAO;
 import com.tss.ocean.idao.IPurrequisitiondtDAO;
+import com.tss.ocean.pojo.AccountValue;
 import com.tss.ocean.pojo.Asset;
 import com.tss.ocean.pojo.FinAccount;
 import com.tss.ocean.pojo.Invoice;
@@ -53,6 +55,8 @@ public class FinAccController {
 	/* 60: */private IEmployeesDAO employeesDAO;
 	/* 61: */@Autowired
 	/* 62: */IEmployeeCategoryDAO employeeCategoryDAO;
+	@Autowired
+	AccValueDao   accvalueDao;
 	private static final Logger logger = LoggerFactory.getLogger(financeMenuControllers.class);
 
 	
@@ -88,12 +92,17 @@ public class FinAccController {
 	@RequestMapping(value = { "/addfinacc.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
 	public String addasset(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale,@ModelAttribute("finacc") FinAccount finacc) throws Exception {
 		
-		
-		
-		
-		
 		this.finAccDAO.insert(finacc);
 		
+		AccountValue acval =  new AccountValue();
+		
+		acval.setAccName(finacc.getName());
+
+	
+		acval.setAccid(finacc.getId());
+		
+		acval.setValue(finacc.getLimits());
+accvalueDao.insert(acval);
 		return "redirect:finacc.html";
 	}
 	

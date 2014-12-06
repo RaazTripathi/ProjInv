@@ -64,6 +64,25 @@
 									</div>
 								</div>
 
+	<div class="form-group">
+									<label class="col-sm-4 col-xs-12 control-label search-text">
+										Amount </label>
+									<div class="col-sm-8 col-xs-12">
+										<input type="text" class="form-control" name="limits"
+											path="limits" placeholder="Amount" />
+
+									</div>
+								</div>
+
+
+
+
+
+
+
+
+
+
 								<div class="form-group">
 									<label class="col-sm-4 col-xs-12 control-label search-text">
 										Account Type</label>

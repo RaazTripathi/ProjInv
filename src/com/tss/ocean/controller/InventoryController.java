@@ -1,18 +1,8 @@
 /*   1:    */package com.tss.ocean.controller;
 
 /*   2:    */
-/*   3:    */import com.tss.ocean.idao.IItemDAO;
-/*   4:    */
-import com.tss.ocean.idao.IItemtypeDAO;
-/*   5:    */
-import com.tss.ocean.idao.IItemunitDAO;
-/*   6:    */
-import com.tss.ocean.pojo.Item;
-/*   7:    */
-import com.tss.ocean.pojo.Itemtype;
-/*   8:    */
-import com.tss.ocean.pojo.Itemunit;
-
+/*   3:    */import java.io.File;
+import java.util.Date;
 /*   9:    */
 import java.util.Map;
 /*  10:    */
@@ -20,13 +10,16 @@ import java.util.logging.Level;
 /*  11:    */
 import java.util.logging.Logger;
 
+
 /*  12:    */
 import javax.servlet.http.HttpServletRequest;
 /*  13:    */
 import javax.validation.Valid;
 
+
 /*  14:    */
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ResourceLoader;
 /*  15:    */
 import org.springframework.security.access.prepost.PreAuthorize;
 /*  16:    */
@@ -44,6 +37,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 /*  22:    */
 import org.springframework.web.servlet.ModelAndView;
+
+import com.tss.ocean.idao.IItemDAO;
+/*   4:    */
+import com.tss.ocean.idao.IItemtypeDAO;
+/*   5:    */
+import com.tss.ocean.idao.IItemunitDAO;
+/*   6:    */
+import com.tss.ocean.pojo.Item;
+/*   7:    */
+import com.tss.ocean.pojo.Itemtype;
+/*   8:    */
+import com.tss.ocean.pojo.Itemunit;
 
 /*  23:    */
 /*  24:    */@Controller
@@ -169,8 +174,8 @@ import org.springframework.web.servlet.ModelAndView;
 	/* 111: */throws Exception
 	/* 112: */{
 		
-		
-		System.out.println(req.getCharacterEncoding()+"KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
+/*		System.out.println("gggggggggggggggggggggg"+item.getFile().getName());
+*/		System.out.println(req.getCharacterEncoding()+"KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
 		/* 113:119 */if (item.getId() == null)
 		/* 114: */{
 			/* 115:120 */logger.log(Level.OFF, "Add Item with detail ####### ."
@@ -187,18 +192,36 @@ import org.springframework.web.servlet.ModelAndView;
 						this.itemunitDAO.getList());
 				/* 122:126 */model.put("itemTypeList",
 						this.itemTypeDAO.getList());
-				/* 123:127 */modelAndView.addAllObjects(model);
-				/* 124:128 */return modelAndView;
-				/* 125: */}
-			/* 126:130 */item.setAlias("123");
-			/* 127:131 */logger.log(Level.OFF, "Insert result ####### ."
+				modelAndView.addAllObjects(model);
+				return modelAndView;
+				}
+			item.setAlias("123");
+			
+			if (!item.getFile().isEmpty()) {
+				
+				String filename= (item.getName()+new Date().getTime()+item.getFile().getOriginalFilename()).trim();
+			
+				item.setFilename(filename);
+		        try {
+		        	String filePath = req.getServletContext().getRealPath("/upload/"); 
+					System.out.println("Filenameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"+filePath+filename);
+
+		        	
+		        	item.getFile().transferTo(new File(filePath+"/"+filename));
+
+		        } catch (Exception e) {
+		            throw new RuntimeException("Product Image saving failed", e);
+		        }
+		    }
+			
+			logger.log(Level.OFF, "Insert result ####### ."
 					+ this.itemDAO.insert(item));
-			/* 128:132 */return new ModelAndView("redirect:/item.html");
-			/* 129: */}
-		/* 130:136 */logger.log(Level.OFF, "Edit Item with detail ####### ."
+			return new ModelAndView("redirect:/item.html");
+			}
+		logger.log(Level.OFF, "Edit Item with detail ####### ."
 				+ item);
-		/* 131:137 */if (result.hasErrors())
-		/* 132: */{
+		if (result.hasErrors())
+		{
 			/* 133:138 */logger.log(Level.OFF,
 					"Error occured while editing the reconrd for the item."
 							+ result.getAllErrors());
@@ -218,8 +241,38 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 145:150 */oldItem.setCategoryid(item.getCategoryid());
 		/* 146:151 */oldItem.setCurrstock(item.getCurrstock());
 		oldItem.setBarcode(item.getBarcode());
-		/* 147:152 */logger.log(Level.OFF, "Update result ####### ."
+		/* 147:152 */
+		
+		if (!item.getFile().isEmpty()) {
+			
+			String filename= (item.getName()+new Date().getTime()+item.getFile().getOriginalFilename()).trim();
+		
+			oldItem.setFilename(filename);
+	        try {
+	        	String filePath = req.getServletContext().getRealPath("/upload/"); 
+				System.out.println("Filenameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"+filePath+filename);
+
+	        	
+	        	item.getFile().transferTo(new File(filePath+"/"+filename));
+
+	        } catch (Exception e) {
+	            throw new RuntimeException("Product Image saving failed", e);
+	        }
+	    }
+		
+		oldItem.setAlarmunit(item.getAlarmunit());
+		logger.log(Level.OFF, "Update result ####### ."
 				+ this.itemDAO.update(oldItem));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		System.out.println("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP"+ item.getName().getBytes("UTF-8"));
 		/* 148:153 */return new ModelAndView("redirect:/item.html");
 		/* 149: */}
@@ -229,7 +282,7 @@ import org.springframework.web.servlet.ModelAndView;
 	/* 152: */@PreAuthorize("hasAnyRole('ROLE_USER')")
 	/* 153: */public ModelAndView editItem(
 			@ModelAttribute("itemForm") @Valid Item item, BindingResult result,
-			Map<String, Object> model)
+			Map<String, Object> model,HttpServletRequest req)
 	/* 154: */throws Exception
 	/* 155: */{
 		/* 156:160 */logger.log(Level.OFF, "Edit Item with detail ####### ."
@@ -255,6 +308,26 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 171:174 */oldItem.setCategoryid(item.getCategoryid());
 		/* 172:175 */oldItem.setCurrstock(item.getCurrstock());
 					 oldItem.setBarcode(item.getBarcode());
+					 if (!item.getFile().isEmpty()) {
+							
+							String filename= (item.getName()+new Date().getTime()+item.getFile().getOriginalFilename()).trim();
+						
+							oldItem.setFilename(filename);
+					        try {
+					        	String filePath = req.getServletContext().getRealPath("/upload/"); 
+								System.out.println("Filenameeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"+filePath+filename);
+
+					        	
+					        	item.getFile().transferTo(new File(filePath+"/"+filename));
+
+					        } catch (Exception e) {
+					            throw new RuntimeException("Product Image saving failed", e);
+					        }
+					    }
+					 
+					 
+					 
+					 
 		/* 173:176 */logger.log(Level.OFF, "Update result ####### ."
 				+ this.itemDAO.update(oldItem));
 		/* 174:177 */return new ModelAndView("redirect:/item_unit.html");

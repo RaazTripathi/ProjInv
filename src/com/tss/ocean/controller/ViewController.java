@@ -184,7 +184,12 @@ import com.tss.ocean.pojo.Itemunit;
 
 	/* 139: */
 	/* 140: */@RequestMapping(value = { "/finance_management.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	/* 141: */public String finance_management(Model model,
+	/* 141: */
+	
+	
+	
+
+	public String finance_management(Model model,
 			HttpServletRequest request)
 	/* 142: */throws Exception
 	/* 143: */{

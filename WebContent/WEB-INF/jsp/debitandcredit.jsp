@@ -6,7 +6,8 @@
 <html>
     <head>        
         <jsp:include page="header.jsp" />
-    </head>
+        
+         </head>
 	<body role="document">
         <jsp:include page="headermenu.jsp" />
         <div class="container">
@@ -49,9 +50,10 @@
 	                    </c:if>
 	                    <div class="tab-content">
                             <div class="tab-pane active" id="demo">
-                            <form:form action="addjournal.html" method="POST" modelAttribute="journal">
+                            <form:form action="addDebit.html" method="post" modelAttribute="journal">
                                 <!--  <form:errors path="*" cssClass="errorblock" element="div" /> -->
                                 <form:hidden path="id" />
+                                 <form:hidden path="type" value="DEBIT" />
                                 <form:hidden path="io" value="${type}" />
                                 <!--div class="col-sm-8 visible-xs"-->
                                 
@@ -60,7 +62,7 @@
                                             <spring:message code="label.journal.date" text="Default Text"/>
                                         </label>
                                         <div class="col-sm-8 col-xs-12">                                            
-                                            <form:input type="date" class="form-control" path="date" />
+                                            <form:input id="datepicker" type="text" class="form-control" path="date" />
                                             <form:errors path="date" cssClass="error" />
                                         </div>
                                     </div>
@@ -94,18 +96,51 @@
                                         </div>
                                     </div>
                                     
-                                    <div class="form-group">
+                                    <%-- <div class="form-group">
 	                                    <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">
 	                                      <spring:message code="label.journal.paymenttype" text="Default Text"/>
 	                                    </label>
                                         <div class="col-sm-8 col-xs-12">
-                                            <form:select class="form-control" path="borb">
+                                            <form:select id="acctype" class="form-control" path="borb">
                                                     <option value="0">Box</option>
                                                     <option value="1">Bank</option>
                                             </form:select>
                                             <form:errors path="borb" cssClass="error" />
                                         </div>
-                                    </div>
+                                    </div> --%>
+                                    
+                                    
+                                    
+                                    <div class="form-group">
+	                                    <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">
+<spring:message code="label.journal.paymenttype" text="Default Text"/>	                                    </label>
+	                                    <div class="col-sm-8 col-xs-12">
+	                                        <form:select id="acctype" class="form-control" path="borb">
+	                                            <form:option value="2"><spring:message code="label.invoice.boxtype" text="Default Text"/></form:option>
+	                                            <form:option value="1"><spring:message code="label.invoice.banktype" text="Default Text"/></form:option>
+	                                            <c:if test="${types != null}">
+	                                                <c:forEach items="${types}" var="type">
+	                                                    <form:option value="${type.id}">${type.name}</form:option>
+	                                                </c:forEach>
+	                                            </c:if>
+	                                        </form:select>
+	                                       
+	                                                
+	                                    </div>
+	                                    
+	                                    
+	                                </div>
+	                                
+	                                
+	                                
+	                                 <div id="subdv" class="form-group">
+	                                   
+	                                    
+	                                </div>
+                                    
+                                    
+                                    
+                                    
 
                                     <div class="form-group">
                                     <div class="">
@@ -133,27 +168,37 @@
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="js/bootstrap.min.js"></script>
+       <!--  <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/dataTables.responsive.min.js"></script>
-        <script src="js/ajax-bootstrap3.js"></script>
+        <script src="js/ajax-bootstrap3.js"></script> -->
+         <script src="js/bootstrap.min.js"></script>
+        <!-- Jquery UI Javascript -->
+        <script src="js/jquery-ui.js"></script>
         <script type="text/javascript">
-            $(document).ready(function() {
-                var table = $('#dttable').DataTable();
-                $('.row-delete').click(function(eve) {
-                    var row = this;
-                    eve.preventDefault();
-                    $.ajax({
-                        url: $(row).attr('href')
-                        , success: function(response) {
-                            if (response === true) {
-                                table.row($(row).closest('tr')).remove().draw(false);
-                            }
-                        }
-                    });
-                    return false;
-                });
-            });
+        $(document).ready(function() {
+        $('#subdv').hide();
+        
+        
+        $('#acctype').change(function(){
+        	
+        	
+        	var val=$('#acctype').val();
+        	
+        	$.ajax({url:"getaccountlist.html?val="+val,
+        		success:function(result){
+        	    
+        			$("#subdv").html(result);
+        			$('#subdv').show();
+        	  }});
+       
+        
+           
+            
+            
+        });
+        $('#datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+        });
         </script>
     </body>
 </html>

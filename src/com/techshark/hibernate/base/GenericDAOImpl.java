@@ -81,13 +81,21 @@ import org.slf4j.LoggerFactory;
 			/* 56: 74 */session.flush();
 			/* 57: 75 */return session.createQuery(
 					"from " + getPersistentClass().getName()).list();
-			/* 58: */}
+			/* 58: */
+			
+		
+		}
 		/* 59: */catch (HibernateException e)
 		/* 60: */{
 			/* 61: 77 */LOG.error(
 					MODULE + "Exception in getList() Method:" + e, e);
 			/* 62: 78 */throw e;
 			/* 63: */}
+		
+		finally{
+			session.close();
+		}
+		
 		/* 64: */}
 
 	/* 65: */
@@ -118,7 +126,8 @@ import org.slf4j.LoggerFactory;
 					MODULE + "Exception in getRecordBySQLQuery() Method:" + e,
 					e);
 			/* 88: */}
-		/* 89: */finally {
+		/* 89: */finally{
+			session.close();
 		}
 		/* 90:107 */return rows;
 		/* 91: */}
@@ -210,7 +219,8 @@ import org.slf4j.LoggerFactory;
 			LOG.error(MODULE + "Exception in getListByKeyandValue Method:" + e,
 					e);
 			/* 165: */}
-		/* 166: */finally {
+		/* 166: */finally{
+			session.close();
 		}
 		/* 167:180 */return retList;
 		/* 168: */}
@@ -242,7 +252,8 @@ import org.slf4j.LoggerFactory;
 							+ "Exception in getListByKeyandValue with List<Values> Method:"
 							+ e, e);
 			/* 188: */}
-		/* 189: */finally {
+		/* 189: */finally{
+			session.close();
 		}
 		/* 190:203 */return retList;
 		/* 191: */}
@@ -328,7 +339,8 @@ import org.slf4j.LoggerFactory;
 			LOG.error(MODULE + "Exception in getPrimaryKeyCollection Method:"
 					+ e, e);
 			/* 259: */}
-		/* 260: */finally {
+		/* 260: */finally{
+			session.close();
 		}
 		/* 261:274 */return lst;
 		/* 262: */}
@@ -504,7 +516,8 @@ import org.slf4j.LoggerFactory;
 			/* 414:423 */e;
 			LOG.error(MODULE + "Exception in count Method:" + e, e);
 			/* 415: */}
-		/* 416: */finally {
+		/* 416: */finally{
+			session.close();
 		}
 		/* 417:424 */return count.intValue();
 		/* 418: */}
@@ -534,7 +547,8 @@ import org.slf4j.LoggerFactory;
 			/* 439:448 */e;
 			LOG.error(MODULE + "Exception in count Method:" + e, e);
 			/* 440: */}
-		/* 441: */finally {
+		/* 441: */finally{
+			session.close();
 		}
 		/* 442:449 */return count.intValue();
 		/* 443: */}
@@ -564,7 +578,8 @@ import org.slf4j.LoggerFactory;
 			LOG.error(MODULE + "Exception in getRecordBySQLQuery Method:" + e,
 					e);
 			/* 465: */}
-		/* 466: */finally {
+		/* 466: */finally{
+			session.close();
 		}
 		/* 467:484 */return lst;
 		/* 468: */}
@@ -591,7 +606,8 @@ import org.slf4j.LoggerFactory;
 			lst = null;
 			LOG.error(MODULE + "Exception in getListByHQLQuery Method:" + e, e);
 			/* 488: */}
-		/* 489: */finally {
+		/* 489: */finally{
+			session.close();
 		}
 		/* 490:506 */return lst;
 		/* 491: */}
@@ -630,7 +646,8 @@ import org.slf4j.LoggerFactory;
 			LOG.error(MODULE + "Exception in getListByFromClause Method:" + e,
 					e);
 			/* 517: */}
-		/* 518: */finally {
+		/* 518: */finally{
+			session.close();
 		}
 		/* 519:534 */return lst;
 		/* 520: */}
@@ -659,7 +676,8 @@ import org.slf4j.LoggerFactory;
 			LOG.error(MODULE + "Exception in getListByFromClause Method:" + e,
 					e);
 			/* 540: */}
-		/* 541: */finally {
+		/* 541: */finally{
+			session.close();
 		}
 		/* 542:558 */return lst;
 		/* 543: */}
@@ -761,7 +779,8 @@ import org.slf4j.LoggerFactory;
 			lst = null;
 			LOG.error(MODULE + "Exception in getListByHQLQuery Method:" + e, e);
 			/* 623: */}
-		/* 624: */finally {
+		/* 624: */finally{
+			session.close();
 		}
 		/* 625:645 */return lst;
 		/* 626: */}
@@ -788,7 +807,8 @@ import org.slf4j.LoggerFactory;
 			retalias = null;
 			LOG.error(MODULE + "Exception in getListByHQLQuery Method:" + e, e);
 			/* 646: */}
-		/* 647: */finally {
+		/* 647: */finally{
+			session.close();
 		}
 		/* 648:661 */return retalias;
 		/* 649: */}

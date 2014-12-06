@@ -97,7 +97,7 @@
 		<property name="defaultTargetUrl" value="/" />
 	</bean>
 
-	<bean id="userAuthenticationProcessingFilter"
+<!-- 	<bean id="userAuthenticationProcessingFilter"
 		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
 		<property name="authenticationManager" ref="authenticationManager" />
 		<property name="authenticationFailureHandler" ref="loginMappingFailureHandler" />
@@ -106,7 +106,23 @@
 		<property name="usernameParameter" value="username" />
 		<property name="passwordParameter" value="password" />
 		<property name="postOnly" value="true" />
+	</bean> -->
+	
+	
+	
+	
+		<bean id="userAuthenticationProcessingFilter"
+		class="com.tss.ocean.util.ExUsernamePasswordAuthenticationFilter">
+		<property name="authenticationManager" ref="authenticationManager" />
+		<property name="authenticationFailureHandler" ref="loginMappingFailureHandler" />
+		<property name="authenticationSuccessHandler" ref="loginSuccessHandler" />
+		<property name="filterProcessesUrl" value="/login.htm" />
+		<property name="usernameParameter" value="username" />
+		<property name="passwordParameter" value="password" />
+		<property name="postOnly" value="true" />
 	</bean>
+	
+	
 
 	<bean id="loginMappingFailureHandler"
 		class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler">

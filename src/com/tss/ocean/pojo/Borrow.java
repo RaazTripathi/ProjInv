@@ -8,6 +8,16 @@ public class Borrow implements Serializable
 	Employees employee;
 	float amount;
 	String purpose;
+	
+	int finyear;
+	
+	
+	public int getFinyear() {
+		return finyear;
+	}
+	public void setFinyear(int finyear) {
+		this.finyear = finyear;
+	}
 	public int getId() {
 		return id;
 	}

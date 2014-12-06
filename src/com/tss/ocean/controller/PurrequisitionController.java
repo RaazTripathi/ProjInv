@@ -301,7 +301,7 @@ import org.springframework.web.servlet.ModelAndView;
 	 * @PreAuthorize(
 	 * "hasAnyRole('ROLE_USER') AND hasPermission('purchaserequisition','update')"
 	 * )
-	 *//* 195: */public ModelAndView edit_purrequisition_post(
+	 *//* 195: */public String edit_purrequisition_post(
 			@ModelAttribute("purrequisition") @Valid Purrequisition purrequisition,
 			BindingResult result, ModelMap model, Locale locale)
 	/* 196: */throws Exception
@@ -310,18 +310,21 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 199:213 */if (!result.hasErrors())
 		/* 200: */{
 			/* 201:214 */purrequisition.setUpdatedat(new Date());
+			purrequisition.setNextapprovedby(1);
 			/* 202:215 */int updateResult = this.purrequisitionDAO
+					
+					
+					
 					.update(purrequisition);
 			/* 203:216 */if (updateResult > 0)
 			/* 204: */{
+				
+				
+				System.out.println("purchase_requisition updated Successfully with "+purrequisition.getId());
 				/* 205:217 */LOG
 						.debug("purchase_requisition updated Successfully with id={0}",
 								Integer.valueOf(updateResult));
-				/* 206:218 */return new ModelAndView(
-						"redirect:edit-purchase_requisition.html").addObject(
-						"success", Utilities.getSpringMessage(
-								this.messageSource,
-								"purrequisition.update.success", locale));
+				/* 206:218 */return "redirect:purchase_requisition.html";
 				/* 207: */}
 			/* 208:222 */LOG.debug(
 					"Error occurred updating purchase_requisition:{0}",
@@ -329,18 +332,17 @@ import org.springframework.web.servlet.ModelAndView;
 			/* 209:223 */model.put("supplierList", getSupplierList());
 			/* 210:224 */model.put("itemList", this.itemDAO.getList());
 			/* 211:225 */model.put("statusList", getStatusList(locale));
-			/* 212:226 */return new ModelAndView("purchase_requisition", model)
-					.addObject("error", Utilities.getSpringMessage(
-							this.messageSource, "purrequisition.update.error",
-							locale));
+			/* 212:226 */return "redirect:purchase_requisition.html";
+			/* 207: */
 			/* 213: */}
 		/* 214:231 */LOG.debug("Purchase_requisition values are not valid:",
 				purrequisition.toString());
 		/* 215:232 */model.put("supplierList", getSupplierList());
 		/* 216:233 */model.put("itemList", this.itemDAO.getList());
 		/* 217:234 */model.put("statusList", getStatusList(locale));
-		/* 218:235 */return new ModelAndView("purchase_requisition", model);
-		/* 219: */}
+		/* 218:235 */return 
+				"redirect:purchase_requisition.html";
+		/* 207: */}
 
 	/* 220: */
 	/* 221: */@RequestMapping(value = { "/purchase_requisition.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })

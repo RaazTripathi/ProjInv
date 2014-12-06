@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.tss.ocean.dao.FinAccountDAO;
@@ -97,5 +98,26 @@ public class CashierController
 		
 		return modelAndView;		
 	}
+	
+	@RequestMapping(value = { "/getaccountlist.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+
+public ModelAndView getaccountlist( @RequestParam("val") int val) throws Exception {
+	
+		
+		System.out.println("HEEEEEEEEEEEEEEEEEEEEE");
+		
+		List<FinAccount> accountlist =finaccDao.getListByKeyandValue("type", val);
+
+
+
+		ModelAndView modelAndView = new ModelAndView("ajaxAccountList");
+		modelAndView.getModelMap().put("accList", accountlist);
+	
+		return modelAndView;
+	}
+	
+	
+	
+	
 
 }

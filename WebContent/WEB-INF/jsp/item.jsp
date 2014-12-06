@@ -116,6 +116,10 @@
                                                 </th>
                                                 
                                                 <th data-hide="phone">
+                                                    Thumbnail
+                                                </th>
+                                                
+                                                <th data-hide="phone">
                                                 <spring:message code="itemCategory.Action" text="Label value is missing !!!"/>
                                             </th>
                                         </tr>
@@ -136,6 +140,12 @@
                                             
                                                
                                                </div>  </button>   </c:if></td>
+                                               
+                                               <td>
+                                               <img width="50" height="50" alt="thumbnail" src="upload/${listVar.filename}">
+                                               </td>
+                                               
+                                               
                                                
                                                
                                                 <td data-value="78025368997" style="text-align:center;">

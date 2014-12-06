@@ -26,10 +26,10 @@ public class InvoiceDAO extends GenericDAOImpl<Invoice, Integer> implements
 	static final Logger log = LoggerFactory.getLogger(GenericDAOImpl.class);
 
 	@Override
-	public List<Invoice> getCollectionByType(Boolean isCashMode) {
+	public List<Invoice> getCollectionByType(int  a) {
 		Session session = getSession();
 		List<Invoice> invoices = null;
-		int modeCode = isCashMode?2:1;
+		int modeCode = a;
 		try {
 			invoices = session
 					.createQuery("from Invoice i where i.boxMode=:modeType")

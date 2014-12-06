@@ -4,30 +4,42 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sun.xml.internal.ws.resources.HttpserverMessages;
 import com.tss.ocean.dao.AssetDAO;
 import com.tss.ocean.dao.BorrowDAO;
+import com.tss.ocean.dao.ICashTransferReqDAO;
+import com.tss.ocean.dto.Dateselecter;
+import com.tss.ocean.idao.IAccValueDao;
 import com.tss.ocean.idao.IAccountsDAO;
 import com.tss.ocean.idao.IEmployeeCategoryDAO;
 import com.tss.ocean.idao.IEmployeesDAO;
+import com.tss.ocean.idao.IFinAccountDAO;
 import com.tss.ocean.idao.IInvoiceDAO;
 import com.tss.ocean.idao.IItemDAO;
 import com.tss.ocean.idao.IPurchaseApproverDAO;
 import com.tss.ocean.idao.IPurrequisitionDAO;
 import com.tss.ocean.idao.IPurrequisitiondtDAO;
+import com.tss.ocean.pojo.AccountValue;
 import com.tss.ocean.pojo.Accounts;
 import com.tss.ocean.pojo.Asset;
 import com.tss.ocean.pojo.Borrow;
+import com.tss.ocean.pojo.CashTransferReq;
 import com.tss.ocean.pojo.Employees;
+import com.tss.ocean.pojo.FinAccount;
+import com.tss.ocean.pojo.FinRecptInvoice;
 import com.tss.ocean.pojo.Invoice;
 import com.tss.ocean.pojo.Purrequisition;
 
@@ -54,6 +66,11 @@ public class financeMenuControllers {
 	/*  50:    */   private IPurrequisitionDAO purrequisitionDAO;
 
 
+	 @Autowired
+		   private IAccValueDao accvalueDao;
+
+	
+	
 	/*  51:    */   @Autowired
 	/*  52:    */   private IPurrequisitiondtDAO purrequisitiondtDAO;
 	/*  53:    */   @Autowired
@@ -68,6 +85,18 @@ public class financeMenuControllers {
 	/*  62:    */   IEmployeeCategoryDAO employeeCategoryDAO;
 	@Autowired
 	/* 58: */private AssetDAO assetDAO;
+	
+	@Autowired
+	ICashTransferReqDAO cashtransreq;
+	
+	
+	
+	
+	@Autowired
+	IFinAccountDAO finaccDao;
+	
+	
+	
 	/*
 	 * Maps to the invoice filling form
 	 */
@@ -87,9 +116,22 @@ public class financeMenuControllers {
 	 * Provides the report of the cash/box collections within finance section
 	 */
 	@RequestMapping(value = { "/incomming.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView listCashCollectionsOnFinanceMenu(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+	public ModelAndView listCashCollectionsOnFinanceMenu(@RequestParam(value="success", required=false) String success,HttpSession session, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
 		logger.info("Starting the save of data.");
-		List<Invoice> invoices = this.invoiceDAO.getList();
+	
+		
+/*		List<Invoice> invoices = this.invoiceDAO.getList();
+*/	
+		
+int a= (Integer) session.getAttribute("finyear");
+		
+		Dateselecter ds=new Dateselecter();
+		ds.setfinyear(a);
+		
+		List<Invoice> invoices = this.invoiceDAO.getListByHQLQuery("from Invoice i where   i.date > '"+ds.getFinyearStart()+"'  and i.date <   '"+ds.getFinyearEnd()+"' " );
+
+		
+		
 		logger.info("returned with "+invoices.size()+" cash invoices");
 		float total = 0;
 		for(Invoice i:invoices)
@@ -261,6 +303,108 @@ for(Purrequisition i:purreq)
 	
 	
 	
+	
+	
+	
+	@RequestMapping(value = { "/transfertobank.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView transfertobank(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+		
+		AccountValue boxValue = this.accvalueDao.getRecordByKeyandValue("accid", 1);
+		AccountValue bankValue = this.accvalueDao.getRecordByKeyandValue("accid", 2);
+
+		ModelAndView mav = new ModelAndView("transferboxtobank");
+		
+		mav.getModelMap().put("box", boxValue);
+		mav.getModelMap().put("bank", bankValue);
+		
+		System.out.println("??????????????????????????"+boxValue.getValue());
+		mav.getModelMap().put("title_text", "Transfer from box to bank ");
+		return mav;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = { "/subacctransfer.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView transferfromsubaccount(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
+		
+		AccountValue boxValue = this.accvalueDao.getRecordByKeyandValue("accid", 1);
+		AccountValue bankValue = this.accvalueDao.getRecordByKeyandValue("accid", 2);
+
+		ModelAndView mav = new ModelAndView("transfersubacc");
+		List<FinAccount> otherMain= finaccDao.getMainAccounts();
+
+		mav.getModelMap().put("box", boxValue);
+		mav.getModelMap().put("bank", bankValue);
+		mav.getModelMap().put("types", otherMain);
+
+		System.out.println("??????????????????????????"+boxValue.getValue());
+		mav.getModelMap().put("title_text", "Transfer from box to bank ");
+		return mav;
+	}
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = { "/transfertobank.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
+	public String transfer( @RequestParam ("val")float val) throws Exception {
+		
+
+		AccountValue boxValue = this.accvalueDao.getRecordByKeyandValue("accid", 1);
+		AccountValue bankValue = this.accvalueDao.getRecordByKeyandValue("accid", 2);
+
+		
+		CashTransferReq ctr=new CashTransferReq();
+		
+		ctr.setAmount(val);
+		
+		cashtransreq.insert(ctr);
+		
+		
+	/*boxValue.setValue(boxValue.getValue()-val);
+	bankValue.setValue(bankValue.getValue()+val);*/
+	/*this.accvalueDao.update(boxValue);
+	this.accvalueDao.update(bankValue);*/	
+		return "redirect:transfertobank.html";
+		
+	}
+	@RequestMapping(value = { "/transferfundtosubacc.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
+	public String transfersub( @ModelAttribute("") CashTransferReq ctr) throws Exception {
+		
+		
+		
+		
+		
+		FinAccount ac1=	finaccDao.getRecordByKeyandValue("id", ctr.getFromacc());
+		FinAccount ac2=	finaccDao.getRecordByKeyandValue("id", ctr.getToacc());
+
+		
+		ctr.setFromaccname(ac1.getName());
+		ctr.setToaccname(ac2.getName());
+
+		cashtransreq.insert(ctr);
+		
+	
+		return "redirect:transfertobank.html";
+		
+	}
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value={"/outgoing.html"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
 	/* 222:    */   @PreAuthorize("hasAnyRole('ROLE_USER') ")
 	/* 223:    */   public ModelAndView approvedOrders(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale, Principal principal)
@@ -300,31 +444,40 @@ for(Purrequisition i:purreq)
 	/* 252:274 */     return mav;
 	/* 253:    */   }
 
+	@RequestMapping(value={"/addrecept.html"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+	   @PreAuthorize("hasAnyRole('ROLE_USER') ")
+	   public ModelAndView receptaction(@ModelAttribute ("recept") FinRecptInvoice finvoice)
+	     throws Exception
+	  {
+		
+		
+		return null;
 	
+	  }
 	
-	
-	
-	/*
-	 * Provides the report of the bank collections within finance section
-	 */
-	/*@RequestMapping(value = { "/bank_vouchers.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	public ModelAndView listBankCollectionsOnFinanceMenu(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale) throws Exception {
-		logger.info("Starting the save of data.");
-		List<Invoice> invoices = this.invoiceDAO.getCollectionByType(true);
-		logger.info("returned with "+invoices.size()+" cash invoices");
-		ModelAndView mav = new ModelAndView("invoice_list");
-		mav.getModelMap().put("useFinanceMenus", "true");
-		mav.getModelMap().put("invoices", invoices);
-		mav.getModelMap().put("title_text", "Bank based invoice");
+	@RequestMapping(value={"/fin.html"}, method={org.springframework.web.bind.annotation.RequestMethod.GET})
+	   @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_FIN') ")
+	   public ModelAndView fin( HttpSession session)
+	     throws Exception
+	  {
+		session.setAttribute("finyear", 1);
+		ModelAndView mav = new ModelAndView("fin");
 		return mav;
-	}*/
-	/*
-	 * Makes the invoice editable
-	 */
 	
+	  }
 	
-	/*
-	 * Updates the invoice data and informs the user of the process
-	 */
+	@RequestMapping(value={"/finmgmt.html"}, method={org.springframework.web.bind.annotation.RequestMethod.POST})
+	   @PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_FIN') ")
+	   public ModelAndView setfinYr(@RequestParam("finyear")int finyear, HttpSession session )
+	     throws Exception
+	  {
+		
+		
+		
+		session.setAttribute("finyear", finyear);
+		ModelAndView mav = new ModelAndView("fin");
+		return mav;
 	
-}
+	  }
+	
+} 

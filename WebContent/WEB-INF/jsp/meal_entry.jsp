@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.meal.date" text="Default Text"/></label>
                                         <div class="col-sm-8 col-xs-12">                                            
-                                            <form:input type="date" id="mealFormDate" class="form-control" path="date" />
+                                            <form:input type="text" id="mealFormDate" class="form-control datepicker" path="date" />
                                         </div>
                                     </div>
 	                                <div class="form-group">
@@ -64,8 +64,8 @@
 	                                    </label>
 	                                    <div class="col-sm-8 col-xs-12">
 	                                        <form:select id="acctype" class="form-control" path="boxMode">
-	                                            <form:option value="2"><spring:message code="label.invoice.boxtype" text="Default Text"/></form:option>
-	                                            <form:option value="1"><spring:message code="label.invoice.banktype" text="Default Text"/></form:option>
+	                                            <form:option value="1"><spring:message code="label.invoice.boxtype" text="Default Text"/></form:option>
+	                                            <form:option value="0"><spring:message code="label.invoice.banktype" text="Default Text"/></form:option>
 	                                            <c:if test="${types != null}">
 	                                                <c:forEach items="${types}" var="type">
 	                                                    <form:option value="${type.id}">${type.name}</form:option>
@@ -198,6 +198,10 @@
         <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
+            	
+            	
+            	   $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+            
                 $("#fromDate").datepicker({
                     dateFormat: 'yy/mm/dd'
                 });
@@ -211,9 +215,20 @@
                 
                 
                 $('#acctype').change(function(){
+                	
+                	
                 	var val=$('#acctype').val();
                 	
-                	if(val=='true')
+                	$.ajax({url:"getaccountlist.html?val="+val,
+                		success:function(result){
+                	    
+                			$("#subdv").html(result);
+                			$('#subdv').show();
+                	  }});
+                	
+                	
+                	
+                	/* if(val=='true')
                 		{
                 		$('#subdv').show();
                 		 $('#accbox').show();
@@ -226,12 +241,12 @@
                 		 $('#accbox').hide();
                 		 $('#accbank').show();
                 		
-                	}
+                	 }*/
                 	
                 });
                 
                 
-                
+             
                 
                 $("#mealFormDate").val(new Date().getFullYear()
                         + "-"

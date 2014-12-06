@@ -6,12 +6,15 @@
 import java.math.BigDecimal;
 /*   5:    */
 import java.util.Objects;
+
 /*   6:    */
 import javax.validation.constraints.DecimalMin;
 /*   7:    */
 import javax.validation.constraints.Min;
 /*   8:    */
 import javax.validation.constraints.NotNull;
+
+import org.springframework.web.multipart.MultipartFile;
 
 /*   9:    */
 /*  10:    */public class Item
@@ -31,6 +34,35 @@ import javax.validation.constraints.NotNull;
 	/* 23: */private int currstock;
 	/* 24: */private Itemunit unitid;
 	/* 25: */private String barcode;
+
+	private MultipartFile file;
+	
+	String filename;
+	
+	int alarmunit;
+	
+	
+	
+	
+	
+	
+	
+	
+	public int getAlarmunit() {
+		return alarmunit;
+	}
+
+	public void setAlarmunit(int alarmunit) {
+		this.alarmunit = alarmunit;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 
 	/* 26: */public int hashCode()
 	/* 27: */{
@@ -236,6 +268,14 @@ import javax.validation.constraints.NotNull;
 				+ this.currstock + ", unitid=" + this.unitid + '}';
 	}
 	/* 188: */
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 }
 
 /*

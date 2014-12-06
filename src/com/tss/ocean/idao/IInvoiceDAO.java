@@ -7,6 +7,6 @@ import com.tss.ocean.pojo.Invoice;
 
 public abstract interface IInvoiceDAO extends GenericDAO<Invoice, Integer> {
 
-	public List<Invoice> getCollectionByType(Boolean isCashMode);
+	public List<Invoice> getCollectionByType(int  a);
 
 }

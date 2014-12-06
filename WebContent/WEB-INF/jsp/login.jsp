@@ -238,17 +238,40 @@
         <!-- login.jsp -->
         <div id="login">
             <h1 id="login_title">
-            LOGIN</h1>
+            LOGIN </h1>
             <form action="login.htm" id="login_form" method="post">
                 <div class="field_container">
                     <input type="text" placeholder="User Name"  name="username" class="login-inp" />
                 </div>
                 <div class="field_container">
                     <input type="Password" placeholder="Password" name="password" class="login-inp" />
-                    <button id="sign_in_button">
+                    </div>
+                <br>
+                
+                 <div class="field_container">
+<select class="login-inp" name="finyear">
+                                                
+                                                    <option value="1">2014-2015</option>
+                                                  <option value="2">2015-2016</option>
+                                                    <option value="3">2016-2017</option>
+                                                    <option value="4">2017-2018</option>
+                                                    <option value="5">2019-2020</option>
+                                                
+                                            </select>   
+                                            
+                                            
+                                              <button id="sign_in_button">
                         <span class="button_text"><input type="submit" class="btn" value="Login"> </span>
-                    </button>
-                </div>
+                    </button>            
+                                                                </div>
+                 
+                                            
+                                            
+                                                                   
+                                        </div>
+                                  
+                
+                
             </form>            
         </div>
     </body>

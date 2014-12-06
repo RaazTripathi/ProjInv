@@ -35,6 +35,11 @@ import com.tss.ocean.util.Utilities;
 
 
 
+
+
+
+
+
 /*  17:    */
 import java.security.Principal;
 /*  18:    */
@@ -53,10 +58,21 @@ import java.util.Set;
 
 
 
+
+
+
+
+
 /*  24:    */
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 /*  25:    */
 import javax.validation.Valid;
+
+
+
+
+
 
 
 
@@ -172,9 +188,12 @@ import org.springframework.web.servlet.ModelAndView;
 	/* 101: */public ModelAndView add_purrequisition_post(
 			@ModelAttribute("purrequisition") @Valid Purrequisition purrequisition,
 			BindingResult result, ModelMap model, Locale locale,
-			Principal principal)
+			Principal principal ,HttpSession session)
 	/* 102: */throws Exception
 	/* 103: */{
+		
+		int a= (Integer) session.getAttribute("finyear");
+
 		/* 104:117 */LOG.debug("add-purchase_request-post called.");
 		/* 105:118 */if (!result.hasErrors())
 		/* 106: */{
@@ -217,6 +236,8 @@ import org.springframework.web.servlet.ModelAndView;
 			/* 137:147 */purrequisition.setPrno(Utilities.getRandomString(10));
 			/* 138:148 */purrequisition.setCreatedat(new Date());
 			/* 139: */
+			
+			purrequisition.setFinyear(a);
 			/* 140:150 */int insertResult = ((Integer) this.purrequisitionDAO
 					.insert(purrequisition)).intValue();
 			/* 141:151 */if (insertResult > 0)
@@ -350,9 +371,12 @@ import org.springframework.web.servlet.ModelAndView;
 	/* 223: */public ModelAndView purrequisition(
 			@RequestParam(value = "success", required = false) String success,
 			@RequestParam(value = "error", required = false) String error,
-			Locale locale, Principal principal)
+			Locale locale, Principal principal,HttpSession session)
 	/* 224: */throws Exception
 	/* 225: */{
+		
+		int a= (Integer) session.getAttribute("finyear");
+
 		/* 226:244 */LOG.debug("purchase_request called.");
 		/* 227:245 */ModelAndView mav = new ModelAndView(
 				"purchase_request-list");
@@ -373,8 +397,7 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 240:262 */mav.getModelMap().put(
 				"purrequisitionList",
 				this.purrequisitionDAO
-						.getListByCondition("t where t.nextapprovedby="
-								+ userid));
+						.getListByCondition("t where  finyear="+a));
 		/* 241: */
 		/* 242: */
 		/* 243: */
@@ -660,7 +683,7 @@ import org.springframework.web.servlet.ModelAndView;
 	/* 223: */public ModelAndView approve(
 			@RequestParam(value = "success", required = false) String success,
 			@RequestParam(value = "error", required = false) String error,
-			Locale locale, Principal principal)
+			Locale locale, Principal principal,HttpSession session)
 	/* 224: */throws Exception
 	/* 225: */{
 		/* 226:244 */LOG.debug("purchase_request called.");
@@ -683,13 +706,13 @@ import org.springframework.web.servlet.ModelAndView;
 		
 		
 		
-		
+		int a= (Integer) session.getAttribute("finyear"); 
 		
 		
 		
 		
 	List<Purrequisition> plist=	this.purrequisitionDAO
-		.getList();
+		.getListByKeyandValue("finyear", a);
 	
 	for(Purrequisition p:plist)
 	{
@@ -699,6 +722,7 @@ import org.springframework.web.servlet.ModelAndView;
 			Users apr1= userDao.getRecordByKeyandValue("id", p.getApprover1());
 			Users apr2= userDao.getRecordByKeyandValue("id", p.getApprover2());
 			Users apr3= userDao.getRecordByKeyandValue("id", p.getApprover3());
+			Users apr4= userDao.getRecordByKeyandValue("id", p.getApprover4());
 
 String s="";
 			
@@ -711,6 +735,9 @@ String s="";
 			if(apr3!=null){
 				s=s+", "+apr3.getName();
 				}
+			if(apr4!=null){
+				s=s+", "+apr4.getName();
+				}
 			
 			p.setMsg(s);			
 			
@@ -720,6 +747,7 @@ String s="";
 			Users apr1= userDao.getRecordByKeyandValue("id", p.getApprover1());
 			Users apr2= userDao.getRecordByKeyandValue("id", p.getApprover2());
 			Users apr3= userDao.getRecordByKeyandValue("id", p.getApprover3());
+			Users apr4= userDao.getRecordByKeyandValue("id", p.getApprover4());
 
 			String s="";
 			
@@ -731,6 +759,10 @@ String s="";
 				}
 			if(apr3!=null){
 				s=s+", "+apr3.getName();
+				}
+			
+			if(apr4!=null){
+				s=s+", "+apr4.getName();
 				}
 			
 			p.setMsg(s);
@@ -784,11 +816,12 @@ String s="";
 		/* 253: */}
 
 	@RequestMapping(value = { "/approvedForFinance.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	/* 222: */@PreAuthorize("hasAnyRole('ROLE_FIN','ROLE_ADMIN') ")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_FININC','ROLE_CLUBINC','ROLE_ACCMANAGER','ROLE_FIN')")
+
 	/* 223: */public ModelAndView approvedOrders(
 			@RequestParam(value = "success", required = false) String success,
 			@RequestParam(value = "error", required = false) String error,
-			Locale locale, Principal principal)
+			Locale locale, Principal principal,HttpSession session)
 	/* 224: */throws Exception
 	/* 225: */{
 		/* 226:244 */LOG.debug("purchase_request called.");
@@ -808,10 +841,12 @@ String s="";
 		/* 237:256 */for (Accounts account : accountsList) {
 			/* 238:257 */accountMap.put(account.getId(), account.getName());
 			/* 239: */}
+		
+		int a= (Integer) session.getAttribute("finyear"); 
 		/* 240:262 */mav.getModelMap().put(
 				"purrequisitionList",
 				this.purrequisitionDAO
-						.getListByCondition("t where t.approvalStatus=1"));
+						.getListByCondition("t where t.approvalStatus=1 and finyear="+a));
 		/* 241: */
 		/* 242: */
 		/* 243: */

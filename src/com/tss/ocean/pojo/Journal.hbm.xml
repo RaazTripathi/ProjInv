@@ -16,7 +16,7 @@
             <column name="price"  />
         </property>
       
-      <property name="date" type="string">
+      <property name="date" type="date">
             <column name="date"  />
         </property>
         
@@ -28,9 +28,21 @@
         </property>
         
         
+        <property name="finyear" type="int">
+            <column name="finyear"  />
+        </property>
+        
+        
          <property name="io" type="int">
             <column name="io"  />
         </property>
         
+          <property name="type" type="string">
+            <column name="type"  />
+        </property>
+        
+        <property name="subacctype" type="int">
+            <column name="subacctype"  />
+        </property>
     </class>
 </hibernate-mapping>

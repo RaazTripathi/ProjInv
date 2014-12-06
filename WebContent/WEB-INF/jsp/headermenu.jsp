@@ -21,7 +21,7 @@
                     <fmt:formatDate value="${today}" pattern="MMMM d,yyyy" /><br>
                     <span class="normal-text">Welcome admin<br></span>
                     <a href="?lang=en">English</a> | <a href="?lang=ar">Arabic</a>
-              <div style="margin-top: -20px;"> <center> <span  style=" font-size: 20px; text-align:justify; color: green; margin-right: 444px;  ">   SECURITY FORCES OFFICERS CLUB</span></center></div>
+              <div style="margin-top: -20px;"> <center> <span  style=" font-size: 20px; text-align:justify; color: green; margin-right: 444px;  ">   <!-- SECURITY FORCES OFFICERS CLUB --> Demo </span></center></div>
                
                
                 </div>
@@ -45,7 +45,10 @@
             <ul class="nav navbar-nav">
                 <li><a href="item.html"><spring:message code="menu.invmgmt"/></a></li>
                 <li><a href="employee.html"><spring:message code="menu.hr"/></a></li>
-                <li><a href="finance_management.html"><spring:message code="menu.finance"/></a></li>
+                 <li><a href="finance_management.html"><spring:message code="menu.finance"/></a></li>
+<%--                                  <li><a href="fin.html"><spring:message code="menu.finance"/></a></li>
+ --%>                
+                
  <li><a href="invoice_entry.html"><spring:message code="menu.cashier"/></a></li>                               <li><a href="purchase_request.html"><spring:message code="menu.purchase"/></a></li>
                                <li><a href="approve.html"><spring:message code="menu.approve"/></a></li>
                

@@ -18,7 +18,7 @@ public class ItemDAO extends GenericDAOImpl<Item, Integer> implements IItemDAO {
 		Session session = getSession();
 
 		session.beginTransaction();
-		return session.createQuery("from Item itm where itm.currstock < 15 ")
+		return session.createQuery("from Item itm where itm.currstock <= itm.alarmunit ")
 				.list();
 
 	}

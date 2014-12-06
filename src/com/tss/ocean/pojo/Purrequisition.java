@@ -50,12 +50,20 @@ import org.springframework.format.annotation.DateTimeFormat;
 	int approver1=0;
 	int approver2=0;
 	int approver3=0;
-	
+	int approver4=0;
 	String msg;
 	
+	int finyear;
 	
 	
-	
+	public int getFinyear() {
+		return finyear;
+	}
+
+	public void setFinyear(int finyear) {
+		this.finyear = finyear;
+	}
+
 	public String getMsg() {
 		return msg;
 	}
@@ -329,6 +337,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 	public void setApprover3(int approver3) {
 		this.approver3 = approver3;
+	}
+
+	public int getApprover4() {
+		return approver4;
+	}
+
+	public void setApprover4(int approver4) {
+		this.approver4 = approver4;
 	}
 }
 

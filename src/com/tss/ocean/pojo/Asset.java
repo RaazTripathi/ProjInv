@@ -8,7 +8,16 @@ public class Asset implements Serializable
 	String name;
 	float price;
 	
+	int finyear;
 	
+	
+	
+	public int getFinyear() {
+		return finyear;
+	}
+	public void setFinyear(int finyear) {
+		this.finyear = finyear;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;
