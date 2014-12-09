@@ -94,6 +94,14 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 	/* 83: */private Integer bankId;
 	/* 84: */private String accountNumber;
 	/* 85: */private String codeNumber;
+String nationality;
+	public String getNationality() {
+	return nationality;
+}
+
+public void setNationality(String nationality) {
+	this.nationality = nationality;
+}
 
 	/* 86: */
 	/* 87: */public Employees() {

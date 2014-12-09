@@ -1,7 +1,8 @@
 /*   1:    */package com.tss.ocean.controller;
 
 /*   2:    */
-/*   3:    */import com.tss.ocean.idao.IAccountsDAO;
+/*   3:    */import com.sun.xml.internal.ws.resources.HttpserverMessages;
+import com.tss.ocean.idao.IAccountsDAO;
 /*   4:    */
 import com.tss.ocean.idao.IEmployeeCategoryDAO;
 /*   5:    */
@@ -28,6 +29,10 @@ import com.tss.ocean.pojo.Purrequisition;
 import com.tss.ocean.pojo.Purrequisitiondt;
 /*  16:    */
 import com.tss.ocean.util.Utilities;
+
+
+
+
 /*  17:    */
 import java.security.Principal;
 /*  18:    */
@@ -42,10 +47,19 @@ import java.util.Locale;
 import java.util.Map;
 /*  23:    */
 import java.util.Set;
+
+
+
+
 /*  24:    */
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 /*  25:    */
 import javax.validation.Valid;
+
+
+
+
 /*  26:    */
 import org.slf4j.Logger;
 /*  27:    */
@@ -131,7 +145,7 @@ import org.springframework.web.servlet.ModelAndView;
 	public ModelAndView add_purrequisition_get(
 			@RequestParam(value = "success", required = false) String success,
 			@RequestParam(value = "error", required = false) String error,
-			HttpServletRequest request, Locale locale)
+			HttpServletRequest request, Locale locale,HttpSession session)
 	/* 81: */throws Exception
 	/* 82: */{
 		/* 83: 95 */LOG.debug("add-purchase_requisition called.");
@@ -160,7 +174,7 @@ import org.springframework.web.servlet.ModelAndView;
 	 *//* 101: */public ModelAndView add_purrequisition_post(
 			@ModelAttribute("purrequisition") @Valid Purrequisition purrequisition,
 			BindingResult result, ModelMap model, Locale locale,
-			Principal principal)
+			Principal principal,HttpSession session)
 	/* 102: */throws Exception
 	/* 103: */{
 		/* 104:117 */LOG.debug("add-purchase_requisition-post called.");
@@ -205,7 +219,15 @@ import org.springframework.web.servlet.ModelAndView;
 			/* 137:147 */purrequisition.setPrno(Utilities.getRandomString(10));
 			/* 138:148 */purrequisition.setCreatedat(new Date());
 			/* 139: */
-			/* 140:150 */int insertResult = ((Integer) this.purrequisitionDAO
+			/* 140:150 */
+			
+			
+			int a=(Integer) session.getAttribute("finyear");
+			
+			purrequisition.setFinyear(a);
+			
+			
+			int insertResult = ((Integer) this.purrequisitionDAO
 					.insert(purrequisition)).intValue();
 			/* 141:151 */if (insertResult > 0)
 			/* 142: */{
@@ -249,7 +271,7 @@ import org.springframework.web.servlet.ModelAndView;
 	 *//* 162: */public ModelAndView edit_purrequisition_get(
 			@RequestParam("id") int id, Locale locale,
 			@RequestParam(value = "success", required = false) String success,
-			@RequestParam(value = "error", required = false) String error)
+			@RequestParam(value = "error", required = false) String error, HttpSession session)
 	/* 163: */throws Exception
 	/* 164: */{
 		/* 165:181 */LOG.debug("edit-purchase_requisition called.");
@@ -303,7 +325,7 @@ import org.springframework.web.servlet.ModelAndView;
 	 * )
 	 *//* 195: */public String edit_purrequisition_post(
 			@ModelAttribute("purrequisition") @Valid Purrequisition purrequisition,
-			BindingResult result, ModelMap model, Locale locale)
+			BindingResult result, ModelMap model, Locale locale,HttpSession session)
 	/* 196: */throws Exception
 	/* 197: */{
 		/* 198:212 */LOG.debug("edit-purchase_requisition-post called.");
@@ -311,7 +333,12 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 200: */{
 			/* 201:214 */purrequisition.setUpdatedat(new Date());
 			purrequisition.setNextapprovedby(1);
-			/* 202:215 */int updateResult = this.purrequisitionDAO
+			/* 202:215 */
+			
+			
+			purrequisition.setFinyear((Integer) session.getAttribute("finyear"));
+			
+			int updateResult = this.purrequisitionDAO
 					
 					
 					

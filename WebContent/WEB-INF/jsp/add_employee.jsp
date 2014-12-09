@@ -141,7 +141,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.number" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
-                                                <form:input type="text" class="form-control" path="employeeNumber" placeholder="${employeenumberplaceholder}" />
+                                                <form:input type="text" class="form-control" path="employeeNumber" value="${employee.id}" placeholder="${employeenumberplaceholder}" />
                                                 <form:errors path="employeeNumber" cssClass="error" />
                                             </div>
                                         </div>
@@ -186,21 +186,21 @@
                                             </div>
                                         </div>
                                         
-                                         <div class="form-group">
+                                      <%--    <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.user_name" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 <form:input type="text" class="form-control" path="username" placeholder="${usernameplaceholder}" />
                                                 <form:errors path="username" cssClass="error" />
                                             </div>
-                                        </div>
+                                        </div> --%>
 
-                                        <div class="form-group">
+                                        <%-- <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.password" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 <form:input type="text" class="form-control" path="password" placeholder="${passwordplaceholder}" />
                                                 <form:errors path="password" cssClass="error" />
                                             </div>
-                                        </div>
+                                        </div> --%>
                                         
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.gender" text="Default Text"/></label>
@@ -242,7 +242,16 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.qualification" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
-                                                <form:input type="text" class="form-control" path="qualification" placeholder="${qualificationplaceholder}" />
+<%--                                                 <form:input type="text" class="form-control" path="qualification" placeholder="${qualificationplaceholder}" />
+ --%>                                              
+                                              <select name="qualification" class="form-control" >
+                                              <option> High School </option>
+                                               <option> Bachelor</option>
+                                                <option> Master</option>
+                                                 <option> PHD</option>
+                                              </select>
+                                              
+                                              
                                                 <form:errors path="qualification" cssClass="error" />
                                             </div>
                                         </div>
@@ -292,20 +301,20 @@
                                                 <form:errors path="childrenCount" cssClass="error" />
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                       <%--  <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.fathername" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 <form:input type="text" class="form-control" path="fatherName" placeholder="${fathernameplaceholder}" />
                                                 <form:errors path="fatherName" cssClass="error" />
                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                        </div> --%>
+                                        <%-- <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.mothername" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 <form:input type="text" class="form-control" path="motherName" placeholder="${mothernameplaceholder}" />
                                                 <form:errors path="motherName" cssClass="error" />
                                             </div>
-                                        </div>
+                                        </div> --%>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.husbandname" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
@@ -372,20 +381,20 @@
                                                 <form:errors path="officeAddressLine1" cssClass="error" />
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                      <%--   <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.officeaddress2" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 <form:input type="text" class="form-control" path="officeAddressLine2" placeholder="${officeaddress2placeholder}" />
                                                 <form:errors path="officeAddressLine2" cssClass="error" />
                                             </div>
-                                        </div>
-                                        <div class="form-group">
+                                        </div> --%>
+   <%--                                      <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.officecity" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 <form:input type="text" class="form-control" path="officeCity" placeholder="${officecityplaceholder}" />
                                                 <form:errors path="officeCity" cssClass="error" />
                                             </div>
-                                        </div>
+                                        </div> --%>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.officestate" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
@@ -407,13 +416,13 @@
                                                 <form:errors path="officePhone1" cssClass="error" />
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                      <%--   <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.officephone2" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 <form:input type="text" class="form-control" path="officePhone2" placeholder="${officephone2placeholder}" />
                                                 <form:errors path="officePhone2" cssClass="error" />
                                             </div>
-                                        </div>
+                                        </div> --%>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.mobilephone" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
@@ -435,13 +444,24 @@
                                                 <form:errors path="email" cssClass="error" />
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        
+                                         <div class="form-group">
+                                            <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="nationality" text="Default Text"/></label>
+                                            <div class="col-sm-8 col-xs-12">                                            
+                                                <form:input type="text" class="form-control" path="nationality" placeholder="Nationality" />
+                                                <form:errors path="nationality" cssClass="error" />
+                                            </div>
+                                        </div>
+                                         
+                                        
+                                        
+                                      <%--   <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.fax" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 <form:input type="text" class="form-control" path="fax" placeholder="${faxplaceholder}" />
                                                 <form:errors path="fax" cssClass="error" />
                                             </div>
-                                        </div>
+                                        </div> --%>
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.passportno" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            

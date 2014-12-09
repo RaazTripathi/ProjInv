@@ -277,7 +277,7 @@ import org.springframework.web.servlet.ModelAndView;
 	/* 162: */public ModelAndView edit_purrequisition_get(
 			@RequestParam("id") int id, Locale locale,
 			@RequestParam(value = "success", required = false) String success,
-			@RequestParam(value = "error", required = false) String error)
+			@RequestParam(value = "error", required = false) String error,HttpSession session)
 	/* 163: */throws Exception
 	/* 164: */{
 		/* 165:181 */LOG.debug("edit-purchase_request called.");
@@ -285,6 +285,12 @@ import org.springframework.web.servlet.ModelAndView;
 		/* 167:183 */Purrequisition purrequisition = (Purrequisition) this.purrequisitionDAO
 				.getRecordByPrimaryKey(Integer.valueOf(id));
 		/* 168: */ModelAndView mav;
+		
+		
+		   purrequisition.setFinyear((Integer) session.getAttribute("finyear"));
+
+		
+		
 		/* 169:184 */if (purrequisition != null)
 		/* 170: */{
 			/* 171:185 */mav = new ModelAndView("purchase_request");

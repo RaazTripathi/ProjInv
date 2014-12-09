@@ -91,13 +91,15 @@
                                         <c:if test="${not empty success}">  
                                             <div class="row text-pad-top"><div class="successblock">${success}</div></div>
                                         </c:if>
-                                    <!--<div class="form-group">
+                                  <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.purrequisition.prno" text="Default Text"/></label>
                                         <div class="col-sm-8 col-xs-12">                                            
                                             <form:input type="text" class="form-control" path="prno" placeholder="${prnoplaceholder}" />
                                             <form:errors path="prno" cssClass="error" />
                                         </div>
-                                    </div>-->
+                                    </div>
+                                    
+                                    <input type="hidden" name="suplierid" value='0'>
                                             <form:hidden path="prno" />
                                    <%--  <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.purrequisition.supplier" text="Default Text"/></label>

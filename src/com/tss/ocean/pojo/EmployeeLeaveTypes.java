@@ -17,6 +17,8 @@ import org.hibernate.validator.constraints.NotEmpty;
 	/* 14: */private Boolean status;
 	/* 15: */private String maxLeaveCount;
 	/* 16: */private boolean carryForward;
+	
+	boolean paid ;
 
 	/* 17: */
 	/* 18: */public EmployeeLeaveTypes() {
@@ -111,6 +113,14 @@ import org.hibernate.validator.constraints.NotEmpty;
 		/* 91:79 */this.carryForward = carryForward;
 		/* 92: */}
 	/* 93: */
+
+	public boolean isPaid() {
+		return paid;
+	}
+
+	public void setPaid(boolean paid) {
+		this.paid = paid;
+	}
 }
 
 /*

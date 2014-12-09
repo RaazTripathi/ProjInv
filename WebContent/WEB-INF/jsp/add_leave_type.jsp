@@ -138,8 +138,22 @@
                                                 <form:errors path="carryForward" cssClass="error" />
                                             </div>
                                         </div>
+                                        
+                                        
+                                        
+                                         <div class="form-group">
+                                            <label class="col-sm-4 col-xs-12 control-label search-text">Paid or unpaid</label>
+                                            <div class="col-sm-8 col-xs-12">
+                                                <div class="form-control">
+                                                    <form:radiobutton path="paid" value="true" checked="checked"/>Paid
+                                                    <form:radiobutton path="paid" value="false" />Unpaid
+                                                </div>
+                                                <form:errors path="carryForward" cssClass="error" />
+                                            </div>
+                                        </div>
                                         <div class="col-sm-2"></div>
                                     </div>
+                                    
                                     <div class="div-center">
                                         <button type="submit" class="btn btn-orange" onclick="return submitDetailsForm();"><spring:message code="label.save" text="Default Text"/></button>
                                         <button type="button" class="btn btn-orange" onclick="javascript:history.back();"><spring:message code="label.cancel" text="Default Text"/></button>

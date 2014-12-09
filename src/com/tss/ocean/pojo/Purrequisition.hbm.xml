@@ -11,8 +11,8 @@
         <property name="prno" type="string">
             <column name="prno" length="45" />
         </property>
-        <property name="suplierid" type="java.lang.Integer">
-            <column name="suplierid" />
+        <property name="suplierid" type="int">
+            <column name="suplierid" default="0" />
         </property>
         
          <property name="finyear" type="int">

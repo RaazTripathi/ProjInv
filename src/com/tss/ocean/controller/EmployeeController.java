@@ -381,6 +381,8 @@ public ModelAndView getEmployyes(@RequestParam(value="success", required=false) 
 /* 369:387 */     logger.info("add_employee called.");
 /* 370:388 */     ModelAndView mav = new ModelAndView("add_employee");
 /* 371:389 */     Employees employee = new Employees();
+
+this.employeesDAO.insert(employee);
 /* 372:390 */     if (success != null) {
 /* 373:391 */       mav.getModelMap().put("success", success);
 /* 374:    */     }
