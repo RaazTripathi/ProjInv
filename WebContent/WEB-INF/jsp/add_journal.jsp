@@ -8,11 +8,10 @@
     <head>        
         <jsp:include page="header.jsp" />
       <script type="text/javascript">
-      $( document ).ready(function() {
-    	  
-    	  $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
-    	});
-                                           
+      $(function() {
+    	  var calendar = $.calendars.instance('islamic');
+    	  $('#date').calendarsPicker({calendar: calendar});
+    	});            
         </script>
     </head>
 	<body role="document">

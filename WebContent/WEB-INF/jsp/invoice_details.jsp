@@ -5,6 +5,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html>
     <head>
+	<link rel="stylesheet" href="js/jquery.calendars.picker.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/jquery.plugin.js"></script>
+	<script src="js/jquery.calendars.js"></script>
+	<script src="js/jquery.calendars.plus.js"></script>
+	<script src="js/jquery.calendars.picker.js"></script>
+	<script src="js/jquery.calendars.islamic.js"></script>
       <style>
          .error {
              color: #ff0000;
@@ -60,7 +67,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.invoice.date" text="Default Text"/></label>
                                         <div class="col-sm-8 col-xs-12">                                            
-                                            <form:input type="date" class="form-control" readonly="readonly" path="date" />
+                                            <form:input type="date" id="popupDatePicker" class="form-control" readonly="readonly" path="date" />
                                             <form:errors path="date" cssClass="error" />
                                         </div>
                                     </div>
@@ -193,6 +200,15 @@
             	window.print();
             	document.body.innerHTML = originalPage;
             }
+            $(function() {
+             	  var calendar = $.calendars.instance('islamic');
+             	  $('#popupDatepicker').calendarsPicker({calendar: calendar});
+             	  $('#inlineDatepicker').calendarsPicker({calendar: calendar, onSelect: showDate});
+             	});
+
+           	function showDate(date) {
+           	  alert('The date chosen is ' + date);
+           	}
         </script>
     </body>
 </html>

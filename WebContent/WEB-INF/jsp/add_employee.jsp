@@ -158,7 +158,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.employee.joiningdate" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
-                                                <input type="text" class="form-control datepicker" path="joiningDate" placeholder="${joiningdateplaceholder}" />
+                                                <input type="text" id="popupDatepicker" class="form-control datepicker" path="joiningDate" placeholder="${joiningdateplaceholder}" />
                                                 <form:errors path="joiningDate" cssClass="error" />
                                             </div>
                                         </div>
@@ -544,7 +544,11 @@
         <!-- Jquery UI Javascript -->
         <script src="js/jquery-ui.js"></script>
         <script type="text/javascript">
-                                            $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+
+        $(function() {
+    	      var calendar = $.calendars.instance('islamic');
+	          $('#popupDatepicker').calendarsPicker({calendar: calendar});
+        });
         </script>
     </body>
 </html>
