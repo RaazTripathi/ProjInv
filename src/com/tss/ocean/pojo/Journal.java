@@ -25,6 +25,8 @@ public class Journal implements Serializable
 	
 	int finyear;
 	
+	private int apelevel1;
+	
 	public int getNo() {
 		return no;
 	}
@@ -90,6 +92,12 @@ public class Journal implements Serializable
 	}
 	public void setSubacctype(int subacctype) {
 		this.subacctype = subacctype;
+	}
+	public int getApelevel1() {
+		return apelevel1;
+	}
+	public void setApelevel1(int apelevel1) {
+		this.apelevel1 = apelevel1;
 	}
 	
 }

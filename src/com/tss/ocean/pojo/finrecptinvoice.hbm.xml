@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Aug, 2014 6:30:11 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.tss.ocean.pojo.FinRecptInvoice" table="finfecptinvoice" catalog="invmgmt">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="remark" type="string">
+            <column name="remark"   />
+        </property>
+       
+        <property name="price" type="float">
+            <column name="price"  />
+        </property>
+      
+      <property name="date" type="date">
+            <column name="date"  />
+        </property>
+        
+        
+         <property name="finyear" type="int">
+            <column name="finyear"  />
+        </property>
+        
+        
+         <property name="journalNo" type="int">
+            <column name="journalNo"  />
+        </property>
+        <property name="borb" type="int">
+            <column name="borb"  />
+        </property>
+        
+        
+         <property name="io" type="int">
+            <column name="io"  />
+        </property>
+        
+        
+          <property name="type" type="string">
+            <column name="type"  />
+        </property>
+        
+         <property name="receptno" type="int">
+            <column name="receptno"  />
+        </property> 
+        <property name="recptdate" type="date">
+            <column name="recptdate"  />
+        </property>
+        
+        
+        
+        
+        
+        
+         <property name="subacctype" type="int">
+            <column name="subacctype"  />
+        </property>
+          <property name="apelevel1" type="int">
+            <column name="apelevel1"  />
+        </property>
+          <property name="apelevel2" type="int">
+            <column name="apelevel2"  />
+        </property>
+          <property name="apelevel3" type="int">
+            <column name="apelevel3"  />
+        </property>
+          <property name="apelevel4" type="int">
+            <column name="apelevel4"  />
+        </property>
+        
+        
+        
+        
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 4 Aug, 2014 6:30:11 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="com.tss.ocean.pojo.CashTransferReq" table="transferrequest" catalog="invmgmt">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="amount" type="float">
+            <column name="amount"  not-null="true" />
+        </property>
+        <property name="finyear" type="int">
+            <column name="finyear"  not-null="true" />
+        </property>
+      
+       
+          <property name="date" type="date">
+            <column name="reqdate"  />
+        </property>
+       
+       
+       
+        <property name="remark" type="string">
+            <column name="remark"  />
+        </property>
+       
+       
+       
+        <property name="toaccname" type="string">
+            <column name="toaccname"  />
+        </property>
+        <property name="fromaccname" type="string">
+            <column name="fromaccname"  />
+        </property>
+       
+       
+       
+       
+        <property name="toacc" type="int">
+            <column name="toacc"  />
+        </property>
+       
+       
+        <property name="fromacc" type="int">
+            <column name="fromacc"  />
+        </property>
+       
+        <property name="approvelevel1" type="int">
+            <column name="approvelevel1"  />
+        </property>
+      
+       <property name="approvelevel2" type="int">
+            <column name="approvelevel2"  />
+        </property>
+         <property name="approvelevel3" type="int">
+            <column name="approvelevel3"  />
+        </property>
+    </class>
+</hibernate-mapping>
