@@ -265,6 +265,15 @@
             	window.print();
             	document.body.innerHTML = originalPage;
             }
+            $(function() {
+           	  var calendar = $.calendars.instance('islamic');
+           	  $('#mealFormDate').calendarsPicker({calendar: calendar});
+           	  $('#inlineDatepicker').calendarsPicker({calendar: calendar, onSelect: showDate});
+           	});
+
+         	function showDate(date) {
+         	  alert('The date chosen is ' + date);
+         	}
         </script>
     </body>
 </html>
