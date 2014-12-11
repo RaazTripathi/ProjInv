@@ -35,6 +35,13 @@
     <link href="css/style.css" rel="stylesheet" type="text/css">    
     <link rel="stylesheet" href="css/menustyles.css">
 
+	<link rel="stylesheet" href="js/jquery.calendars.picker.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="js/jquery.plugin.js"></script>
+	<script src="js/jquery.calendars.js"></script>
+	<script src="js/jquery.calendars.plus.js"></script>
+	<script src="js/jquery.calendars.picker.js"></script>
+	<script src="js/jquery.calendars.islamic.js"></script>
     <script>
         if (!window.jQuery) { document.write('<script src="js/jquery-1.9.1.min.js"><\/script>');
         document.write('<script src="js/jquery-barcode.js" type="text/javascript"> <\/script>');
