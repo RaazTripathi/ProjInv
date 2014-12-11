@@ -158,7 +158,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.employee.joiningdate" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
-                                                <form:input type="text" class="form-control datepicker" path="joiningDate" placeholder="${joiningdateplaceholder}" />
+                                                <form:input type="text" id="popupDatepicker" class="form-control datepicker" path="joiningDate" placeholder="${joiningdateplaceholder}" />
                                                 <form:errors path="joiningDate" cssClass="error" />
                                             </div>
                                         </div>
@@ -282,7 +282,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.employee.birthdate" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
-                                                <form:input type="text" class="form-control datepicker" path="dateOfBirth" placeholder="${birthdateplaceholder}" />
+                                                <form:input type="text" id="popupDatepicker1" class="form-control datepicker" path="dateOfBirth" placeholder="${birthdateplaceholder}" />
                                                 <form:errors path="dateOfBirth" cssClass="error" />
                                             </div>
                                         </div>
@@ -464,7 +464,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.employee.passportexpiry" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
-                                                <form:input type="text" class="form-control datepicker" name="passportExpiryDate" path="passportExpiryDate"  placeholder="${passportexoirydateplaceholder}" />
+                                                <form:input type="text" id="popupDatepicker2" class="form-control datepicker" name="passportExpiryDate" path="passportExpiryDate"  placeholder="${passportexoirydateplaceholder}" />
                                                 <form:errors path="passportExpiryDate" cssClass="error" />
                                             </div>
                                         </div>
@@ -482,7 +482,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.employee.iqamaexpiry" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
-                                                <form:input type="text" class="form-control datepicker" path="iqamaExpiryDate" placeholder="${iqamaexoirydateplaceholder}" />
+                                                <form:input type="text" id="popupDatepicker3" class="form-control datepicker" path="iqamaExpiryDate" placeholder="${iqamaexoirydateplaceholder}" />
                                                 <form:errors path="iqamaExpiryDate" cssClass="error" />
                                             </div>
                                         </div>
@@ -558,7 +558,13 @@
         <!-- Jquery UI Javascript -->
         <script src="js/jquery-ui.js"></script>
         <script type="text/javascript">
-                                         $(".datepicker").datepicker({dateFormat: 'dd/mm/yy'})
+        $(function() {
+        	  var calendar = $.calendars.instance('islamic');
+        	  $('#popupDatepicker').calendarsPicker({calendar: calendar});
+        	  $('#popupDatepicker1').calendarsPicker({calendar: calendar});
+        	  $('#popupDatepicker2').calendarsPicker({calendar: calendar});
+        	  $('#popupDatepicker3').calendarsPicker({calendar: calendar});
+        	});
         </script>
     </body>
 </html>
