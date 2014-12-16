@@ -14,6 +14,13 @@
                 function submitDetailsForm() {
                     return true;
                 }
+                function calculateAmount(){
+                	var stock = parseInt(document.getElementById('stock').value);
+                	var price = parseInt(document.getElementById('price').value);
+                	var amount = stock * price;
+                	var amountField = document.getElementById('amount');
+                	amountField.value = amount;
+                }
             </script>
 
             <style>
@@ -112,7 +119,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text"> Stock:</label>
                                         <div class="col-sm-8 col-xs-12">
-                                            <form:input  type="text" class="form-control" path="currstock" placeholder="Stock"/>
+                                            <form:input  type="text" id="stock" class="form-control" path="currstock" placeholder="Stock"/>
                                             <form:errors path="currstock" cssClass="error" />
                                         </div>
                                     </div>
@@ -131,8 +138,15 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text"> Price:</label>
                                         <div class="col-sm-8 col-xs-12">
-                                            <form:input  type="text" class="form-control" path="price" placeholder="Price"/>
+                                            <form:input  type="text" id="price" class="form-control" path="price" onchange="calculateAmount()" placeholder="Price"/>
                                             <form:errors path="price" cssClass="error" />
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-4 col-xs-12 control-label search-text"> Amount:</label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <form:input type="text" id="amount" class="form-control" readonly="true" path="categoryid" placeholder="0"/>
                                         </div>
                                     </div>
                                     
