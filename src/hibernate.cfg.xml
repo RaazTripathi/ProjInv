@@ -19,6 +19,7 @@
     <mapping resource="com/tss/ocean/pojo/ACLEntity.hbm.xml"/>
     <mapping resource="com/tss/ocean/pojo/Accounts.hbm.xml"/>
     <mapping resource="com/tss/ocean/pojo/EmployeeLeaveTypes.hbm.xml"/>
+    <mapping resource="com/tss/ocean/pojo/FoodItem.hbm.xml"/>
     <mapping resource="com/tss/ocean/pojo/Item.hbm.xml"/>
     <mapping resource="com/tss/ocean/pojo/Alarmevent.hbm.xml"/>
     <mapping resource="com/tss/ocean/pojo/Usertype.hbm.xml"/>

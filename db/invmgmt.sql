@@ -796,5 +796,18 @@ CREATE TABLE IF NOT EXISTS `journal` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 
+#
+# Structure for table "fooditem"
+#
+
+DROP TABLE IF EXISTS `fooditem`;
+CREATE TABLE `fooditem` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `category` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `price` decimal(15,2) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 
 
