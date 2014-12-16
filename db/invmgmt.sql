@@ -809,5 +809,6 @@ CREATE TABLE `fooditem` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+ALTER TABLE `employee_leaves` ADD `paid` TINYINT(1) NOT NULL AFTER `leave_taken`;
 
 

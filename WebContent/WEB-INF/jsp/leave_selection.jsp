@@ -115,6 +115,16 @@
                                             </form:select>
                                         </div>
                                         </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-4 col-xs-12 control-label search-text">Leave Cost</label>
+                                            <div class="col-sm-8 col-xs-12">
+                                                <div class="form-control">
+                                                    <form:radiobutton path="paid" value="true" checked="checked"/>With Salary
+                                                    <form:radiobutton path="paid" value="false" />Without Salary
+                                                </div>
+                                                <form:errors path="paid" cssClass="error" />
+                                            </div>
+                                        </div>
                                         
                                         <div class="form-group">
 	                                        <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">Leave Count:</label>
