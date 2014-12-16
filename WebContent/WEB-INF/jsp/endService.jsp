@@ -65,82 +65,66 @@
                         <!-- END MUNU -->    
                     </div>
                 </div>
-                <div class="col-md-9">
-                    <div class="catagory-main-box top-radius">
-                        <div class="cat-box-title cat-title-font top-radius"><spring:message code="employee.list" text="Label value is missing !!!"/></div>
-                        <spring:message text="Default Text" code="employeecategory.search.placeholder" var="search"/>
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="demo">
-                                <div class="row tb-margin">
-                                    <div class="col-sm-4">
-                                        <a href="add_employee.html" class="btn btn-info add-row addrow-btn-left"><spring:message code="employee.add" text="Label value is missing !!!"/></a>
-                                    </div>
-                                    <div class="col-sm-8">
-                                        <div class="form-group visible-sm visible-md visible-lg">
-                                            <button type="button" class="btn btn-orange" onclick="printEmployeeReport();">Print</button>
-                                        </div>
-                                        <!--                                        <div class="form-group visible-xs">
-                                                                                    <div class="col-xs-12">
-                                                                                        <input id="filter" placeholder="${search}" class="form-control" type="text"/>
-                                                                                    </div>
-                                                                                </div>-->
-                                    </div>
-                                </div>
-                                <table id="dttable" class="table table-bordered table-striped" data-filter="#filter" data-page-size="5">
-                                    <thead class="orange-bg border-t">
-                                        <tr>
-                                            <th data-toggle="true">
-                                                <spring:message code="label.employee.number" text="Label value is missing !!!"/>
-                                            </th>
-                                            <th data-hide="phone">
-                                               <spring:message code="label.employee.firstname" text="Label value is missing !!!"/>
-                                            </th>
-                                            <th data-hide="phone">
-                                                <spring:message code="label.employee.birthdate" text="Label value is missing !!!"/> 
-                                            </th>
-                                            <th data-hide="phone">
-                                                <spring:message code="label.employee.department" text="Label value is missing !!!"/> 
-                                            </th>  
-                                            <th data-hide="phone">
-                                                <spring:message code="label.employee.category" text="Label value is missing !!!"/> 
-                                            </th> 
-                                            <th data-hide="phone" data-name="Delete">
-                                                <spring:message code="label.purorder.action" text="Label value is missing !!!"/> 
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="employee" items="${employeeList}">
-                                            <tr>
-                                                <td>${employee.employeeNumber}</td>
-                                                <td>
-                                                <a href="view_employee.html?id=${employee.id}" > 
-                                                ${employee.firstName}
-                                                </a>
-                                                </td>
-                                                <td>${employee.dateOfBirth}</td>
-                                                <td>${departmentmap[employee.employeeDepartmentId]}</td>
-                                                <td>${categorymap[employee.employeeCategoryId]}</td>
-                                                <td>
-                                                    <a href="display_employee.html?id=${employee.id}" class="btn btn-default btn-sm" type="button"><span class="glyphicon glyphicon-view"></span>View</a>
-                                                    <a href="edit_employee.html?id=${employee.id}" class="btn btn-default btn-sm" type="button"><span class="glyphicon glyphicon-edit"></span>Edit</a>
-                                                    <a href="delete_employee.html?id=${employee.id}" class="btn btn-default btn-sm row-delete" type="button"><span class="glyphicon glyphicon-trash"></span> Delete</a>
-                                                </td>
-                                            </tr>                                        
-                                        </c:forEach>
-                                    </tbody>
-                                    <tfoot class="hide-if-no-paging">
-                                        <tr>
-                                            <td colspan="8">
-                                                <div class="pagination pagination-centered"></div>
-                                            </td>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>                            
-                        </div>
-                    </div>
-                </div>
+                <div class="col-md-9" align="center" style="">
+                   
+                   <br>
+                   <form action="serviceEndReq.html">
+                   <table>
+                   <tr>
+                   <td> Select Employee </td>
+                   
+                   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                   <td>
+                   
+                    <select name="empid">
+                    <c:forEach var="e" items="${employees}">
+                    
+                    <c:if test="${emp.id ==e.id}">
+                                        <option value="${e.id}"  selected="selected"> ${e.firstName} ${e.lastName}</option>
+                    
+                    </c:if>
+                     <c:if test="${emp.id ==null}">
+                    <option value="${e.id}"> ${e.firstName} ${e.lastName}</option>
+                   </c:if>   </c:forEach>        
+                                </select>  
+                </td>
+                    </tr>
+                 <tr><td>Joining Date </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td> 
+                    <c:forEach var="e" items="${employees}">
+                    
+                    
+                                            <c:if test="${emp.id ==e.id}">
+                                                                                    
+                                                <input type="text" id="popupDatepicker" path="joiningDate" value="${e.joiningDate}" />
+                                                 </c:if>
+               
+                                     </c:forEach>  
+                                     
+                                           
+                               
+                  </td> </tr> 
+                   <tr><td>Current Date</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td> <input type="text" id="popupDatepicker1" path="currentdate" value=''  /></td></tr>
+                   
+                  
+                   <tr><td> <input type="submit"></td></tr>
+                   </table>
+                             
+                   
+                   
+                    </form>
+                    
+                  
+                   
+                  
+                   
+                  
+                   
+                   
+                    
+                    
+                    
+                    
+               </div>
             </div>
             <div class=""></div>
             <div class=""></div>
@@ -184,5 +168,22 @@
             	document.body.innerHTML = originalPage;
             }
         </script>
+         
+       <script type="text/javascript">
+        $(function() {
+        	  var calendar = $.calendars.instance('islamic');
+        	  $('#popupDatepicker').calendarsPicker({calendar: calendar});
+        	  $('#popupDatepicker1').calendarsPicker({calendar: calendar});
+        	  $('#popupDatepicker2').calendarsPicker({calendar: calendar});
+        	  $('#popupDatepicker3').calendarsPicker({calendar: calendar});
+        	});
+        
+        $(function() {
+        	$("#popupDatepicker1").datepicker({
+        	        dateFormat: "yy-mm-dd"
+        	    }).datepicker("setDate", "0");
+        	})
+        </script>
+
     </body>
 </html>

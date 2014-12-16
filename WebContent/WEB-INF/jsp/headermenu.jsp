@@ -21,7 +21,7 @@
                     <fmt:formatDate value="${today}" pattern="MMMM d,yyyy" /><br>
                     <span class="normal-text">Welcome admin<br></span>
                     <a href="?lang=en">English</a> | <a href="?lang=ar">Arabic</a>
-              <div style="margin-top: -20px;"> <center> <span  style=" font-size: 20px; text-align:justify; color: green; margin-right: 444px;  ">   <!-- SECURITY FORCES OFFICERS CLUB --> Demo </span></center></div>
+              <div style="margin-top: -20px;"> <center> <span  style=" font-size: 20px; text-align:justify; color: green; margin-right: 444px;  ">  SECURITY FORCES OFFICERS CLUB  </span></center></div>
                
                
                 </div>

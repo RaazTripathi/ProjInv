@@ -215,6 +215,8 @@ for(Purrequisition i:purreq)
 		float totali = 0;
 		for(Invoice i:invoices)
 		{
+			
+			if(i.getGrossAmount()!=null)
 			totali=totali+(i.getGrossAmount().floatValue());
 		}
 		

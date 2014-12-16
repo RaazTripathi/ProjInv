@@ -28,6 +28,26 @@ public class EmployeeLeavesDAO extends GenericDAOImpl<EmployeeLeaves, Integer>
 		}
 		return query.list();
 	}
+	
+	
+	
+	
+	public List<EmployeeLeaves> getEmployeeReport(int id) {
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", id);
+		String hqlQuery = "FROM EmployeeLeaves e WHERE e.employeeId = :id";
+		Query query = HibernateUtil.getCurrentSession().createQuery(hqlQuery);
+		for (Map.Entry<String, Object> e : params
+				.entrySet()) {
+			query.setParameter((String) e.getKey(), e.getValue());
+		}
+		return query.list();
+	}
+	
+	
+	
+	
+	
 }
 
 /*

@@ -31,14 +31,10 @@
 		<mapping resource="com/tss/ocean/pojo/Itemunit.hbm.xml" />
 		<mapping resource="com/tss/ocean/pojo/asset.hbm.xml" />
 		<mapping resource="com/tss/ocean/pojo/Journal.hbm.xml" />
-
 		<mapping resource="com/tss/ocean/pojo/finAcc.hbm.xml" />
 		<mapping resource="com/tss/ocean/pojo/finrecptinvoice.hbm.xml" />
-
 		<mapping resource="com/tss/ocean/pojo/accValue.hbm.xml" />
-				<mapping resource="com/tss/ocean/pojo/cashtransferreq.hbm.xml" />
-		
-
+		<mapping resource="com/tss/ocean/pojo/cashtransferreq.hbm.xml" />
 		<mapping resource="com/tss/ocean/pojo/borrow.hbm.xml" />
 		<mapping resource="com/tss/ocean/pojo/PayrollCategories.hbm.xml" />
 		<mapping resource="com/tss/ocean/pojo/Purrequisition.hbm.xml" />

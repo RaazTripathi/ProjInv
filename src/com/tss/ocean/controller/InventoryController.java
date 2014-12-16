@@ -214,6 +214,8 @@ import com.tss.ocean.pojo.Itemunit;
 		        }
 		    }
 			
+			item.setApprovelevel(1);
+			
 			logger.log(Level.OFF, "Insert result ####### ."
 					+ this.itemDAO.insert(item));
 			return new ModelAndView("redirect:/item.html");

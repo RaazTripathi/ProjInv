@@ -10,8 +10,10 @@ import java.util.logging.Level;
 /*  13:    */
 import java.util.logging.Logger;
 
+
 /*  14:    */
 import javax.servlet.http.HttpServletRequest;
+
 
 /*  15:    */
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 /*  19:    */
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.tss.ocean.idao.IItemDAO;
 /*   4:    */
@@ -62,24 +65,124 @@ import com.tss.ocean.pojo.Itemunit;
 		/* 39: */}
 
 	/* 40: */
-	/* 41: */@RequestMapping(value = { "/item.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	/* 42: */@PreAuthorize("hasAnyRole('ROLE_INVENTORY','ROLE_ADMIN') ")
-	/* 43: */public String itemmgmt(Model model, HttpServletRequest request)
-	/* 44: */throws Exception
-	/* 45: */{
-		/* 46: 54 */logger.log(Level.OFF, "item called.");
-		/* 47: 55 */logger.log(Level.OFF, "item called size ### "
+	@RequestMapping(value = { "/item.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	@PreAuthorize("hasAnyRole('ROLE_INVENTORY','ROLE_ADMIN') ")
+	public String itemmgmt(Model model, HttpServletRequest request)
+	throws Exception
+	{
+		logger.log(Level.OFF, "item called.");
+		logger.log(Level.OFF, "item called size ### "
 				+ this.itemDAO.getList().size());
 
 		for (Item i : this.itemDAO.getList()) {
 			System.out.println("______________________________" + i.getName());
 
 		}
-		/* 48: 56 */model.addAttribute("itemList", this.itemDAO.getList());
-		/* 49: 57 */return "item";
-		/* 50: */}
+		model.addAttribute("itemList", this.itemDAO.getListByKeyandValue("approvelevel", 4));
+		return "item";
+		}
 
-	/* 51: */
+
+	
+	
+	
+	@RequestMapping(value = { "/itemapprove1.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	@PreAuthorize("hasAnyRole('ROLE_INVENTORY','ROLE_ADMIN') ")
+	public String itemapr1(Model model, HttpServletRequest request)
+	throws Exception
+	{
+		logger.log(Level.OFF, "item called.");
+		logger.log(Level.OFF, "item called size ### "
+				+ this.itemDAO.getList().size());
+
+		for (Item i : this.itemDAO.getList()) {
+			System.out.println("______________________________" + i.getName());
+
+		}
+		model.addAttribute("itemList", this.itemDAO.getListByKeyandValue("approvelevel", 1));
+		return "itemapr1";
+		}
+
+
+	
+	
+	
+	
+	
+	@RequestMapping(value = { "/itemapprove2.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	@PreAuthorize("hasAnyRole('ROLE_INVENTORY','ROLE_ADMIN') ")
+	public String itemapr2(Model model, HttpServletRequest request)
+	throws Exception
+	{
+		logger.log(Level.OFF, "item called.");
+		logger.log(Level.OFF, "item called size ### "
+				+ this.itemDAO.getList().size());
+
+		for (Item i : this.itemDAO.getList()) {
+			System.out.println("______________________________" + i.getName());
+
+		}
+		model.addAttribute("itemList", this.itemDAO.getListByKeyandValue("approvelevel", 2));
+		return "itemapr2";
+		}
+	
+	
+	@RequestMapping(value = { "/itemapprove.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	@PreAuthorize("hasAnyRole('ROLE_INVENTORY','ROLE_ADMIN') ")
+	public String itemapr(Model model, HttpServletRequest request, @RequestParam int itemid,@RequestParam int approvlevet)
+	throws Exception
+	{
+		logger.log(Level.OFF, "Approve Item called item called.Id ="+itemid);
+	
+	Item item=	this.itemDAO.getRecordByPrimaryKey(itemid);
+
+	item.setApprovelevel(approvlevet);
+	
+	itemDAO.update(item);
+		model.addAttribute("itemList", this.itemDAO.getListByKeyandValue("approvelevel", 2));
+		return "redirect:item.html";
+		}
+	
+
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = { "/itemapprove3.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	@PreAuthorize("hasAnyRole('ROLE_INVENTORY','ROLE_ADMIN') ")
+	public String itemapr3(Model model, HttpServletRequest request)
+	throws Exception
+	{
+		logger.log(Level.OFF, "item called.");
+		logger.log(Level.OFF, "item called size ### "
+				+ this.itemDAO.getList().size());
+
+		for (Item i : this.itemDAO.getList()) {
+			System.out.println("______________________________" + i.getName());
+
+		}
+		model.addAttribute("itemList", this.itemDAO.getListByKeyandValue("approvelevel", 3));
+		return "itemapr3";
+		}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/* 52: */@RequestMapping(value = { "/item_category.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	/* 53: */@PreAuthorize("hasAnyRole('ROLE_USER') ")
 	/* 54: */public String item_category(Model model, HttpServletRequest request)

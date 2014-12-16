@@ -55,7 +55,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.meal.date" text="Default Text"/></label>
                                         <div class="col-sm-8 col-xs-12">                                            
-                                            <form:input type="text" id="mealFormDate" class="form-control datepicker" path="date" />
+                                            <form:input type="text" id="mealFormDate" class="form-control " path="date" />
                                         </div>
                                     </div>
 	                                <div class="form-group">

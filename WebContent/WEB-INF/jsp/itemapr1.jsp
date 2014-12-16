@@ -33,20 +33,6 @@
                  	document.body.innerHTML = originalPage;
                  }
                 
-                
-                function printEmployeeReport(){
-                	
-                	var originalPage = document.body.innerHTML;
-                	var detail = document.getElementById("dttable");
-                	//Remove extra childnodes of the wrapper div
-                	detail.removeChild(detail.childNodes[0]);
-                	detail.removeChild(detail.childNodes[0]);
-                	document.body.innerHTML = detail.innerHTML;
-                	window.print();
-                	document.body.innerHTML = originalPage;
-                }
-
-                
             </script>
 
 
@@ -113,14 +99,9 @@
                                     <div class="row tb-margin">
                                         <div class="col-sm-4">
                                             <a href="add-item.html" class="btn btn-info add-row addrow-btn-left">Add Item</a>
-                                       
-                                       <button type="button" class="btn btn-orange" onclick="printEmployeeReport();">Print</button>
-                                       
                                         </div>
 
                                     </div>
-                                    
-                                    <div id="dttable_wrapper">
                                     <table id="dttable" class="table table-bordered table-striped" data-filter="#filter" data-page-size="5">
                                         <thead class="orange-bg border-t">
                                             <tr>
@@ -150,6 +131,12 @@
                                                 <th data-hide="phone">
                                                 <spring:message code="itemCategory.Action" text="Label value is missing !!!"/>
                                             </th>
+                                            
+                                            <th data-hide="phone">
+                                                    Approve
+                                                </th>
+                                            
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -180,6 +167,17 @@
                                                     <button onclick="submitDelete(<c:out value="${listVar.id}"/>);" class="btn btn-default btn-sm" type="button"><span class="glyphicon glyphicon-trash"></span> Delete</button>
                                                 </td>
 
+
+<td> <form action="itemapprove.html">
+<input type="hidden" name="itemid" value="${listVar.id}"/> 
+
+<input type="hidden" name="approvlevet" value="2"/> 
+
+<input type="submit" value="Approve">
+
+
+
+</form> </td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>
@@ -191,7 +189,6 @@
                                         </tr>
                                     </tfoot>
                                 </table>
-                                </div>
                             </div>
                             <div class="tab-pane" id="docs">
                                 <h3>Removing A Row</h3>
@@ -256,7 +253,7 @@ $(&#39;.add-row&#39;).click(function(e) {
         <script src="js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" language="javascript" src="js/dataTables.responsive.min.js"></script>
         <script >
-     
+        
         
        
             $(document).ready(function () {

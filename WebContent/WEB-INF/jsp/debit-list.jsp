@@ -59,8 +59,8 @@
                                      <div class="col-sm-12" align="center">
                                       
                                       <form action="debitlist.html" method="get" >
-                                From date     <input name="from" type="text" class="datepicker " style="margin-left:5em"><br><br>
-                                      To Date  <input name="to" type="text" class="datepicker " style="margin-left:6em"><br><br>
+                                From date     <input name="from" type="text" class="popupDatepicker " style="margin-left:5em"><br><br>
+                                      To Date  <input name="to" type="text" class="popupDatepicker " style="margin-left:6em"><br><br>
                                       
                                       <input type="submit" value="Search" style="margin-left:5em"/>
                                       
@@ -83,7 +83,8 @@
                                 </div>
                                 
                                 <c:if test="${journal!=null}">
-                                <div><input type="button" class="rowwclick"></div>
+                                <div><input type="button" class="rowwclick" value="Create receipt"></div>
+                                <br>
                                 
                                 <table id="dttable" class="table table-bordered table-striped"  data-page-size="5">
                                     <thead class="orange-bg border-t">
@@ -247,6 +248,12 @@ $(function() {
         
             $(document).ready(function() {
                 $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+                
+                $(function() {
+               	  var calendar = $.calendars.instance('islamic');
+               	  $('.popupDatepicker').calendarsPicker({calendar: calendar});
+               	  $('#inlineDatepicker').calendarsPicker({calendar: calendar, onSelect: showDate});
+               	});
 
                 var table = $('#dttable').DataTable();
                 $('.row-delete').click(function(eve) {

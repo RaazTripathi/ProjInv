@@ -62,7 +62,7 @@
                                             <spring:message code="label.journal.date" text="Default Text"/>
                                         </label>
                                         <div class="col-sm-8 col-xs-12">                                            
-                                            <form:input id="datepicker" type="text" class="form-control" path="date" />
+                                            <form:input id="popupDatepicker" type="text" class="form-control" path="date" />
                                             <form:errors path="date" cssClass="error" />
                                         </div>
                                     </div>
@@ -197,6 +197,13 @@
             
             
         });
+        
+        $(function() {
+         	  var calendar = $.calendars.instance('islamic');
+         	  $('#popupDatepicker').calendarsPicker({calendar: calendar});
+         	  $('#inlineDatepicker').calendarsPicker({calendar: calendar, onSelect: showDate});
+         	});
+        
         $('#datepicker').datepicker({dateFormat: 'dd/mm/yy'});
         });
         </script>

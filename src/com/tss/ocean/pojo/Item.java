@@ -42,12 +42,20 @@ import org.springframework.web.multipart.MultipartFile;
 	int alarmunit;
 	
 	
+	int approvelevel;
 	
 	
 	
 	
 	
-	
+	public int getApprovelevel() {
+		return approvelevel;
+	}
+
+	public void setApprovelevel(int approvelevel) {
+		this.approvelevel = approvelevel;
+	}
+
 	public int getAlarmunit() {
 		return alarmunit;
 	}

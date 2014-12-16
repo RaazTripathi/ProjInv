@@ -30,6 +30,11 @@
             <column name="currstock" not-null="true" />
         </property>
        
+       
+         <property name="approvelevel" type="int">
+            <column name="approvelevel" not-null="true"/>
+        </property>
+       
         <property name="alarmunit" type="int">
             <column name="alarmunit" not-null="true" />
         </property>

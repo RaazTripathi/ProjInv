@@ -59,7 +59,7 @@
                                             <spring:message code="label.journal.date" text="Default Text"/>
                                         </label>
                                         <div class="col-sm-8 col-xs-12">                                            
-                                            <form:input type="date" id="popupDatepicker" class="form-control" path="date" />
+                                            <form:input type="text" id="popupDatepicker" class="form-control" path="date" />
                                             <form:errors path="date" cssClass="error" />
                                         </div>
                                     </div>

@@ -591,6 +591,50 @@ import org.springframework.web.servlet.ModelAndView;
 		return report;
 	}
 
+	
+	
+
+	@RequestMapping(value = { "/serviceEnd.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView serviceEnd(Model model) {
+		logger.debug("Calling the reports of the employees");
+		List<Employees> employees = this.employeesDAO.getList();
+		logger.debug("Total employees found:" + employees.size());
+		ModelAndView report = new ModelAndView("endService");
+		report.getModelMap().put("employees", employees);
+		//System.out.println("////////////////////////////////>"+report.toString());
+		return report;
+	}
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = { "/serviceEndReq.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView serviceEndReq(Model model,@RequestParam int empid) {
+		logger.debug("Calling the reports of the employees");
+		Employees employee = this.employeesDAO.getRecordByPrimaryKey(empid);
+		List<Employees> employees = this.employeesDAO.getList();
+		logger.debug("Total employees found:" + employees.size());
+		ModelAndView report = new ModelAndView("endService");
+		report.getModelMap().put("employees", employees);
+		report.getModelMap().put("emp", employee);
+		//System.out.println("-------------------------->"+report.toString());
+		
+		return report;
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
 	 * Displays employee information
 	 */
