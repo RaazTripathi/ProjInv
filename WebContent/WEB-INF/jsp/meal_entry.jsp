@@ -122,22 +122,26 @@
                                         </div>
                                     </div>
                                     <form:hidden path="item_id" value="0" />
-                                    <form:hidden path="quantity" value="1" />
+                                    <form:hidden path="mealType" value="${mealtype}" />
                                     <div class="form-group">
 	                                    <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">
-	                                      Meal Type
+	                                      <spring:message code="label.invoice.foodStuff" text="Default Text"/>
 	                                    </label>
                                         <div class="col-sm-8 col-xs-12">
                                             <form:select class="form-control" path="mealType">
-                                                <c:forEach items="${meals}" var="meal">
-									                <c:if test="${meal == mealtype}">
-                                                        <option value="${meal}" selected="selected"><c:out value="${meal}" /></option>
-									                </c:if>
-									                <c:if test="${meal != mealtype}">
-                                                        <option value="${meal}"><c:out value="${meal}" /></option>
-									                </c:if>
+                                                <c:forEach items="${foodItems}" var="food">
+	                                                <option value="${food.name}"><c:out value="${food.name}" /></option>
                                                 </c:forEach>
                                             </form:select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+	                                    <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">
+	                                      <spring:message code="label.invoice.quantity" text="Default Text"/>
+	                                    </label>
+                                        <div class="col-sm-8 col-xs-12">
+                                            <form:input  type="number" class="form-control" path="quantity" placeholder="0"/>
+                                            <form:errors path="quantity" cssClass="error" />
                                         </div>
                                     </div>
                                     <div class="form-group">

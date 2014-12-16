@@ -14,7 +14,10 @@
                                 <li class=''><a href='lunch.html'><span>Lunch</span></a></li>
                                 <li class=''><a href='dinner.html'><span>Dinner</span></a></li>
 <!--                                                                     <li class='last'><a href='account.html'><span>Account</span></a></li>
- -->                                
+ -->
                             </ul>
-                            
+                            <ul>
+                                <li class='has-sub active'><a href='#'><span>Food Management</span></a></li>
+                                <li class=''><a href='addFoodItems.html'><span>Add Food Items</span></a></li>    
+                            </ul>
                         </div>

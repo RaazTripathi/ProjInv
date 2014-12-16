@@ -19,6 +19,7 @@ import java.util.Date;
 	/* 15: */private Date resetDate;
 	/* 16: */private Date createdAt;
 	/* 17: */private Date updatedAt;
+	private Boolean paid;
 
 	/* 18: */
 	/* 19: */public EmployeeLeaves() {
@@ -135,6 +136,14 @@ import java.util.Date;
 		/* :9:90 */this.updatedAt = updatedAt;
 		/* ;0: */}
 	/* ;1: */
+
+	public Boolean getPaid() {
+		return paid;
+	}
+
+	public void setPaid(Boolean paid) {
+		this.paid = paid;
+	}
 }
 
 /*

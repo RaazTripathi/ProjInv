@@ -17,6 +17,9 @@
         <property name="leaveCount" type="big_decimal">
             <column name="leave_count" precision="5" scale="1" />
         </property>
+        <property name="paid" type="java.lang.Boolean">
+            <column name="paid" />
+        </property>
         <property name="leaveTaken" type="big_decimal">
             <column name="leave_taken" precision="5" scale="1" />
         </property>
