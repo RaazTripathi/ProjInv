@@ -76,7 +76,7 @@
                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                    <td>
                    
-                    <select name="empid">
+                    <select id="empid_selector" name="empid" onchange="calculateService()">
                     <c:forEach var="e" items="${employees}">
                     
                     <c:if test="${emp.id ==e.id}">
@@ -89,49 +89,119 @@
                                 </select>  
                 </td>
                     </tr>
-                 <tr><td>Joining Date </td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> <td> 
-                    <c:forEach var="e" items="${employees}">
-                    
-                    
-                                            <c:if test="${emp.id ==e.id}">
-                                                                                    
-                                                <input type="text" id="popupDatepicker" path="joiningDate" value="${e.joiningDate}" />
-                                                 </c:if>
-               
-                                     </c:forEach>  
-                                     
-                                           
-                               
-                  </td> </tr> 
+                 <tr>
+                   <td>Joining Date </td>
+                   <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                   <td><input type="text" readonly="true" id="joiningDate" path="joiningDate" value="" /></td>
+                   </tr> 
                    <tr><td>Current Date</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td> <input type="text" id="popupDatepicker1" path="currentdate" value=''  /></td></tr>
                    
-                  
-                   <tr><td> <input type="submit"></td></tr>
+                  <tr>
+                  	<td>Salary</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                  	<td><input type="text" id="salary" value="0" onchange="reward()" /></td>
+                  </tr>
+                  <tr>
+                    <td>Calculated Rewards</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td><input type="text" id="rewardDisplay" readonly="true" /></td>
+                   <tr>
+                   <td> <button onclick="reward()">Calculate Rewards</button> </td>
+                   <td> <input type="submit"></td></tr>
                    </table>
-                             
-                   
-                   
-                    </form>
-                    
+                 </form>
                   
-                   
-                  
-                   
-                  
-                   
-                   
-                    
-                    
-                    
-                    
                </div>
             </div>
             <div class=""></div>
             <div class=""></div>
         </div>
         <!-- /container -->
-        <!--Responsive Table-->
         <script type="text/javascript">
+        function intPart(floatNum){
+        	if (floatNum< -0.0000001){
+        		 return Math.ceil(floatNum-0.0000001)
+        		}
+        	return Math.floor(floatNum+0.0000001)
+        }
+        var delta = 1;
+        var jd=0;
+        var i=0;
+        var l=0;
+        var n=0;
+        var j=0;
+        var k=0;
+		function IslToGreg(arg) {
+			d = parseInt(arg.HDay)
+			m = parseInt(arg.HMonth)
+			y = parseInt(arg.HYear)
+			//added - delta=1 on jd to comply isna rulling
+			jd = intPart((11 * y + 3) / 30) + 354
+					* y + 30 * m
+					- intPart((m - 1) / 2) + d
+					+ 1948440 - 385 - delta
+			//arg.JD.value = jd
+			//arg.wd.value = weekDay(jd % 7)
+			if (jd > 2299160) {
+				l = jd + 68569
+				n = intPart((4 * l) / 146097)
+				l = l
+						- intPart((146097 * n + 3) / 4)
+				i = intPart((4000 * (l + 1)) / 1461001)
+				l = l - intPart((1461 * i) / 4)
+						+ 31
+				j = intPart((80 * l) / 2447)
+				d = l - intPart((2447 * j) / 80)
+				l = intPart(j / 11)
+				m = j + 2 - 12 * l
+				y = 100 * (n - 49) + i + l
+			} else {
+				j = jd + 1402
+				k = intPart((j - 1) / 1461)
+				l = j - 1461 * k
+				n = intPart((l - 1) / 365)
+						- intPart(l / 1461)
+				i = l - 365 * n + 30
+				j = intPart((80 * i) / 2447)
+				d = i - intPart((2447 * j) / 80)
+				i = intPart(j / 11)
+				m = j + 2 - 12 * i
+				y = 4 * k + n + i - 4716
+			}
+
+			arg.CDay = d
+			arg.CMonth = m
+			arg.CYear = y
+
+		}
+		</script>
+        <script type="text/javascript">
+          var empDetails = {};
+          <c:forEach var="e" items="${employees}">
+            var date=${e.joiningDate};
+            empDetails["${e.id}"]=date;
+          </c:forEach>
+          function calculateService(){
+        	  console.log("Populating joining dat for employee id: "+empid);
+        	  var empid = document.getElementById('empid_selector').value;
+        	  document.getElementById('joiningDate').value=empDetails[empid];
+          }
+          function reward(){
+        	  var joinDate = document.getElementById('joiningDate').value;
+        	  var present = document.getElementById('popupDatepicker1').value;
+        	  var salary = (parseInt(document.getElementById('salary').value)/2)/12;
+        	  //console.log(joinDate+present+salary);
+        	  var obj={};
+        	  obj.HYear=present.split('/')[0];
+        	  obj.HMonth=present.split('/')[1];
+        	  obj.HDay=present.split('/')[0];
+        	  IslToGreg(obj);
+        	  console.log(JSON.stringify(obj));
+        	  console.log(obj.CDay+'/'+obj.CMonth+'/'+obj.CYear);
+        	  console.log(joinDate);
+        	  var difference = (parseInt(obj.CYear)-parseInt(joinDate)-4)*12 + parseInt(obj.CMonth);
+        	  console.log(difference+' months difference');
+        	  console.log('reward: '+difference*salary);
+        	  document.getElementById('rewardDisplay').value = difference*salary;
+          }
         </script>
         <!-- Bootstrap core JavaScript
         ================================================== -->
@@ -143,6 +213,7 @@
         <script src="js/docs.min.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
+            	calculateService();
                 $('.row-delete').click(function(eve) {
                     var row = this;
                     eve.preventDefault();
@@ -178,11 +249,6 @@
         	  $('#popupDatepicker3').calendarsPicker({calendar: calendar});
         	});
         
-        $(function() {
-        	$("#popupDatepicker1").datepicker({
-        	        dateFormat: "yy-mm-dd"
-        	    }).datepicker("setDate", "0");
-        	})
         </script>
 
     </body>
