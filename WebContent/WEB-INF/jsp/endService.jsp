@@ -192,7 +192,7 @@
         	  var obj={};
         	  obj.HYear=present.split('/')[0];
         	  obj.HMonth=present.split('/')[1];
-        	  obj.HDay=present.split('/')[0];
+        	  obj.HDay=present.split('/')[2];
         	  IslToGreg(obj);
         	  console.log(JSON.stringify(obj));
         	  console.log(obj.CDay+'/'+obj.CMonth+'/'+obj.CYear);
