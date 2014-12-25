@@ -3,6 +3,7 @@ package com.tss.ocean.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Level;
@@ -63,9 +64,11 @@ public class CashierController
 	 * Handles the provided data from the meals entry page
 	 */
 	@RequestMapping(value = { "/addMealVoucher.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
-	public ModelAndView saveInvoiceData(@ModelAttribute("invoice") @Valid Invoice invoice, BindingResult result, ModelMap model, Locale locale) throws Exception {
+	public ModelAndView saveInvoiceData(@ModelAttribute("invoice") @Valid Invoice invoice, BindingResult result, ModelMap model, Locale locale,HttpSession session) throws Exception {
 		String status="";
 			status = "received the invoice data ";
+			int a= (Integer) session.getAttribute("finyear");
+invoice.setFinyear(a);
 			this.invoiceDAO.insertOrUpdate(invoice);
 			logger.log(Level.DEBUG, "Data saved successfully!");
 			if(invoice.getMealType()!=null)

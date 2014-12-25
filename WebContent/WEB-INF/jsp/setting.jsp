@@ -80,6 +80,8 @@
                                                     <option value="ROLE_PURCHASE">USER_PURCHASE</option>
                                                     <option value="ROLE_APPROVE">USER_APPROVE</option>
                                                     <option value="ROLE_CASHIER">USER_CASHIER</option>
+                                                    <option value="ROLE_INV_APPROVE">INVENTORY APPROVER</option>
+                                                    
                                                 
                                             </select>                                       
                                         </div>

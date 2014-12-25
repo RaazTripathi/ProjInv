@@ -66,8 +66,8 @@
                                         <li><a href='employee_category.html'><span><spring:message code="menu.employeecategory" text="Label value is missing !!!"/></span></a></li>
                                         <li class="active"><a href='employee_department.html'><span><spring:message code="menu.employeedepartment" text="Label value is missing !!!"/></span></a></li>
                                         <li class='last'><a href='payroll_category.html'><span><spring:message code="menu.payrollcategory" text="Label value is missing !!!"/></span></a></li>
-                                        <li class='last'><a href='bank.html'><span><spring:message code="menu.bank" text="Label value is missing !!!"/></span></a></li>
-
+<%--                                         <li class='last'><a href='bank.html'><span><spring:message code="menu.bank" text="Label value is missing !!!"/></span></a></li>
+ --%>
                                     </ul>
                                 </li>
 
@@ -446,7 +446,7 @@
                                         </div>
                                         
                                          <div class="form-group">
-                                            <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="nationality" text="Default Text"/></label>
+                                            <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.codeno.Nationality" text="Default Text"/></label>
                                             <div class="col-sm-8 col-xs-12">                                            
                                                 <form:input type="text" class="form-control" path="nationality" placeholder="Nationality" />
                                                 <form:errors path="nationality" cssClass="error" />
@@ -500,6 +500,16 @@
                                                 <form:errors path="salary" cssClass="error" />
                                             </div>
                                         </div>
+
+
+<div class="form-group">
+                                            <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.employee.codeno.Insurance" text="Default Text"/></label>
+                                            <div class="col-sm-8 col-xs-12">                                            
+                                                <form:input type="text" id="popupDatepicker4" class="form-control datepicker" path="insuranceexp" placeholder="insurance expirey" />
+                                                <form:errors path="insuranceexp" cssClass="error" />
+                                            </div>
+                                        </div>
+
 
                                         <div class="form-group">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="label.employee.bank" text="Default Text"/></label>
@@ -571,6 +581,8 @@
 	          $('#popupDatepicker1').calendarsPicker({calendar: calendar});
 	          $('#popupDatepicker2').calendarsPicker({calendar: calendar});
 	          $('#popupDatepicker3').calendarsPicker({calendar: calendar});
+	          $('#popupDatepicker4').calendarsPicker({calendar: calendar});
+
         });
         </script>
     </body>

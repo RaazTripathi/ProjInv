@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.tss.ocean.pojo.ClosedInvoice" table="ClosedInvoice" catalog="invmgmt">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="closedDate" type="date">
+            <column name="closedDate" />
+        </property>
+        
+        <property name="custNames" type="string">
+            <column name="custNames" />
+        </property>
+        
+                 <property name="amountt" type="float">
+            <column name="amountt" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

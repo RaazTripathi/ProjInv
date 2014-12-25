@@ -75,9 +75,9 @@
                                    
                                     
                                    <li class="active"><a href='itemapprove1.html'><span>Approve 1</span></a></li>
-                                   <li class="active"><a href='itemapprove2.html'><span>Approve 2</span></a></li>
+                                 <!--   <li class="active"><a href='itemapprove2.html'><span>Approve 2</span></a></li>
                                    <li class="active"><a href='itemapprove3.html'><span>Approve 3</span></a></li>
-                                    
+                                   -->  
                                    
                                     
                                     
@@ -147,14 +147,23 @@
                                                 <td><a href="updatecurtstock.html?updatecurrentstock=${listVar.id}"><c:out value="${listVar.currstock}"/></td>
                                                 <td data-value="78025368997"><c:out value="${listVar.unitid.name}"/></td>
                                                 <td data-value="1"><span class="status-metro status-active" title="Active"><c:out value="${listVar.price}"/></span></td>
-                                               <td class="bcod">
-                                               
-                                               
-                                               <c:if test="${listVar.barcode!=0}"><button>
-                                               <div onclick="printbarcode(this)" class="bcTarget" rel="${listVar.barcode}">
-                                            
-                                               
-                                               </div>  </button>   </c:if></td>
+                                               <td class="bcod"><c:choose>
+														<c:when test="${listVar.barcode!=0}">
+															<button>
+																<div onclick="printbarcode(this)" class="bcTarget"
+																	rel="${listVar.barcode}"></div>
+															</button>
+														</c:when>
+
+														<c:otherwise>
+															<button>
+																<div onclick="printbarcode(this)" class="bcTarget"
+																	rel="10000${listVar.id}"></div>
+															</button>
+														</c:otherwise>
+													</c:choose>
+													</td>
+
                                                
                                                <td>
                                                <img width="50" height="50" alt="thumbnail" src="upload/${listVar.filename}">

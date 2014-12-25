@@ -382,7 +382,13 @@ public ModelAndView getEmployyes(@RequestParam(value="success", required=false) 
 /* 370:388 */     ModelAndView mav = new ModelAndView("add_employee");
 /* 371:389 */     Employees employee = new Employees();
 
-this.employeesDAO.insert(employee);
+
+ List<Employees> el=this.employeesDAO.getListByHQLQuery("from  Employees order by id DESC LIMIT 1");
+
+
+
+employee.setId(el.get(0).getId()+1);
+
 /* 372:390 */     if (success != null) {
 /* 373:391 */       mav.getModelMap().put("success", success);
 /* 374:    */     }

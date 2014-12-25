@@ -128,7 +128,7 @@ int a= (Integer) session.getAttribute("finyear");
 		Dateselecter ds=new Dateselecter();
 		ds.setfinyear(a);
 		
-		List<Invoice> invoices = this.invoiceDAO.getListByHQLQuery("from Invoice i where   i.date > '"+ds.getFinyearStart()+"'  and i.date <   '"+ds.getFinyearEnd()+"' " );
+		List<Invoice> invoices = this.invoiceDAO.getListByHQLQuery("from Invoice i where   i.finyear='"+a+"'" );
 
 		
 		

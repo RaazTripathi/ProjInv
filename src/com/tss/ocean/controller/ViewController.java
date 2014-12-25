@@ -78,7 +78,7 @@ import com.tss.ocean.pojo.Itemunit;
 			System.out.println("______________________________" + i.getName());
 
 		}
-		model.addAttribute("itemList", this.itemDAO.getListByKeyandValue("approvelevel", 4));
+		model.addAttribute("itemList", this.itemDAO.getListByKeyandValue("approvelevel", 2));
 		return "item";
 		}
 
@@ -87,7 +87,7 @@ import com.tss.ocean.pojo.Itemunit;
 	
 	
 	@RequestMapping(value = { "/itemapprove1.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
-	@PreAuthorize("hasAnyRole('ROLE_INVENTORY','ROLE_ADMIN') ")
+	@PreAuthorize("hasAnyRole('ROLE_INV_APPROVE','ROLE_ADMIN') ")
 	public String itemapr1(Model model, HttpServletRequest request)
 	throws Exception
 	{

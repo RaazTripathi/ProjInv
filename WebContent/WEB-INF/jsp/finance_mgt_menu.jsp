@@ -57,15 +57,16 @@
     </li>
     
     <li class=''><a href='finapprovelevel3.html'><span>Club Manger</span></a>
+    
+    <li class=''><a href='finapprovelevel4.html'><span>Final Approved list</span></a>
     </li>
     </ul>
       
     </li>
-     <li class=''><a href='journal.html'><span>Journal Entry</span></a></li>
-        <li class=''><a href='incomming.html'><span>Invoice</span></a></li>
     
-    
-    
+    <li class=''><a href='closedInvoice.html'><span>Cashier Closed Invoice </span></a></li>
+    <li class=''><a href='journal.html'><span>Journal Entry</span></a></li>
+    <li class=''><a href='incomming.html'><span>Invoice</span></a></li>
     <li class=''><a href='incomming.html'><span>Incoming</span></a></li>
     <li class=''><a href='outgoing.html'><span>Outgoing</span></a></li>
     <li class=''><a href='profitandloss.html'><span>Profit/Loss</span></a></li>

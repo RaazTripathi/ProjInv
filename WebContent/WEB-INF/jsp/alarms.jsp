@@ -17,7 +17,7 @@
                     <div class="desh-icon-bg">
                         <img src="img/i-mgmt.png">
                     </div>
-                    <div class="page-title-text">Alarms</div>
+                    <div class="page-title-text"><spring:message code="alarm.heading" text="Alarms"/></div>
                 </div>
             </div>	
             <div class="row">
@@ -28,8 +28,8 @@
                         <!-- MUNU -->    
                         <div id='cssmenu'>
                             <ul>
-                                <li class='active'><a href='alarms.html'><span>Alams</span></a></li>
-                                <li class=''><a href='alarms_events.html'><span>Alams Event</span></a></li>
+                                <li class='active'><a href='alarms.html'><span> <spring:message code="alarm.heading" text="Alarms"/></span></a></li>
+                                <li class=''><a href='alarms_events.html'><span><spring:message code="alarm.event" text="Alams Event"/></span></a></li>
                             </ul>
                         </div>
                         <!-- END MUNU -->    
@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-md-9">
                     <div class="catagory-main-box top-radius">
-                        <div class="cat-box-title cat-title-font top-radius">Alarms list</div>
+                        <div class="cat-box-title cat-title-font top-radius"><spring:message code="alarm.list" text="Alarms list"/></div>
 
                         <div class="tab-content">
                             <div class="tab-pane active" id="demo">
@@ -78,7 +78,7 @@
                                             </th>
                                             <th data-hide="phone">
                                                 Action
-                                            </th>
+                                            </th>                                                                                                                                             
                                         </tr>
                                     </thead>
                                     <tbody>

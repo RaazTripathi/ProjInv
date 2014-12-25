@@ -15,6 +15,10 @@
             <column name="username" />
         </property>
         
+         <property name="insuranceexp" type="string">
+            <column name="insuranceexp" />
+        </property>
+        
         
         <property name="nationality" type="string">
             <column name="nationality" />

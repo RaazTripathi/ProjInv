@@ -115,6 +115,35 @@ System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmm"+a);
 		return "redirect:debitlist.html";
 	}
 	
+	
+	@RequestMapping(value = { "/updateDebitCredit.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
+	public String updateDebit(@ModelAttribute("journal") Journal journal,HttpSession session) throws Exception {
+		logger.info("************************************");
+		/*List<Asset> assets = this.assetDAO.getList();
+		logger.info("returned with "+assets.size()+" cash invoices");
+		
+	float	total = 0;
+	
+		for(Asset a:assets)
+		{
+			total=total+a.getPrice();
+		}*/
+	
+		int a= (Integer) session.getAttribute("finyear");
+System.out.println("mmmmmmmmmmmmmmmmmmmmmmmmmm"+a);
+/*		journal.setType("DEBIT");
+*/		journal.setFinyear(a);
+		journalDao.update(journal);
+		return "redirect:debitlist.html";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping(value = { "/addCredit.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.POST })
 	public String addCredit(@ModelAttribute("journal") Journal journal,HttpSession session) throws Exception {
 		logger.info("************************************");
@@ -199,7 +228,7 @@ journal.setFinyear(a);
 	@RequestMapping(value = { "/creditlist.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	public ModelAndView creditlist(@ModelAttribute("dataselecter") Dateselecter ds,HttpSession session) throws Exception {
 		logger.info("************************************");
-		System.out.println(ds.getFrom()+"---------------------------------");
+		System.out.println(ds.getFrom()+"--------------------------------- "+ds.getTo());
 		int a= (Integer) session.getAttribute("finyear");
 
 	List <Journal> jlist=journalDao.getListByHQLQuery("from Journal where date >  '"+ds.getFormattedfrom()+"' and  date < '"+ds.getFormattedto()+"' and type='CREDIT' and finyear="+a);
@@ -284,7 +313,9 @@ journal.setFinyear(a);
 		int a= (Integer) session.getAttribute("finyear"); 
 
 /*		List <FinRecptInvoice> jlist=finRecptinvoiceDAO.getListByKeyandValue("type","CREDIT");
-*/				List <Journal> jlist=journalDao.getListByHQLQuery("from Journal where type='DEBIT'  and finyear="+a);
+*/		
+		
+		List <FinRecptInvoice> jlist=finRecptinvoiceDAO.getListByHQLQuery("from FinRecptInvoice where type='CREDIT'  and finyear="+a);;
 
 	ModelAndView mv=new ModelAndView("credit-recept-list");
 	mv.getModelMap().put("journal", jlist);
@@ -356,6 +387,34 @@ journal.setFinyear(a);
 		
 		
 	}
+	
+	
+	
+	@RequestMapping(value = { "/finapprovelevel4.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_FININC')")
+	public ModelAndView finapprovelevel4(@ModelAttribute("dataselecter") Dateselecter ds,HttpSession session) throws Exception {
+		logger.info("************************************");
+		System.out.println(ds.getFrom()+"---------------------------------");
+		int a= (Integer) session.getAttribute("finyear"); 
+
+		List <CashTransferReq> ctr	= cashtransreq.getListByHQLQuery("from CashTransferReq where  approvelevel2=1 and finyear="+a);
+		List <FinRecptInvoice> jlist=finRecptinvoiceDAO.getListByHQLQuery(" from FinRecptInvoice where apelevel4=1 and finyear="+a);
+
+		/*List <CashTransferReq> ctr	= cashtransreq.getListByKeyandValue("approvelevel2", 1);
+
+		List <FinRecptInvoice> jlist=finRecptinvoiceDAO.getListByKeyandValue("apelevel3",1);
+*/	
+	ModelAndView mv=new ModelAndView("approve-level3recept-list");
+	mv.getModelMap().put("journal", jlist);
+	mv.getModelMap().put("ctrl", ctr);
+
+		return mv;
+		
+		
+	}
+
+	
+	
 	
 	@RequestMapping(value = { "/updateapprove.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
 	@PreAuthorize("hasAnyRole('ROLE_ADMIN','ROLE_FININC','ROLE_CLUBINC','ROLE_ACCMANAGER')")
@@ -445,7 +504,21 @@ journal.setFinyear(a);
 
 	
 	
-	
+	@RequestMapping(value = { "/debitandcreditupdate.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView debitandcreditupdate(@RequestParam int id) throws Exception {
+		ModelAndView mv=new ModelAndView("debitandcreditupdate");
+		List<FinAccount> otherMain= finaccDao.getMainAccounts();
+
+		Journal j=journalDao.getRecordByPrimaryKey(id);
+		
+		mv.getModelMap().put("types", otherMain);
+		mv.getModelMap().put("flash", "Enter the debit voucher entries");
+		mv.getModelMap().put("useFinanceMenus", "true");
+		mv.getModelMap().put("type", "0");
+		
+		mv.getModelMap().put("journal", j);
+		return mv;
+	}
 	
 	
 	

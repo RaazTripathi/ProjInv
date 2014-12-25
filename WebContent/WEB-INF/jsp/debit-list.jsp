@@ -120,7 +120,9 @@ Remark text                                            </th>
                                          
                                                <td>${jn.date}  <input type="hidden" name="id" value="${jn.id}" class="hid"></td>  
                                               
-                                                <td>${jn.journalNo}</td>                                                
+                                                <td>
+                                                
+                                                <a href="debitandcreditupdate.html?id=${jn.id}">     ${jn.journalNo}</a></td>                                                
                                                <td>${jn.price}</td>
                                                 <td>${jn.remark}</td>
                                                 
@@ -279,7 +281,7 @@ $(function() {
      <input type="hidden" name="id" value="" id="hiddenid">
     
   Inter recept no :  <input type="text" name="receptno" class="form-control"> <br>
-    Select date:  <input type="text" name="recptdate" class="datepicker form-control"> 
+    Select date:  <input type="text" name="recptdate" class="popupDatepicker form-control"> 
 
 <input type="button" value="Print" class="btn btn-orange" id="submitrecptform"  >
 

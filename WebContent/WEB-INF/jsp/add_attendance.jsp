@@ -67,8 +67,8 @@
                                         <li><a href='employee_category.html'><span><spring:message code="menu.employeecategory" text="Label value is missing !!!"/></span></a></li>
                                         <li class="active"><a href='employee_department.html'><span><spring:message code="menu.employeedepartment" text="Label value is missing !!!"/></span></a></li>
                                         <li class='last'><a href='payroll_category.html'><span><spring:message code="menu.payrollcategory" text="Label value is missing !!!"/></span></a></li>
-                                        <li class='last'><a href='bank.html'><span><spring:message code="menu.bank" text="Label value is missing !!!"/></span></a></li>
-                                    </ul>
+<%--                                         <li class='last'><a href='bank.html'><span><spring:message code="menu.bank" text="Label value is missing !!!"/></span></a></li>
+ --%>                                    </ul>
                                 </li>
 
                             </ul>
@@ -199,7 +199,13 @@
         <!-- Jquery UI Javascript -->
         <script src="js/jquery-ui.js"></script>
         <script type="text/javascript">
-                                         $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+/*                                          $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+ */                                         $(function() {
+                                          	  var calendar = $.calendars.instance('islamic');
+                                          	  $('.datepicker').calendarsPicker({calendar: calendar});
+                                          	  $('#inlineDatepicker').calendarsPicker({calendar: calendar, onSelect: showDate});
+                                          	});
+                                         
         </script>
     </body>
 </html>

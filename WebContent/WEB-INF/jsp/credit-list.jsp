@@ -50,7 +50,7 @@
                 <div class="col-md-9">
                
                     <div class="catagory-main-box top-radius">
-                        <div class="cat-box-title cat-title-font top-radius">Debit List</div>
+                        <div class="cat-box-title cat-title-font top-radius">Credit List</div>
                         <spring:message text="Default Text" code="purrequisition.search.placeholder" var="search"/>
                         <div class="tab-content">
                             <div class="tab-pane active" id="demo">
@@ -59,8 +59,8 @@
                                      <div class="col-sm-12" align="center">
                                       
                                       <form action="creditlist.html" method="get" >
-                                From date     <input name="from" type="text" class="datepicker " style="margin-left:5em"><br><br>
-                                      To Date  <input name="to" type="text" class="datepicker " style="margin-left:6em"><br><br>
+                                From date     <input name="from" type="text" class="popupDatepicker " style="margin-left:5em"><br><br>
+                                      To Date  <input name="to" type="text" class="popupDatepicker " style="margin-left:6em"><br><br>
                                       
                                       <input type="submit" value="Search" style="margin-left:5em"/>
                                       
@@ -83,12 +83,19 @@
                                 </div>
                                 
                                 <c:if test="${journal!=null}">
+                                <div><input type="button" class="rowwclick" value="Create receipt"></div>
+                                <br>
+                                
                                 <table id="dttable" class="table table-bordered table-striped"  data-page-size="5">
                                     <thead class="orange-bg border-t">
                                         <tr>
+                                           <th data-hide="phone">
+Select                                           </th>
+                                            
+                                          
                                           
                                            <th data-hide="phone">
-Journal No                                            </th>
+Date                                           </th>
                                             
                                             <th data-hide="phone">
 Journal No                                            </th>
@@ -103,10 +110,21 @@ Remark text                                            </th>
                                     </thead>
                                     <tbody>
                                         <c:forEach var="jn" items="${journal}">
+                                         
+                                         
+                                         
                                             <tr class="rowclick">
+                                         
+                                          <td><input type="checkbox"  name="ids" class="ids" value="${jn.id}">
+  </td>  
+                                         
                                                <td>${jn.date}  <input type="hidden" name="id" value="${jn.id}" class="hid"></td>  
                                               
-                                                <td>${jn.journalNo}</td>                                                
+                                                <td>
+                                         
+                                                                                                <a href="debitandcreditupdate.html?id=${jn.id}">     ${jn.journalNo}</a></td>                                                
+                                                
+                                                                                               
                                                <td>${jn.price}</td>
                                                 <td>${jn.remark}</td>
                                                 
@@ -157,8 +175,50 @@ Remark text                                            </th>
         
         <script type="text/javascript">
         
+        (function($) {
+            $.ui.datepicker.regional['ar'] = {
+                    renderer: $.ui.datepicker.defaultRenderer,
+                    monthNames: ['كانون الثاني', 'شباط', 'آذار', 'نيسان', 'آذار', 'حزيران',
+                    'تموز', 'آب', 'أيلول',  'تشرين الأول', 'تشرين الثاني', 'كانون الأول'],
+                    monthNamesShort: ['1','2','3','4','5','6','7','8','9','10','11','12'],
+                    dayNames: ['السبت', 'الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة'],
+                    dayNamesShort: ['سبت', 'أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة'],
+                    dayNamesMin: ['سبت', 'أحد', 'اثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة'],
+                    dateFormat: 'dd/mm/yyyy',
+                    firstDay: 0,
+                    prevText: '&#x3c;السابق', prevStatus: '',
+                    prevJumpText: '&#x3c;&#x3c;', prevJumpStatus: '',
+                    nextText: 'التالي&#x3e;', nextStatus: '',
+                    nextJumpText: '&#x3e;&#x3e;', nextJumpStatus: '',
+                    currentText: 'اليوم', currentStatus: '',
+                    todayText: 'اليوم', todayStatus: '',
+                    clearText: '-', clearStatus: '',
+                    closeText: 'إغلاق', closeStatus: '',
+                    yearStatus: '', monthStatus: '',
+                    weekText: 'أسبوع', weekStatus: '',
+                    dayStatus: 'DD d MM',
+                    defaultStatus: '',
+                    isRTL: true
+            };
+            $.extend($.ui.datepicker.defaults, $.ui.datepicker.regional['ar']);
+    })(jQuery);
+        
+        </script>
+        
+        
+        
+        <script type="text/javascript">
+        
 $(function() {
-        	
+        	var ids=[];
+	
+	$('.ids').click(function(){
+		
+		ids.push($(this).val());
+		
+	});
+	
+	
         	$('.dialog').dialog({
         		autoOpen: false,
         		title: 'Create recept'
@@ -167,9 +227,9 @@ $(function() {
         var	dialoger;
         var hid;
         	
-        	$( ".rowclick" ).click(function(){
+        	$( ".rowwclick" ).click(function(){
         		
-        		$( "#hiddenid" ).val($(this).find('.hid').val());
+        		$( "#hiddenid" ).val(ids);
         		
         		dialoger=$(this);
         		 
@@ -187,15 +247,17 @@ $(function() {
         		    $('#myfrm').submit();
         		    
         	});
-        
-        
-        
-        
-        });
+                });
         
         
             $(document).ready(function() {
                 $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+                
+                $(function() {
+               	  var calendar = $.calendars.instance('islamic');
+               	  $('.popupDatepicker').calendarsPicker({calendar: calendar});
+               	  $('#inlineDatepicker').calendarsPicker({calendar: calendar, onSelect: showDate});
+               	});
 
                 var table = $('#dttable').DataTable();
                 $('.row-delete').click(function(eve) {
@@ -221,7 +283,7 @@ $(function() {
      <input type="hidden" name="id" value="" id="hiddenid">
     
   Inter recept no :  <input type="text" name="receptno" class="form-control"> <br>
-    Select date:  <input type="text" name="recptdate" class="datepicker form-control"> 
+    Select date:  <input type="text" name="recptdate" class="popupDatepicker form-control"> 
 
 <input type="button" value="Print" class="btn btn-orange" id="submitrecptform"  >
 

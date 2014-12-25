@@ -26,6 +26,9 @@ public class Invoice implements Serializable {
 	
 	private int mealaccount;
 	
+	
+private int	closebycashier;
+	
 	public int getFinyear() {
 		return finyear;
 	}
@@ -160,6 +163,14 @@ public class Invoice implements Serializable {
 
 	public void setMealaccount(int mealaccount) {
 		this.mealaccount = mealaccount;
+	}
+
+	public int getClosebycashier() {
+		return closebycashier;
+	}
+
+	public void setClosebycashier(int closebycashier) {
+		this.closebycashier = closebycashier;
 	}
 
 }

@@ -69,7 +69,7 @@
                 <div class="col-md-9" align="center" style="">
                    
                    <br>
-                   <form action="serviceEndReq.html">
+                   <form action="penaltyReq.html">
                    <table>
                    <tr>
                    <td> Select Employee </td>
@@ -91,18 +91,16 @@
                 </td>
                     </tr>
                  <tr>
-                   <td>Joining Date </td>
+                   <td>leave days  </td>
                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                   <td><input type="text" readonly="true" id="joiningDate"  value="${emp.joiningDate}" /></td>
+                   <td><input type="text"  id="ldays"  value="" /></td>
                    </tr> 
-                   <tr><td>Current Date</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td><td> <input type="text" id="popupDatepicker1"  value=''  /></td></tr>
-                   
-                  <tr>
+                  
                   	<td>Salary</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                   	<td><input type="text" id="salary" value="${emp.salary}" onchange="reward()" /></td>
                   </tr>
                   <tr>
-                    <td>Calculated Rewards</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>penalty</td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                     <td><input type="text" id="rewardDisplay" readonly="true" /></td>
                    <tr>
                    <td> <button type="button" onclick="reward()">Calculate Rewards</button> </td>
@@ -185,9 +183,8 @@
         	  var empid = document.getElementById('empid_selector').value;
           }
           function reward(){
-        	  var joinDate = document.getElementById('joiningDate').value;
-        	  var present = document.getElementById('popupDatepicker1').value;
-        	  var salary = (parseInt(document.getElementById('salary').value)/2)/12;
+        	  var ldays = document.getElementById('ldays').value;
+        	  var penalty = (parseInt(document.getElementById('salary').value)/30)*(parseInt(ldays));
         	  //console.log(joinDate+present+salary);
         	 /*  var obj={};
         	  obj.HYear=present.split('/')[0];
@@ -205,13 +202,8 @@
          
           
           
-        	  var date1 = new Date(joinDate);
-        	  var date2 = new Date(present);
-        	  var timeDiff = Math.abs(date2.getTime() - date1.getTime());
-        	  var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
-        	  var rewards= salary *(diffDays / 30);
-          
-        	  document.getElementById('rewardDisplay').value = rewards;
+        	
+        	  document.getElementById('rewardDisplay').value = penalty;
           }
         </script>
         <!-- Bootstrap core JavaScript

@@ -1,4 +1,5 @@
 package com.tss.ocean.controller;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.tss.ocean.dao.ClosedInvoiceDAO;
 import com.tss.ocean.dto.Dateselecter;
 import com.tss.ocean.idao.IFinAccountDAO;
 import com.tss.ocean.idao.IInvoiceDAO;
 import com.tss.ocean.idao.IItemDAO;
+import com.tss.ocean.pojo.ClosedInvoice;
 import com.tss.ocean.pojo.FinAccount;
 import com.tss.ocean.pojo.Invoice;
 import com.tss.ocean.pojo.Item;
@@ -44,6 +47,10 @@ public class InvoiceController {
 	
 	@Autowired
 	IFinAccountDAO finAccDAO;
+	
+	@Autowired
+	
+	ClosedInvoiceDAO closedinvoiceDao;
 
 	/*
 	 * Maps to the invoice filling form
@@ -158,6 +165,118 @@ public class InvoiceController {
 		mav.getModelMap().put("title_text", "Cash based invoice");
 		return mav;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = { "/cashierclose.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView invoicesforclose(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale,HttpSession session) throws Exception {
+	
+		
+		logger.info("Starting the save of data.");
+		
+		int a= (Integer) session.getAttribute("finyear");
+		
+		Dateselecter ds=new Dateselecter();
+		ds.setfinyear(a);
+		
+		List<Invoice> invoices = this.invoiceDAO.getListByHQLQuery("from Invoice i where i.closebycashier=0  " );
+
+		logger.info("returned with "+invoices.size()+" cash invoices");
+		ModelAndView mav = new ModelAndView("cashierClose");
+		mav.getModelMap().put("useFinanceMenus", "true");
+		mav.getModelMap().put("invoices", invoices);
+		mav.getModelMap().put("title_text", "Cash based invoice");
+		return mav;
+	}
+
+	
+	
+	@RequestMapping(value = { "/closedInvoice.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView closedInvoice(@RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale,HttpSession session) throws Exception {
+	
+		
+		logger.info("Starting the save of data.");
+		
+		int a= (Integer) session.getAttribute("finyear");
+		
+		Dateselecter ds=new Dateselecter();
+		ds.setfinyear(a);
+		
+		List<ClosedInvoice> ci = closedinvoiceDao.getList();
+				
+		ModelAndView mav = new ModelAndView("closed_invoice_list");
+		mav.getModelMap().put("useFinanceMenus", "true");
+		mav.getModelMap().put("invoices", ci);
+		mav.getModelMap().put("title_text", "Cash based invoice");
+		return mav;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping(value = { "/cashiercloseact.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView invoicesforclosed( @RequestParam int [] ids,   @RequestParam(value="success", required=false) String success, @RequestParam(value="error", required=false) String error, Locale locale,HttpSession session) throws Exception {
+	
+		
+		ClosedInvoice ci=new ClosedInvoice();
+		
+		int i=0;
+		while(i<ids.length)
+		{
+			Invoice invoice=invoiceDAO.getRecordByPrimaryKey(ids[i]); 
+			invoice.setClosebycashier(1);
+			
+			ci.setAmountt( (ci.getAmountt()+ Float.parseFloat(invoice.getGrossAmount()+"")));
+			
+			ci.setClosedDate(new Date());
+			
+			ci.setCustNames(ci.getCustNames()+ invoice.getBuyerName()+" ,");
+//			invoiceDAO.update(invoice);
+			i++;
+		}
+		closedinvoiceDao.insert(ci);
+		
+		logger.info("Starting the save of data.");
+		
+		int a= (Integer) session.getAttribute("finyear");
+		
+		Dateselecter ds=new Dateselecter();
+		ds.setfinyear(a);
+		
+		List<Invoice> invoices = this.invoiceDAO.getListByHQLQuery("from Invoice i where i.closebycashier=0 and  " );
+
+		ModelAndView mav = new ModelAndView("cashierClose");
+		mav.getModelMap().put("useFinanceMenus", "true");
+		mav.getModelMap().put("invoices", invoices);
+		mav.getModelMap().put("title_text", "Cash based invoice");
+		return mav;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	/*
 	 * Provides the report of the bank collections within finance section
 	 */

@@ -17,7 +17,11 @@
  -->
                             </ul>
                             <ul>
-                                <li class='has-sub active'><a href='#'><span>Food Management</span></a></li>
+                                <li class='has-sub '><a href='#'><span>Food Management</span></a></li>
                                 <li class=''><a href='addFoodItems.html'><span>Add Food Items</span></a></li>    
+                           
+                          <li class=''><a href='cashierclose.html'><span>Close</span></a></li>    
+                           
                             </ul>
+                            
                         </div>

@@ -138,7 +138,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.purrequisition.createdat" text="Default Text"/></label>
                                         <div class="col-sm-8 col-xs-12">                                            
-                                            <form:input type="text" class="form-control datepicker" path="createdat" placeholder="${createdatplaceholder}" />
+                                            <form:input type="text" class="form-control Popupdatepicker" path="createdat" placeholder="${createdatplaceholder}" />
                                             <form:errors path="createdat" cssClass="error" />
                                         </div>
                                     </div>
@@ -171,7 +171,13 @@
         <!-- Jquery UI Javascript -->
         <script src="js/jquery-ui.js"></script>
         <script type="text/javascript">
-          $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+/*           $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+ */          
+          $(function() {
+           	  var calendar = $.calendars.instance('islamic');
+           	  $('.datepicker').calendarsPicker({calendar: calendar});
+           	  $('#inlineDatepicker').calendarsPicker({calendar: calendar, onSelect: showDate});
+           	});
         </script>
     </body>
 </html>

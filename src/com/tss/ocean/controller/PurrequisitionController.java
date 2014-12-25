@@ -200,7 +200,7 @@ import org.springframework.web.servlet.ModelAndView;
 			/* 121: */{
 				/* 122:134 */purrequisition.setNextapprovedby(Integer
 						.valueOf(approvers.getUserid()));
-				/* 123:135 */purrequisition.setStatus(Integer.valueOf(1));
+				/* 123:135 *//*purrequisition.setStatus(Integer.valueOf(1));*/
 				/* 124: */}
 			/* 125: */else
 			/* 126: */{
@@ -213,7 +213,7 @@ import org.springframework.web.servlet.ModelAndView;
 					/* 132: */}
 				/* 133:143 */purrequisition.setNextapprovedby(Integer
 						.valueOf(0));
-				/* 134:144 */purrequisition.setStatus(Integer.valueOf(5));
+				/* 134:144 *//*purrequisition.setStatus(Integer.valueOf(5));*/
 				/* 135: */}
 			/* 136:146 */purrequisition.setCreatedby(Integer.valueOf(1));
 			/* 137:147 */purrequisition.setPrno(Utilities.getRandomString(10));
@@ -225,7 +225,7 @@ import org.springframework.web.servlet.ModelAndView;
 			int a=(Integer) session.getAttribute("finyear");
 			
 			purrequisition.setFinyear(a);
-			
+			System.out.println(">>>>>>>>>>>>>>>>>>>>"+purrequisition.getStatus());
 			
 			int insertResult = ((Integer) this.purrequisitionDAO
 					.insert(purrequisition)).intValue();

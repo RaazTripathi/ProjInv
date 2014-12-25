@@ -174,7 +174,12 @@
         <!-- Jquery UI Javascript -->
         <script src="js/jquery-ui.js"></script>
         <script type="text/javascript">
-          $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+/*           $('.datepicker').datepicker({dateFormat: 'dd/mm/yy'});
+ */          $(function() {
+           	  var calendar = $.calendars.instance('islamic');
+           	  $('.datepicker').calendarsPicker({calendar: calendar});
+           	  $('#inlineDatepicker').calendarsPicker({calendar: calendar, onSelect: showDate});
+           	});
         </script>
     </body>
 </html>

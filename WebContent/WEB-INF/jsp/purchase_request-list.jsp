@@ -58,8 +58,8 @@
                                 <div class="row tb-margin">
                                    
                                     <div class="col-sm-4">
-                                        <a href="add-purchase_request.html" class="btn btn-info add-row addrow-btn-left"><spring:message code="purrequisition.add" text="Label value is missing !!!"/></a>
-                                    </div>
+<%--                                         <a href="add-purchase_request.html" class="btn btn-info add-row addrow-btn-left"><spring:message code="purrequisition.add" text="Label value is missing !!!"/></a>
+ --%>                                    </div>
                                     <div class="col-sm-8">
                                         <!--<div class="form-group visible-sm visible-md visible-lg">
                                             <label class="col-sm-4 col-xs-12 control-label search-text"><spring:message code="purrequisition.search" text="Label value is missing !!!"/></label>

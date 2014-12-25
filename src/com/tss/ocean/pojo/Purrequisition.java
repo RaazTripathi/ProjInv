@@ -55,7 +55,24 @@ import org.springframework.format.annotation.DateTimeFormat;
 	
 	int finyear;
 	
-	
+	int quantity;
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getStock() {
+		return stock;
+	}
+
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	int stock;
 	public int getFinyear() {
 		return finyear;
 	}

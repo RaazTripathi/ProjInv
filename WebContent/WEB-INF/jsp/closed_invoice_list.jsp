@@ -76,18 +76,18 @@
                                     <tbody>
                                         <c:forEach var="invoice" items="${invoices}">
                                             <tr  class="rowclick">
-                                                <td class="tdhid">${invoice.date} 
+                                                <td class="tdhid">${invoice.closedDate} 
                                                 
                                                 
                                               
-                                                <td>${invoice.buyerName}</td>
+                                                <td>${invoice.custNames}</td>
                                                
-                                                <td>${invoice.grossAmount}</td>
+                                                <td>${invoice.amountt}</td>
                                                 
                                                
                                             </tr>  
                                             </c:forEach>
-                                            <tr>
+                                        <%--     <tr>
                                                 
                                                 <td colspan="">Total</td>
                                                 <td colspan=""></td>
@@ -97,7 +97,7 @@
                                                 
                                                
                                             </tr>                                         
-                                        
+ --%>                                        
                                     </tbody>
                                     <!--<tfoot class="hide-if-no-paging">
                                         <tr>

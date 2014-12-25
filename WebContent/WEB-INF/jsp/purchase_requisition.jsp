@@ -114,7 +114,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm"><spring:message code="label.purrequisition.status" text="Default Text"/></label>
                                         <div class="col-sm-8 col-xs-12">
-                                            <form:select class="form-control" path="status">
+                                            <form:select class="form-control" path="status" >
                                                 <form:options items="${statusList}" />
                                             </form:select>
                                             <form:errors path="status" cssClass="error" />
@@ -151,6 +151,25 @@
                                             <form:errors path="items" cssClass="error" />
                                         </div>
                                     </div>
+                                    
+                                    
+                                    <div class="form-group">
+                                        <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">Quantity</label>
+                                        <div class="col-sm-8 col-xs-12">                                            
+                                            <form:input type="text" class="form-control " id="quantity" path="quantity" placeholder="${createdatplaceholder}" />
+                                            <form:errors path="items" cssClass="error" />
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                     <div class="form-group">
+                                        <label class="col-sm-4 col-xs-12 control-label search-text visible-lg visible-md visible-sm">Stock</label>
+                                        <div class="col-sm-8 col-xs-12">                                            
+                                            <form:input type="text" class="form-control " id="stock" path="stock" placeholder="${createdatplaceholder}" />
+                                            <form:errors path="items" cssClass="error" />
+                                        </div>
+                                    </div>
+                                    
                                     <div class="col-sm-2"></div>
                                 </div>
                                 <div class="div-center">

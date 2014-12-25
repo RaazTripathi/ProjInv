@@ -43,6 +43,12 @@
         <property name="quantity" type="java.lang.Integer">
         	<column name="quantity" />
         </property>
+       
+         <property name="closebycashier" type="java.lang.Integer">
+        	<column name="closebycashier" />
+        </property>
+        
+        
         <property name="mealType" type="string">
             <column name="meal_type" />
         </property>

@@ -94,6 +94,16 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 	/* 83: */private Integer bankId;
 	/* 84: */private String accountNumber;
 	/* 85: */private String codeNumber;
+	
+	
+	private String insuranceexp;
+	
+	
+	
+	
+	
+	
+	float monthlypenalty;
 String nationality;
 	public String getNationality() {
 	return nationality;
@@ -953,6 +963,22 @@ public void setNationality(String nationality) {
 		/* 774:652 */this.password = password;
 		/* 775: */}
 	/* 776: */
+
+	public float getMonthlypenalty() {
+		return monthlypenalty;
+	}
+
+	public void setMonthlypenalty(float monthlypenalty) {
+		this.monthlypenalty = monthlypenalty;
+	}
+
+	public String getInsuranceexp() {
+		return insuranceexp;
+	}
+
+	public void setInsuranceexp(String insuranceexp) {
+		this.insuranceexp = insuranceexp;
+	}
 }
 
 /*

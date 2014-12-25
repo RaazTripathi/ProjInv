@@ -606,6 +606,49 @@ import org.springframework.web.servlet.ModelAndView;
 	}
 	
 	
+	@RequestMapping(value = { "/penalty.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView penalty(Model model) {
+		logger.debug("Calling the reports of the employees");
+		List<Employees> employees = this.employeesDAO.getList();
+		logger.debug("Total employees found:" + employees.size());
+		ModelAndView report = new ModelAndView("penalty");
+		report.getModelMap().put("employees", employees);
+		//System.out.println("////////////////////////////////>"+report.toString());
+		return report;
+	}
+	
+	
+	
+	@RequestMapping(value = { "/penaltyReq.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView penalty(Model model,@RequestParam int empid) {
+		logger.debug("Calling the reports of the employees");
+		Employees employee = this.employeesDAO.getRecordByPrimaryKey(empid);
+		List<Employees> employees = this.employeesDAO.getList();
+		logger.debug("Total employees found:" + employees.size());
+		ModelAndView report = new ModelAndView("penalty");
+		report.getModelMap().put("employees", employees);
+		report.getModelMap().put("emp", employee);
+		//System.out.println("-------------------------->"+report.toString());
+		
+		return report;
+	}
+	
+	@RequestMapping(value = { "/penaltysave.html" }, method = { org.springframework.web.bind.annotation.RequestMethod.GET })
+	public ModelAndView savepenalty(Model model,@RequestParam int empid, @RequestParam float penalty) {
+		logger.debug("Calling the reports of the employees");
+		Employees employee = this.employeesDAO.getRecordByPrimaryKey(empid);
+		
+		employee.setMonthlypenalty(penalty);
+		this.employeesDAO.update(employee);
+		List<Employees> employees = this.employeesDAO.getList();
+		logger.debug("Total employees found:" + employees.size());
+		ModelAndView report = new ModelAndView("penalty");
+		report.getModelMap().put("employees", employees);
+		report.getModelMap().put("emp", employee);
+		//System.out.println("-------------------------->"+report.toString());
+		
+		return report;
+	}
 	
 	
 	

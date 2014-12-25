@@ -45,6 +45,7 @@
                                 </li>
                          <li class='last'><a href='serviceEnd.html'><span>End the service</span></a></li>
                                 
+                         <li class='last'><a href='penalty.html'><span>Penalty</span></a></li>
                                 
                                 
                                 <li class=''><a href='#'><span><spring:message code="menu.settings" text="Label value is missing !!!"/></span></a>
@@ -52,8 +53,8 @@
                                         <li><a href='employee_category.html'><span><spring:message code="menu.employeecategory" text="Label value is missing !!!"/></span></a></li>
                                         <li class="active"><a href='employee_department.html'><span><spring:message code="menu.employeedepartment" text="Label value is missing !!!"/></span></a></li>
                                         <li class='last'><a href='payroll_category.html'><span><spring:message code="menu.payrollcategory" text="Label value is missing !!!"/></span></a></li>
-                                        <li class='last'><a href='bank.html'><span><spring:message code="menu.bank" text="Label value is missing !!!"/></span></a></li>
-                                    </ul>
+<%--                                         <li class='last'><a href='bank.html'><span><spring:message code="menu.bank" text="Label value is missing !!!"/></span></a></li>
+ --%>                                    </ul>
                                 </li>
 
                                     <li class='last'><a href='account.html'><span><spring:message code="menu.account" text="Label value is missing !!!"/></span></a></li>
@@ -174,14 +175,23 @@
                 });
             });
             function printEmployeeReport(){
-            	var originalPage = document.body.innerHTML;
+            	/* var originalPage = document.body.innerHTML;
             	var detail = document.getElementById("dttable_wrapper");
             	//Remove extra childnodes of the wrapper div
             	detail.removeChild(detail.childNodes[0]);
             	detail.removeChild(detail.childNodes[0]);
             	document.body.innerHTML = detail.innerHTML;
             	window.print();
-            	document.body.innerHTML = originalPage;
+            	document.body.innerHTML = originalPage; */
+            	
+            	 var divToPrint=document.getElementById("dttable");
+         	   newWin= window.open("");
+         	   newWin.document.write(divToPrint.outerHTML);
+         	   newWin.print();
+         	   newWin.close();
+
+            	
+            	
             }
         </script>
     </body>
